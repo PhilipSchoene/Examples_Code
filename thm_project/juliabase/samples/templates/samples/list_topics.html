@@ -1,0 +1,50 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% extends "samples/base.html" %}
+{% comment %}
+This file is part of JuliaBase, see http://www.juliabase.org.
+Copyright © 2008–2015 Forschungszentrum Jülich GmbH, Jülich, Germany
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU Affero General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option) any
+later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
+details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+{% endcomment %}
+
+{% load i18n %}
+{% load juliabase %}
+{% load samples_extras %}
+{% load static %}
+
+{% block frame_content %}
+{% if topics %}
+  <table class="padding5">
+  <tbody>
+    <tr>
+      <th>{% translate 'topic'|capfirst %}</th>
+      <th>{% translate 'topic manager'|capfirst %}</th>
+    </tr>
+    {% for topic, editable in topics %}
+      {% with topic.id|urlquote as normalized_topicid %}
+        <tr>
+          <td>
+            <span style='background: url("{% static "juliabase/icons/group.png" %}")no-repeat bottom left; background-position: 0 0; width: 16px; height: 16px;display: inline-block;'></span>
+                  {% if editable %}<a href="{% url 'samples:edit_topic' id=normalized_topicid %}">{{ topic.name }}</a>
+                  {% else %}{{ topic.name }}{% endif %}</td>
+          <td>{{ topic.manager|get_really_full_name }}</td>
+        </tr>
+      {% endwith %}
+    {% endfor %}
+  </tbody>
+  </table>
+{% else %}
+  <p>{% translate 'No topics available.' %}</p>
+{% endif %}
+{% endblock %}

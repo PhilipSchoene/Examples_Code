@@ -1,0 +1,580 @@
+.. -*- mode: rst; coding: utf-8; ispell-local-dictionary: "english" -*-
+..
+.. This file is part of JuliaBase, see http://www.juliabase.org.
+.. Copyright © 2008–2015 Forschungszentrum Jülich GmbH, Jülich, Germany
+..
+.. This program is free software: you can redistribute it and/or modify it under
+.. the terms of the GNU Affero General Public License as published by the Free
+.. Software Foundation, either version 3 of the License, or (at your option) any
+.. later version.
+..
+.. This program is distributed in the hope that it will be useful, but WITHOUT
+.. ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+.. FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
+.. details.
+..
+.. You should have received a copy of the GNU Affero General Public License
+.. along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+.. index:: adapting
+
+===========
+Programming
+===========
+
+This document explains JuliaBase for the programmer who wants to adapt it to
+their institute, research department, or scientific group.  It contains an
+overview of the process as a whole, and refers to other pages with the details.
+We hope that it serves as a gentle tutorial which makes the adaption process as
+easy as possible.  Feedback is welcomed!
+
+For the adaption process, you should be familiar with several technologies:
+
+1.  *Python*.  You should have advanced experience in this language.  This
+    includes the standard library; you should at least know what it can do and
+    how to find information about it.
+
+2.  *Django*.  You must have mastered the tutorial of the Django web framework.
+
+3.  *HTML*.  Basic knowledge should be enough.
+
+Furthermode, some admin skills are necessary to get everything running.
+
+
+.. index::
+   pair: source code; structure
+
+.. _Organizing your source code:
+
+Organizing your source code
+===========================
+
+It would be a bad idea to download JuliaBase's source code and modify it
+directly to your needs because then, any JuliaBase update would destroy your
+changes.  Instead, you make a structure according to this::
+
+    myproject/
+        manage.py
+        juliabase/
+            {the original JuliaBase release}
+        mysite/
+            __init__.py
+            settings.py
+            urls.py
+            wsgi.py
+        institute/
+            __init__.py
+            admin.py
+            urls.py
+            migrations/
+            models/
+            static/
+            templates/
+            views/
+            ...
+
+Thus, follow these steps:
+
+#. Create the directory :file:`myproject/`.  (Don't use Django's
+   ``startproject`` command here or in the following.)
+#. Copy a JuliaBase release to :file:`myproject/juliabase`
+#. Copy the file :file:`myproject/juliabase/manage.py` to :file:`myproject/`.
+#. Create :file:`myproject/mysite/`
+#. Copy the files :file:`settings.py`, :file:`urls.py`, and :file:`wsgi.py`
+   from :file:`myproject/juliabase/` to :file:`myproject/mysite/`
+#. Create an empty file :file:`myproject/mysite/__init__.py`
+#. Copy recursively the directory :file:`myproject/juliabase/institute` to
+   :file:`myproject/`.
+
+
+Settings
+--------
+
+Adjust :file:`myproject/mysite/settings.py` to your needs.  In particular, you
+probably have to change the default database username and password to what you
+used in the :ref:`database setup <PostgreSQL>` (look for ``DATABASES``).  In
+addition, you might want to change the values of ``STATIC_ROOT`` and
+``MEDIA_ROOT``.  For further information, take a look at the :doc:`settings`.
+
+
+.. index:: git
+
+Git subtree
+-----------
+
+If you're using Git, you may consider using the ``subtree`` command to get
+JuliaBase in your repo: You structure your repository like above but without
+the :file:`juliabase` subdirectory.  Then, you say:
+
+.. code-block:: shell-session
+
+    username@server:~/myproject$ git subtree add --prefix juliabase --squash \
+        https://github.com/juliabase/juliabase.git v1.0
+
+A new version is pulled into your repo with:
+
+.. code-block:: shell-session
+
+    username@server:~/myproject$ git subtree pull --prefix juliabase --squash \
+        https://github.com/juliabase/juliabase.git v2.0
+
+
+Creating a new Django app
+=========================
+
+Okay, now let's dive into the serious stuff.
+
+You created your Django project, you added JuliaBase to it as explained in
+`Organizing your source code`_.  Furthermore, you set up everything as
+explained in :doc:`installation` (Apache is not yet needed).  Let's
+try to get it running with
+
+.. code-block:: shell-session
+
+    username@server:~/myproject$ ./manage.py migrate
+    username@server:~/myproject$ ./manage.py loaddata demo_accounts
+    username@server:~/myproject$ ./manage.py collectstatic
+    username@server:~/myproject$ ./manage.py runserver
+
+This should make the site accessible locally at the URL http://127.0.0.1:8000.
+
+
+The institute app that is used is :file:`myproject/institute`.  For far, it is
+a 1:1 copy of the JuliaBase app of the same name.  The plan is to transform it
+into what *you* need by pruning and modifying it.  The primary tasks when
+adapting the app to your group or institution are:
+
+1. Branding.
+2. Adapting the “add new samples” page.
+3. Manage the physical processes.
+
+
+.. index:: branding
+
+Branding
+--------
+
+For the time being, we will stay with the app name “institute” to keep the
+number of changes small.  Remember that it is only the app name; you may
+re-brand the webpages to whatever you like.  The central point of doing so is
+:file:`institute/templates/jb_base.html`.  There, you may change the name of
+the institution as well as its logo.  The logo file should be placed in
+:file:`institute/static/institute/`.
+
+Moreover, every JuliaBase installation must have at least one department.  It
+needs to be created only once and should be named appropriately.
+
+
+.. index::
+   pair: sample; add
+
+The “add new samples” view
+--------------------------
+
+JuliaBase respects that creating new samples is a rather institute-specific
+procedure and therefore does not include a view for this.  Instead, you must
+create one, but you may use the INM's view in
+:file:`institute/views/samples/sample.py` as a comprehensive starting point (in
+particular, the function :py:func:`institute.views.samples.sample.add`).
+
+In the INM, every sample starts its life with a *substrate*.  This is a
+physical process that is always the very first one in the sample's history.
+Therefore, the web page where you can add new samples also asks for the
+substrate data, and creates the samples together with their substrates.  You
+may or may not wish to have substrates, too.
+
+The second big issue is sample names.  Most institutions have quite
+idiosyncratic ideas about the sample naming policy.  But JuliaBase is very
+flexible regarding this, see :doc:`sample_names`.  In the “add new samples”
+view, you may let the user input (a pattern for) the new samples right away, or
+you may give the names totally automatically.  Or, you may do it similarly to
+the INM: Let the user decide between some options, and possibly redirect to a
+bulk-rename view after having added the samples with provisional names.
+
+
+.. index:: process
+
+Physical processes
+------------------
+
+Physical processes are the thing that a JuliaBase programmer will spend most of
+its time on.  They represent everything physically available in your
+institution: Measurement setups, deposition setups, clean room processes,
+chemical treatment, etc.
+
+The INM app “institute” ships with some examples.  You may convert them to what
+you need, but you can also remove them.  For the latter, visit
+:file:`institute/urls.py` and have a look at the following part (at the
+bottom)::
+
+    pattern_generator = PatternGenerator(urlpatterns, "institute.views.samples")
+    pattern_generator.deposition("ClusterToolDeposition", views={"add", "edit"})
+    pattern_generator.deposition("FiveChamberDeposition", "5-chamber_depositions")
+    pattern_generator.physical_process("PDSMeasurement", "number")
+    pattern_generator.physical_process("Substrate", views={"edit"})
+    pattern_generator.physical_process("Structuring", views={"edit"})
+    pattern_generator.physical_process("SolarsimulatorMeasurement")
+
+Here, you can simply remove a line and the process is gone.  Well, not
+entirely: You still need to remove its views module, templates, and models in
+order to have everything neat and clean.  But removing the URL is enough for
+the moment.
+
+
+.. index::
+   triple: add; process; module
+
+Adding a new process module
+===========================
+
+So you want to add a new measurement device or manufacturing process to your
+JuliaBase installation.  You do so by adding new models, views, URLs, and
+possibly an electronic lab notebook to your app “institute”.
+
+I will show how to do that step-by-step.  In this example case, we write the
+code for layer thickness measurements.
+
+Overview
+------------
+
+The following steps are necessary for creating a physical process:
+
+#. Create a database model in ``institute/models.py``.
+#. Create links in ``urls.py``.
+#. Create a view module in ``samples/views/``.  Fill the view module with an
+   “EditView” class.
+#. Create an “edit” and a “show” template in ``templates/``.
+#. *(Optional)* Create an electronic lab notebook.
+#. *(Optional)* Create support for the new process in the Remote Client.
+#. *(Optional)* Import legacy data.
+
+In general, you will not do all of this from scratch.  Instead, you will
+copy-and-paste from an already existing process which is as similar to the new
+one as possible.
+
+
+Creating the database models
+----------------------------
+
+A “database model” or simply a “model” is a class in the Python code which
+represents a table in the database.  It defines which things need to be stored
+for every thickness measurement.  Since a model is a very Django-specific
+construction, see the `Django model documentation`_ for the details.
+
+.. _`Django model documentation`: https://docs.djangoproject.com/en/dev/topics/db/models/
+
+Let us assume that your thickness measurements need two fields: The measured
+thickness and the method that was used to measure the thickness.  For the
+method, you want to give the user the choice between five pre-set methods.
+
+Thus, add the following code to your ``models.py``::
+
+    class ThicknessMeasurement(PhysicalProcess):
+
+        class Method(models.TextChoices):
+            PROFILERS_EDGE = "profilers&edge", _("profilers + edge")
+            ELLIPSOMETER = "ellipsometer", _("ellipsometer")
+            CALCULATED = "calculated", _("calculated from deposition parameters")
+            ESTIMATE = "estimate", _("estimate")
+            OTHER = "other", _("other")
+
+        thickness = models.DecimalField(_("layer thickness"), max_digits=6,
+                                        decimal_places=2, help_text=_("in nm"))
+        method = models.CharField(_("measurement method"), max_length=30,
+                                  choices=Method.choices, default=Method.PROFILERS_EDGE)
+
+The first part defines the five choices – note that it defines pairs of
+strings, namely the internal name, which will be written to the hard disk, and
+the descriptive name, which will be shown to the user.  The descriptive name is
+enclosed by ``_(...)`` to make it translatable to various languages.
+
+Try to be as restrictive as is sensible when defining your models.  In
+particular, mark only those fields as optional that are really optional, set
+minimal and maximal values for numeric fields where applicable, and restrict
+the number of digits for decimal fields.  This not only forces users to enter
+plausible values, it also helps debugging.
+
+
+.. index::
+   pair: schema; migration
+
+Schema migration
+................
+
+After you add (or change) database models, you must to a so-called schema
+migration.  This means that the tables in the database PostgreSQL are actually
+changed, so that Django can use this new structure (a.k.a. schema).
+
+It is a good idea to test a schema migration first on a test server.
+
+The schema migration is created and applied by saying::
+
+    ./manage.py makemigrations institute
+    ./manage.py migrate institute
+
+The first line will create a new file in :file:`institute/migrations/`.  It
+should be added to your repository.
+
+
+.. index:: URLs
+
+Creating the URLs
+-----------------
+
+This work is done in :file:`institute/urls.py`, and it is fairly simple.  For
+the thickness measurement, you add::
+
+    pattern_generator.physical_process("LayerThicknessMeasurement")
+
+See the methods of the class :py:class:`~samples.utils.urls.PatternGenerator`
+for further details.
+
+Take care that the namespace of the URL patterns has the same name as your
+institute app!  One way to do that is to say
+
+::
+
+   app_name = "institute"
+
+at the beginning of :file:`institute/urls.py`.
+
+
+.. index::
+   pair: process; view
+
+Creating the view
+-----------------
+
+Typically, the view is the most complex task when creating a new kind of
+process.  The Python file containing it must be called
+:file:`{process_class}.py`, thus in the current example,
+:file:`layer_thickness_measurement.py`.  It contains two parts:
+
+#. The form(s).
+#. The ``class EditView`` function.  This is mandatory.
+
+
+The form
+........
+
+For such a simple process class, this is simple::
+
+    class LayerThicknessForm(samples.utils.views.ProcessForm):
+        class Meta:
+            model = LayerThicknessMeasurement
+            fields = "__all__"
+
+
+View class
+..........
+
+You only need to create a view class for *editing*, which can also be used to
+*adding*.  (The *display* of an existing process is handled by JuliaBase.)
+This view function must be defined like this::
+
+    class EditView(ProcessView):
+        form_class = LayerThicknessForm
+
+For such a simple process like layer thickness measurement, that's it!  For
+more complex processes, you may have to define further form classes, or do
+additional validation in an :py:meth:`is_referentially_valid` method in the
+view class.  For the full API reference, see :doc:`class-based_views`.  For
+more examples, see the view modules of the ``institute`` app in JuliaBase's
+source distribution.
+
+
+.. index::
+   pair: process; template
+
+Creating the templates
+----------------------
+
+You need two templates per process, one that is called
+:file:`edit_{process_name}.html` and the other that is called
+:file:`show_{process_name}.html`.  Copy them from the process which is most
+closely related to the one you're editing and apply the necessary
+modifications.  Put them into the directory
+:file:`institute/templates/samples/`.
+
+
+A more complex example: Writing a deposition module
+===================================================
+
+I will show how to write a module for a deposition system by creating an
+example module step-by-step.  The crucial difference to the simple measurement
+process from above is that depositions consist of *layers*, and there can be
+arbitrarily many of them.  Every process class that needs some sort of
+sub-model is more complicated, as explained in the following.
+
+
+The models
+----------
+
+A deposition system typically needs two models: One for the deposition data and
+one for the layer data.  The layer data will carry much more fields than the
+deposition, and it will contain a pointer to the deposition it belongs to.
+This way, deposition and layers are kept together.  This pointer is represented
+by a “foreign key” field.
+
+The deposition model is derived from :py:class:`~samples.models.Deposition`,
+which in turn is a ``Process``::
+
+    class FiveChamberDeposition(samples.models.Deposition):
+        class Meta(samples.models.PhysicalProcess.Meta):
+            permissions = generate_permissions(
+                {"add", "change", "view_every", "edit_permissions"}, "FiveChamberDeposition")
+
+It contains a full set of permissions to limit “add” and “edit” access to
+certain users.  Moreover the ``view_every`` makes a lab notebook possible.  See
+:doc:`permissions` for further information.
+
+In contrast, the layer model is derived from :py:class:`~samples.models.Layer`,
+which in turn is an ordinary Django model (not a ``Process``)::
+
+    class FiveChamberLayer(samples.models.Layer):
+
+        class Layer(models.TextChoices):
+           …
+
+        class Chamber(models.TextChoices):
+           …
+
+        deposition = models.ForeignKey(FiveChamberDeposition, models.CASCADE,
+            related_name="layers", verbose_name=_("deposition"))
+        layer_type = models.CharField(
+            _("layer type"), max_length=2, choices=Layer.choices, blank=True)
+        chamber = models.CharField(_("chamber"), max_length=2, choices=Chamber.choices)
+        sih4 = model_fields.DecimalQuantityField(
+            "SiH4", max_digits=7, decimal_places=3, unit="sccm", null=True, blank=True)
+        h2 = model_fields.DecimalQuantityField(
+            "H₂", max_digits=7, decimal_places=3, unit="sccm", null=True, blank=True)
+        temperature_1 = model_fields.DecimalQuantityField(
+            _("temperature 1"), max_digits=7, decimal_places=3, unit="℃", null=True, blank=True)
+        temperature_2 = model_fields.DecimalQuantityField(
+            _("temperature 2"), max_digits=7, decimal_places=3, unit="℃", null=True, blank=True)
+
+        class Meta(samples.models.Layer.Meta):
+            unique_together = ("deposition", "number")
+
+The most important thing here is the ``deposition`` field which points to the
+deposition this layer belongs to.  It forms part of a ``unique_together``
+declaration.  The other fields are ordinary data fields.
+
+
+.. index:: user context, get_context_for_user()
+
+Populating user context
+-----------------------
+
+In order to enable users to duplicate existing depositions, you should override
+:py:meth:`~samples.models.Process.get_context_for_user` method in the
+deposition model::
+
+    def get_context_for_user(self, user, old_context):
+        context = old_context.copy()
+        if permissions.has_permission_to_add_physical_process(user, self.__class__):
+            context["duplicate_url"] = "{0}?copy_from={1}".format(
+                django.urls.reverse("add_five_chamber_deposition"),
+                urlquote_plus(self.number))
+        else:
+            context["duplicate_url"] = None
+        return super().get_context_for_user(user, context)
+
+This method is used when the HTML for a process (in this case a deposition) is
+created.  Its return value is a dictionary which is combined with the
+dictionary sent to the :file:`show_{process_class}.html` template.  This way,
+additional program logic can be used to generate the HTML.  In case of
+depositions, a “duplicate” button can be added, depending on the user's
+permissions.
+
+
+The view
+--------
+
+In the view module which must be called :file:`five_chamber_deposition.py`, the
+main form gets additional cleaning methods::
+
+    class DepositionForm(samples.utils.views.DepositionForm):
+
+        class Meta:
+            model = institute.models.FiveChamberDeposition
+            fields = "__all__"
+
+        def clean_number(self):
+            number = super().clean_number()
+            return form_utils.clean_deposition_number_field(number, "S")
+
+        def clean(self):
+            cleaned_data = super().clean()
+            if "number" in cleaned_data and "timestamp" in cleaned_data:
+                if cleaned_data["number"][:2] != cleaned_data["timestamp"].strftime("%y"):
+                    self.add_error("number", ValidationError(
+                        _("The first two digits must match the year of the deposition."),
+                        code="invalid"))
+            return cleaned_data
+
+The view class must override :py:meth:`get_next_id` because the ID of a
+deposition (its number) is non-numberical in the INM::
+
+    class EditView(RemoveFromMySamplesMixin, DepositionView):
+        form_class = DepositionForm
+        layer_form_class = LayerForm
+
+        def get_next_id(self):
+            return institute.utils.base.get_next_deposition_number("S")
+
+
+.. index:: lab notebook
+
+The lab notebook
+----------------
+
+There are two things to set up for electronic lab notebooks: The URL and the
+template.
+
+Adding the URL for depositions is trivial as the method
+:py:meth:`samples.utils.urls.PatternGenerator.deposition` by default also
+creates a lab notebook URL::
+
+    pattern_generator.deposition("FiveChamberDeposition", "5-chamber_depositions")
+
+For normal processes, you need to request the lab notebook URL explicitly::
+
+    pattern_generator.physical_process("ConductivityMeasurement",
+                                       views={"add", "edit", "lab_notebook"})
+
+Finally, you need to create a template called
+:file:`lab_notebook_{process_class}.html`.  It contains the processes to be
+displayed in a lab notebook table in the context variable ``processes``.
+
+
+Process glossary
+================
+
+.. glossary::
+
+   process
+      Anything that contains information about a sample.  This can be a process
+      in the literal meaning of the word, i.e. a deposition, an etching, a
+      clean room process etc.  It can also be a measurement or a result.
+      However, even the substrate, sample split, and sample death are
+      considered processes in JuliaBase.
+
+      It may have been better to call this “history item” or just “item”
+      instead of “process”.  The name “process” is due to merely historical
+      reasons, but there we go.
+
+   measurement
+      A special kind of *process* which contains a single measurement.  It
+      belongs to the class of *physical processes*.
+
+   physical process
+      A deposition or a measurement process.  Its speciality is that only
+      people with the right permission for a certain physical process are
+      allowed to add and edit physical processes.
+
+   result
+      A result – or result process, as it is sometimes called in the source
+      code – is a special process which contains only a remark, a picture, or a
+      table with result values.
+

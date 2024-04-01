@@ -1,0 +1,49 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% extends "jb_base.html" %}
+{% comment %}
+This file is part of JuliaBase.
+{% endcomment %}
+
+{% load i18n %}
+{% load juliabase %}
+
+{% block extrahead %}
+  <link rel="stylesheet" type="text/css" media="screen" href="/static/juliabase/css/main.css"/>
+  <link rel="stylesheet" type="text/css" media="print" href="/static/juliabase/css/print.css"/>
+  <link rel="shortcut icon" href="/static/juliabase/favicon.ico" type="image/x-icon"/>
+{% endblock %}
+
+{% block title %}{% translate 'Internal JuliaBase error' %}{% endblock %}
+
+{% block content %}
+  <table class="headbar">
+    <tr>
+      <td class="info">
+      </td>
+      <td class="login-data">
+        <a href="/"><img src="/static/juliabase/icons/house.png" alt="log-in icon" title="{% translate 'Log in' %}"
+                         width="16" height="16"/></a>
+      </td>
+    </tr>
+  </table>
+
+  <div class="main">
+    <div class="screen-only">
+      <p class="logo-text">JuliaBase</p>
+    </div>
+
+    <div class="outer-frame">
+      <div class="inner-frame">
+	<div class="page-header"><h1>{% translate 'Internal server error' %}</h1></div>
+	<p>{% blocktranslate %}
+You experienced an internal error in the JuliaBase server software.  The
+administrators have been contacted already and will do their best in
+eliminating the bug.  Typically, they will contact you as soon as the problem
+is tackled.
+{% endblocktranslate %}</p>
+<p style="margin: 0pt"> </p> <!-- IE7 quirk -->
+        <div style="clear: both"></div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

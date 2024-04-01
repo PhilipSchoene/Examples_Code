@@ -1,0 +1,69 @@
+{% comment %}
+This file is part of JuliaBase, see http://www.juliabase.org.
+Copyright © 2008–2015 Forschungszentrum Jülich GmbH, Jülich, Germany
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU Affero General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option) any
+later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
+details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+{% endcomment %}
+
+{% load i18n %}
+{% load samples_extras %}
+
+{% with entry.samples.all as samples %}
+  <p>
+    {% if entry.old_topic %}
+      {% blocktranslate count samples|length as counter with entry.originator|get_really_full_name:"mailto" as originator and entry.topic as topic and entry.old_topic as old_topic %}
+	{{ originator }} has moved the following sample from topic “{{ old_topic }}” to the topic “{{ topic }}”:
+      {% plural %}
+	{{ originator }} has added the following samples from topic “{{ old_topic }}” to the topic “{{ topic }}”:
+      {% endblocktranslate %}
+    {% else %}
+      {% blocktranslate count samples|length as counter with entry.originator|get_really_full_name:"mailto" as originator and entry.topic as topic %}
+	{{ originator }} has moved the following formerly topic-less sample to the topic “{{ topic }}”:
+      {% plural %}
+	{{ originator }} has added the following formerly topic-less samples to the topic “{{ topic }}”:
+      {% endblocktranslate %}
+    {% endif %}
+  </p>
+
+  <ul>
+    {% for sample in entry.samples.all %}
+      <li><a href="{{ sample.get_absolute_url }}">{{ sample }}</a></li>
+    {% endfor %}
+  </ul>
+
+  <p>
+    {% if auto_added %}
+      {% blocktranslate count samples|length as counter %}
+        The sample is amongst “My Samples”.
+      {% plural %}
+        The samples are amongst “My Samples”.
+      {% endblocktranslate %}
+    {% else %}
+      {% blocktranslate count samples|length as counter %}
+        The sample was not (at least not <em>automatically</em>) added to “My Samples”.
+      {% plural %}
+	The samples were not (at least not <em>automatically</em>) added to “My Samples”.
+      {% endblocktranslate %}
+    {% endif %}
+  </p>
+
+{% endwith %}
+
+<p>
+  {% translate 'Full description of the change:' %}
+</p>
+
+<blockquote>
+  {{ entry.description|markdown_samples }}
+</blockquote>

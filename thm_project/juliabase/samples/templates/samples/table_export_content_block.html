@@ -1,0 +1,108 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% comment %}
+This file is part of JuliaBase, see http://www.juliabase.org.
+Copyright © 2008–2015 Forschungszentrum Jülich GmbH, Jülich, Germany
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU Affero General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option) any
+later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
+details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+{% endcomment %}
+
+{% load i18n %}
+{% load juliabase %}
+
+
+{% block frame_content %}
+  {% if column_groups %}
+    <table style="float: left">
+      <tr>
+        <td>{{ column_groups.column_groups.label_tag }}</td>
+      </tr>
+      {% error_list column_groups _("Error in column groups") "<tr>" %}
+      <tr>
+        <td>{{ column_groups.column_groups }}</td>
+      </tr>
+    </table>
+  {% endif %}
+
+  {% if columns.fields.columns.choices %}
+    <table style="float: left; margin-right: 2em">
+      <tr>
+        <td>{{ columns.columns.label_tag }}</td>
+      </tr>
+      {% error_list columns _("Error in columns") "<tr>" %}
+      <tr>
+        <td>{{ columns.columns }}</td>
+      </tr>
+    </table>
+
+    {% if rows %}
+      <table style="min-width: 40%">
+        <tr><td>
+          {% blocktranslate %}
+            <p>Below, you see a preview of the table.  If you export it by
+              clicking on the button, you get the table in CSV format.  This
+              should be importable by any table-processing program.  It has the
+              following properties, which you may have to specify when
+              importing the data:</p>
+
+            <ol>
+              <li>The columns are <em>tabulator</em>-separated (“TAB”).</li>
+              <li>The file is encoded in <em>UTF-8</em>.</li>
+            </ol>
+
+            <p>Note that depending on the MS Excel version number, it may be
+              easier to import the table into Excel by saving the file with the
+              extension <tt>".txt"</tt> before importing it.</p>
+          {% endblocktranslate %}
+        </td></tr>
+      </table>
+    {% endif %}
+  {% endif %}
+
+  {% if old_data %}
+    <table style="display: none">
+      {{ old_data }}
+    </table>
+  {% endif %}
+
+  {% if rows %}
+    <table border="1" style="clear: left; margin-top: 2ex; margin-left: auto; margin-right: auto">
+      {% for row, switch_row in rows %}
+        <tr>
+          {% if forloop.first %}
+            <td></td>
+          {% else %}
+            <td>{{ switch_row.active }}</td>
+          {% endif %}
+          {% for cell in row %}
+            {% if forloop.parentloop.first %}
+              <th>{{ cell }}</th>
+            {% else %}
+              <td>{{ cell }}</td>
+            {% endif %}
+          {% endfor %}
+        </tr>
+      {% endfor %}
+    </table>
+  {% endif %}
+  {% if backlink %}
+    <input type="text" name="next" value="{{ backlink }}" style="display: none"/>
+  {% endif %}
+
+  <p class="submit-button" style="clear: both"><input type="submit" value="Submit"/></p>
+
+{% if backlink %}
+  <div style="text-align: right; margin-top: 1ex"><a href="{{ backlink }}">{% translate 'Go back' %}</a></div>
+{% endif %}
+
+{% endblock %}

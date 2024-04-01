@@ -1,0 +1,239 @@
+# This file is part of JuliaBase-Institute, see http://www.juliabase.org.
+# Copyright © 2008–2015 Forschungszentrum Jülich GmbH, Jülich, Germany
+#
+# This program is free software: you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later
+# version.
+#
+# In particular, you may modify this file freely and even remove this license,
+# and offer it as part of a web service, as long as you do not distribute it.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+# details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+# First, the users with their permissions.
+
+- fields:
+    username: juliabase
+    first_name: Julia
+    # 12345
+    password: pbkdf2_sha256$120000$qiTx8zpW6zYI$/Qm/jAB+7xhUG1lP4T2PlEhnxmhRHW7qiYtsCzNNoDg=
+    is_superuser: true
+    is_staff: true
+  model: auth.user
+  pk: 1
+- fields:
+    username: nobody
+    last_name: Nobody
+    password: '!'
+  model: auth.user
+  pk: 2
+- fields:
+    username: n.burkhardt
+    first_name: Nick
+    last_name: Burkhardt
+    # 12345
+    password: pbkdf2_sha256$120000$qiTx8zpW6zYI$/Qm/jAB+7xhUG1lP4T2PlEhnxmhRHW7qiYtsCzNNoDg=
+    user_permissions:
+    - [add_pdsmeasurement, institute, pdsmeasurement]
+    - [edit_permissions_for_pdsmeasurement, institute, pdsmeasurement]
+    - [view_every_pdsmeasurement, institute, pdsmeasurement]
+  model: auth.user
+  pk: 3
+- fields:
+    username: h.griffin
+    first_name: Hank
+    last_name: Griffin
+    # 12345
+    password: pbkdf2_sha256$120000$qiTx8zpW6zYI$/Qm/jAB+7xhUG1lP4T2PlEhnxmhRHW7qiYtsCzNNoDg=
+    user_permissions:
+    - [add_solarsimulatormeasurement, institute, solarsimulatormeasurement]
+    - [edit_permissions_for_solarsimulatormeasurement, institute, solarsimulatormeasurement]
+    - [view_every_solarsimulatormeasurement, institute, solarsimulatormeasurement]
+  model: auth.user
+  pk: 4
+- fields:
+    username: j.silverton
+    first_name: Juliette
+    last_name: Silverton
+    # 12345
+    password: pbkdf2_sha256$120000$qiTx8zpW6zYI$/Qm/jAB+7xhUG1lP4T2PlEhnxmhRHW7qiYtsCzNNoDg=
+    user_permissions:
+    - [add_solarsimulatormeasurement, institute, solarsimulatormeasurement]
+  model: auth.user
+  pk: 5
+- fields:
+    username: e.monroe
+    first_name: Eddie
+    last_name: Monroe
+    # 12345
+    password: pbkdf2_sha256$120000$qiTx8zpW6zYI$/Qm/jAB+7xhUG1lP4T2PlEhnxmhRHW7qiYtsCzNNoDg=
+    user_permissions:
+    - [add_clustertooldeposition, institute, clustertooldeposition]
+    - [edit_permissions_for_clustertooldeposition, institute, clustertooldeposition]
+    - [view_every_clustertooldeposition, institute, clustertooldeposition]
+    - [change_clustertooldeposition, institute, clustertooldeposition]
+  model: auth.user
+  pk: 6
+- fields:
+    username: r.calvert
+    first_name: Rosalee
+    last_name: Calvert
+    # 12345
+    password: pbkdf2_sha256$120000$qiTx8zpW6zYI$/Qm/jAB+7xhUG1lP4T2PlEhnxmhRHW7qiYtsCzNNoDg=
+    user_permissions:
+    - [add_fivechamberdeposition, institute, fivechamberdeposition]
+    - [edit_permissions_for_fivechamberdeposition, institute, fivechamberdeposition]
+    - [view_every_fivechamberdeposition, institute, fivechamberdeposition]
+    - [change_fivechamberdeposition, institute, fivechamberdeposition]
+  model: auth.user
+  pk: 7
+- fields:
+    username: s.renard
+    first_name: Jean
+    last_name: Renard
+    # 12345
+    password: pbkdf2_sha256$120000$qiTx8zpW6zYI$/Qm/jAB+7xhUG1lP4T2PlEhnxmhRHW7qiYtsCzNNoDg=
+    user_permissions:
+    - [view_every_sample, samples, sample]
+    - [adopt_samples, samples, sample]
+    - [edit_permissions_for_all_physical_processes, samples, userdetails]
+    - [add_externaloperator, samples, externaloperator]
+    - [view_every_externaloperator, samples, externaloperator]
+    - [add_topic, jb_common, topic]
+    - [change_topic, jb_common, topic]
+  model: auth.user
+  pk: 8
+
+- fields:
+    name: INM
+    app_label: institute
+  model: jb_common.department
+  pk: 1
+
+
+# Now the user details; it's only to set the department.
+
+- fields:
+    user: 3
+    department: 1
+    layout_last_modified: "1990-01-01T00:00:00Z"
+  model: jb_common.userdetails
+  pk: 3
+- fields:
+    user: 4
+    department: 1
+    layout_last_modified: "1990-01-01T00:00:00Z"
+  model: jb_common.userdetails
+  pk: 4
+- fields:
+    user: 5
+    department: 1
+    layout_last_modified: "1990-01-01T00:00:00Z"
+  model: jb_common.userdetails
+  pk: 5
+- fields:
+    user: 6
+    department: 1
+    layout_last_modified: "1990-01-01T00:00:00Z"
+  model: jb_common.userdetails
+  pk: 6
+- fields:
+    user: 7
+    department: 1
+    layout_last_modified: "1990-01-01T00:00:00Z"
+  model: jb_common.userdetails
+  pk: 7
+- fields:
+    user: 8
+    department: 1
+    layout_last_modified: "1990-01-01T00:00:00Z"
+  model: jb_common.userdetails
+  pk: 8
+
+- fields:
+    user: 3
+    show_users_from_departments: [1]
+    display_settings_timestamp: "1990-01-01T00:00:00Z"
+    my_samples_timestamp: "1990-01-01T00:00:00Z"
+    my_samples_list_timestamp: "1990-01-01T00:00:00Z"
+  model: samples.userdetails
+  pk: 3
+- fields:
+    user: 4
+    show_users_from_departments: [1]
+    display_settings_timestamp: "1990-01-01T00:00:00Z"
+    my_samples_timestamp: "1990-01-01T00:00:00Z"
+    my_samples_list_timestamp: "1990-01-01T00:00:00Z"
+  model: samples.userdetails
+  pk: 4
+- fields:
+    user: 5
+    show_users_from_departments: [1]
+    display_settings_timestamp: "1990-01-01T00:00:00Z"
+    my_samples_timestamp: "1990-01-01T00:00:00Z"
+    my_samples_list_timestamp: "1990-01-01T00:00:00Z"
+  model: samples.userdetails
+  pk: 5
+- fields:
+    user: 6
+    show_users_from_departments: [1]
+    display_settings_timestamp: "1990-01-01T00:00:00Z"
+    my_samples_timestamp: "1990-01-01T00:00:00Z"
+    my_samples_list_timestamp: "1990-01-01T00:00:00Z"
+  model: samples.userdetails
+  pk: 6
+- fields:
+    user: 7
+    show_users_from_departments: [1]
+    display_settings_timestamp: "1990-01-01T00:00:00Z"
+    my_samples_timestamp: "1990-01-01T00:00:00Z"
+    my_samples_list_timestamp: "1990-01-01T00:00:00Z"
+  model: samples.userdetails
+  pk: 7
+- fields:
+    user: 8
+    show_users_from_departments: [1]
+    display_settings_timestamp: "1990-01-01T00:00:00Z"
+    my_samples_timestamp: "1990-01-01T00:00:00Z"
+    my_samples_list_timestamp: "1990-01-01T00:00:00Z"
+  model: samples.userdetails
+  pk: 8
+
+
+# And the rest
+
+- fields:
+    name: Legacy
+    department: 1
+    manager: 2
+  model: jb_common.topic
+  pk: 1
+
+- fields:
+    name: Juliette's PhD thesis
+    department: 1
+    manager: 5
+    members: [5]
+  model: jb_common.topic
+  pk: 2
+
+- fields:
+    name: Cooperation with Paris University
+    department: 1
+    manager: 7
+    members: [7, 3, 6]
+  model: jb_common.topic
+  pk: 3
+
+- fields:
+    initials: JS
+    user: 5
+  model: samples.initials

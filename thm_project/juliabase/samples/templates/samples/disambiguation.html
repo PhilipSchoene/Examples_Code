@@ -1,0 +1,21 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% extends "samples/base.html" %}
+{% comment %}
+This file is part of JuliaBase, see http://www.juliabase.org.
+{% endcomment %}
+
+{% load i18n %}
+{% load samples_extras %}
+
+{% block frame_content %}
+  <p>
+    {% blocktranslate %}
+      The name {{ alias }} is an alias for the following samples:
+    {% endblocktranslate %}
+  </p>
+  <ul>
+    {% for sample in samples %}
+      <li><a href="{{ sample.get_absolute_url }}">{{ sample }}</a></li>
+    {% endfor %}
+  </ul>
+{% endblock %}

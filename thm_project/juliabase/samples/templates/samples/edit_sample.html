@@ -1,0 +1,35 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% extends "samples/base.html" %}
+{% comment %}
+This file is part of JuliaBase
+{% endcomment %}
+
+{% load i18n %}
+{% load juliabase %}
+{% load samples_extras %}
+
+{% block frame_content %}
+<form method="post">{% csrf_token %}
+  {% error_list sample _("Error in sample") %}
+  <table class="gesetz ordnung">
+    <tr>
+      {% input_field sample.current_location %}
+    </tr><tr>
+      {% input_field sample.currently_responsible_person %}
+    </tr><tr>
+      {% input_field sample.purpose %}
+    </tr><tr>
+      {% input_field sample.tags %}
+    </tr><tr>
+      {% input_field sample.topic %}
+    </tr>
+  </table>
+  <!--
+  {% block sample_details %}{# This block can be overridden in derived templates #}{% endblock %}
+  --> 
+  {% include "samples/edit_description.html" %} 
+  <p class="submit-button" style="clear: both"><input type="submit" value="Save"/></p>
+</form>
+
+
+{% endblock %}

@@ -1,0 +1,64 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% comment %}
+This file is part of JuliaBase-Institute, see http://www.juliabase.org.
+Copyright © 2008–2015 Forschungszentrum Jülich GmbH, Jülich, Germany
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later
+version.
+
+In particular, you may modify this file freely and even remove this license,
+and offer it as part of a web service, as long as you do not distribute it.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program.  If not, see <http://www.gnu.org/licenses/>.
+{% endcomment %}
+
+{% load i18n %}
+{% load juliabase %}
+{% load samples_extras %}
+{% load institute_extras %}
+
+<p>
+  <span class="field-label">{% verbose_name Deposition.number %}:</span><span class="field-value">{{ process.number }}</span>
+</p>
+
+{% if process.comments %}
+  <p>
+    <span class="field-label">{% verbose_name FiveChamberDeposition.comments %}:</span>
+  </p>
+  <blockquote>{{ process.comments|markdown_samples }}</blockquote>
+{% endif %}
+
+<table style="width: 100%">
+  {% for layer in process.layers.all %}
+  <tr>
+    <td style="border-style: solid; border-color: black; border-width: thin">
+      <table style="width: 100%">
+        <tr>
+          {% value_field layer.number|three_digits %}
+          {% value_field layer.sih4 %}
+        </tr>
+        <tr>
+          {% value_field layer.layer_type %}
+          {% value_field layer.h2 %}
+        </tr>
+        <tr>
+          {% value_field layer.get_chamber_display %}
+          <td class="field-label">{% translate 'Silane conc.' %}:</td>
+          <td class="field-value">{{ layer|calculate_silane_concentration|quantity:"%"|default_if_none:"—" }}</td>
+        </tr>
+        <tr>
+          {% value_split_field layer.temperature_1 layer.temperature_2 %}
+        </tr>
+      </table>
+    </td>
+  </tr>
+  {% endfor %}
+</table>

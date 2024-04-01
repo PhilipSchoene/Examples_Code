@@ -1,0 +1,25 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% comment %}
+This file is part of JuliaBase.
+{% endcomment %}
+
+{% if form %}
+  {% if form.errors or form.non_field_errors %}
+    {% if outest_tag == "<table>" %}
+      <table class="tight-fullwidth">
+    {% endif %}
+    <tr>
+      <td class="error-messages"{% if colspan > 1 %} colspan="{{ colspan }}"{% endif %}>
+	{% for field in form %}
+	  {% if field.errors %}<p>{{ field.label|safe }}</p>{{ field.errors }}{% endif %}
+	{% endfor %}
+	{% if form.non_field_errors %}
+	  <p>{{ form_error_title }}</p>{{ form.non_field_errors }}
+	{% endif %}
+      </td>
+    </tr>
+    {% if outest_tag == "<table>" %}
+      </table>
+    {% endif %}
+  {% endif %}
+{% endif %}

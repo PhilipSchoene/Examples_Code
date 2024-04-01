@@ -1,0 +1,34 @@
+{% comment %}
+This file is part of JuliaBase, see http://www.juliabase.org.
+Copyright © 2008–2015 Forschungszentrum Jülich GmbH, Jülich, Germany
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU Affero General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option) any
+later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
+details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+{% endcomment %}
+
+{% load i18n %}
+{% load samples_extras %}
+
+<p>
+  {% blocktranslate with entry.originator|get_really_full_name:"mailto" as originator and entry.topic as topic and entry.sample_series as sample_series and entry.sample_series.get_absolute_url as url %}
+    {{ originator }} has added the sample series “<a href="{{ url }}">{{ sample_series }}</a>” to the topic 
+    “{{ topic }}”.
+  {% endblocktranslate %}
+  <p>{% translate 'description'|capfirst %}:</p>
+  <blockquote>{{ entry.sample_series.description|markdown_samples }}</blockquote>
+  {% if subscribed %}
+    {% translate 'You are subscribed to this sample series because you have at least one of its samples amongst “My Samples”.' %}
+  {% else %}
+    {% translate 'You are not subscribed to this sample series because you have none of its samples amongst “My Samples”.' %}
+  {% endif %}
+</p>

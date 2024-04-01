@@ -1,0 +1,86 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% extends "jb_common/base.html" %}
+{% comment %}
+This file is part of JuliaBase
+{% endcomment %}
+
+{% load i18n %}
+{% load static %}
+
+{% block css %}
+<style type="text/css">
+  p { margin: 0pt }
+  img { border: 0pt }
+  img.helper-program-logo { float: right; margin: 0pt 0pt 1ex 0.5em }
+</style>
+{% endblock %}
+
+{% block frame_content %}
+<div style="margin-left: 25px; margin-right: 25px">
+<h4>First Login</h4>
+<p>Enter your Username and password. It is recommended to change your password
+upon your first login. Therefore go to Other in the <a href="{% url 'samples:main_menu' %}">"Main menu"</a> and choose
+{% if user.has_usable_password %}
+<a href="{% url 'password_change' %}">"Change password"</a>
+{% endif %}.
+When you are done, you are all set to use the database.</p>
+
+<h4>Adding Measurements</h4>
+<p>In the <a href="{% url 'samples:main_menu' %}">"Main menu"</a>, go to Add and choose the measurement method you just used.
+First select the sample you worked with, then fill out the rest of the form and click on send. </p>
+<br>
+<p>To add a jpg, png or pdf of your data go to <a href="{% url 'samples:add_result' %}"> "Add result"</a>. From your computer
+choose the file you want to add. Also add a short comment or word, so it becomes
+more convenient for others to follow your work. If everything ran as usual and nothing
+nothing noteworthy occured, just type a word or simply 'ok'. But do not keep 
+the comment field empty. This is to make reading the samlplesheets as intuitive as possible.</p>
+
+<h4>Adding samples</h4>
+
+Simply select <a href="{% url add_samples_view %}">"Add samples</a> in the Main Menu. That's it.
+
+<h4>Topics</h4>
+
+<p>Simply select <a href="{% url 'samples:add_topic' %}">"Add new Topic"</a> in the Main Menu. <br>
+Topics are the projects you're working on. So if you want to stay up to date on a topic and see all the 
+samples that are being added to it, go to <a href="{% url 'samples:edit_preferences' login_name=user.username %}">"Edit preferences"</a>
+and enable auto-addition for the topics you're working on. Samples will now be updated automatically in your timeline if they are added by another User. 
+This doesn't happen by default to save you from confusion by unwillingly overloading your collection of samples.</p>
+
+<h4>Basic hints</h4>
+
+<p>You can fold and hide the listed samles in <a href="{% url 'samples:main_menu' %}">"Main menu"</a>. If folded in, they don't show up in your
+suggestions when e.g. selecting the samples for a meaurement. If folded out, the samples do show up all the time. Choose what you like the best.</p>
+
+<h4>Sharing your samples with other users</h4>
+
+<p>In the main menu select the big fat header <a href="{% url 'samples:edit_my_samples' username=user.username %}">"Samples"</a>.
+Then you can change and share whatever you want, e.g. select a new currently responsible person to share your data with.
+<p>There's a trick when you want to select multiple samples, eventually if they are not next to each other in the Dropdown-Menu.
+Just select the samples while holding down 'Control' (German keyboard: Strg).
+
+<h4>Errors</h4>
+<p>If the Website throws an Error, reload in your Browser.</p>
+<p>Freshly added measurements or results might not be updated instantaneously, then try hitting the Reload Button in your browser again or hit the Refresh Button 
+when using the sample-site (Krankenakte). If still problems occur , try emptying the cache on your browser and load again.<br>
+Theses hints may work most of the times. When there are severe problems when loading measurement-files, it might be that the site and its code has recently been updated. 
+For problems, please contact Philip.</p>
+   
+<h4>Shortcut keys</h4>
+
+<p>On your keyboard there are shortcuts to simplify your day-to-day work with 
+the database.
+<ul>
+<li> Press 'm' + 'Alt' to <a href="{% url 'samples:main_menu' %}">get back home</a>. </li>
+<li> Press 'a' + 'Alt' to <a href="{% url add_samples_view %}">add a sample</a>. </li>
+<li> Press 'r' + 'Alt' to <a href="{% url 'samples:add_result' %}">add a result</a>. </li>
+<li> Press 's' + 'Alt' to <a href="{% url 'samples:advanced_search' %}">search for things</a>. </li>
+<li> Press 'h' + 'Alt' to <a href="{% url 'samples:about' %}">get help</a>. </li>
+<li> Press 'l' + 'Alt' to <a href="{% url 'logout' %}">log out</a>. </li>
+</ul>
+These key combinations are the way to go when using Microsoft Edge.
+If you are using Firefox, just add 'Shift' to the keys above.
+</p>
+
+</div>    
+{% endblock %}

@@ -1,0 +1,82 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% extends "samples/base.html" %}
+{% comment %}
+This file is part of JuliaBase, see http://www.juliabase.org.
+{% endcomment %}
+
+{% load i18n %}
+{% load juliabase %}
+{% load samples_extras %}
+
+{% block frame_content %}
+<form method="post">{% csrf_token %}
+  {% error_list user_details _("Error in preferences") %}
+  {% error_list initials _("Error in initials") %}
+  <table class="gesetz ordnung">
+    {% if has_topics %}
+      <tr>
+        <td class="field-label">
+          {{ user_details.auto_addition_topics.label_tag }}
+          <div style="margin-top: 0.5ex; margin-right: 1em; font-size:smaller; max-width: 40em">
+            {% blocktranslate %}(This list shows
+            all topics you are a member of.  You can mark those topics that you want all new samples of which to be
+            implicitly added to “My Samples”.){% endblocktranslate %}</div>
+        </td>
+        <td class="field-input">{{ user_details.auto_addition_topics }}</td>
+      </tr>
+    {% endif %}
+    <tr style="display:none">
+      <td class="field-label">
+        {{ initials.initials.label_tag }}
+        <div style="margin-top: 0.5ex; margin-right: 1em; font-size:smaller; max-width: 40em">
+          {% blocktranslate %}(Once set, you can't change this anymore.){% endblocktranslate %}</div>
+      </td>
+      <td class="field-input">{{ initials.initials }}</td>
+    </tr>
+    <tr style="display:none">
+      {% input_field user_details.only_important_news %}
+    </tr>
+    <tr style="display:none">
+      <td class="field-label">
+        <span style="margin-right: 0.5em; vertical-align: top">{{ user_details.subscribed_feeds.label_tag }}</span>
+        <div style="margin-top: 0.5ex; margin-right: 1em; font-size:smaller; max-width: 40em">
+          {% blocktranslate %}
+            (Choose the news feeds you are interested in. For example: If you only select “sample”, you will be informed
+            about everything that happens to samples.)
+          {% endblocktranslate %}</div>
+      </td>
+      <td class="field-input">
+        {{ user_details.subscribed_feeds }}
+      </td>
+    </tr>
+    <tr style="display:none">
+      <td class="field-label">
+        <span style="margin-right: 0.5em; vertical-align: top">{{ user_details.default_folded_process_classes.label_tag }}</span>
+        <div style="margin-top: 0.5ex; margin-right: 1em; font-size:smaller; max-width: 40em">
+          {% blocktranslate %}
+            (With this setting, it is possible to fold less interesting processes in the sample data sheet by default.)
+          {% endblocktranslate %}</div>
+      </td>
+      <td class="field-input">
+        {{ user_details.default_folded_process_classes }}
+      </td>
+    </tr>
+
+     <tr>
+      <td class="field-label">
+        <span style="margin-right: 0.5em; vertical-align: top">{{ user_details.show_users_from_departments.label_tag }}</span>
+        <div style="margin-top: 0.5ex; margin-right: 1em; font-size:smaller; max-width: 40em">
+          {% blocktranslate %}
+            (Select the departments from which you want to see the members in the selection lists.
+            This also limits the processes offered for task lists to those of these departments.)
+          {% endblocktranslate %}</div>
+      </td>
+      <td class="field-input">
+        {{ user_details.show_users_from_departments }}
+      </td>
+    </tr>
+
+  </table>
+  <p class="submit-button" style="clear: both"><input type="submit" value="Save"/></p>
+</form>
+{% endblock %}

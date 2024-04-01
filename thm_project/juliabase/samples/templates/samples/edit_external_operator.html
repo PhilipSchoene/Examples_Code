@@ -1,0 +1,42 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% extends "samples/base.html" %}
+{% comment %}
+This file is part of JuliaBase
+{% endcomment %}
+
+{% load i18n %}
+{% load juliabase %}
+{% load samples_extras %}
+
+{% block frame_content %}
+<form method="post">{% csrf_token %}
+  {% error_list external_operator _("Error in external operator") %}
+  <table class="ordnung">
+    <tr>
+      {% input_field external_operator.name %}
+    </tr><tr>
+      {% input_field external_operator.institution %}
+    </tr><tr>
+      {% input_field external_operator.email %}
+    </tr><tr>
+      {% input_field external_operator.alternative_email %}
+    </tr><tr>
+      {% input_field external_operator.phone %}
+    </tr><tr>
+      {% input_field external_operator.confidential %}
+    </tr>
+    {% error_list initials _("Error in initials") "<tr>" 2 %}
+      <tr>
+        {% input_field initials.initials %}
+      </tr>
+    {% if external_operator.contact_persons %}
+    <tr>
+      {% input_field external_operator.contact_persons %}
+    </tr>
+    {% endif %}
+    </table>
+      <p class="submit-button" style="clear: both"><input type="submit" value="Save"></p>
+</form>
+
+
+{% endblock %}

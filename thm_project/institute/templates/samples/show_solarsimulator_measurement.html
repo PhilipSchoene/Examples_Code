@@ -1,0 +1,118 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% comment %}
+This file is part of JuliaBase-Institute, see http://www.juliabase.org.
+Copyright © 2008–2015 Forschungszentrum Jülich GmbH, Jülich, Germany
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later
+version.
+
+In particular, you may modify this file freely and even remove this license,
+and offer it as part of a web service, as long as you do not distribute it.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program.  If not, see <http://www.gnu.org/licenses/>.
+{% endcomment %}
+
+{% load i18n %}
+{% load juliabase %}
+{% load samples_extras %}
+{% load institute_extras %}
+
+<script type="text/javascript">
+// <![CDATA[
+function showCellData{{ process.id }}(process_id, position) {
+    var image_urls = {
+    {% for position, urls in image_urls.items %}
+        "{{ position }}": {thumbnail_url: '{{ urls.0 }}',
+                           figure_url: '{{ urls.1 }}'}{% if not forloop.last %},{% endif %}
+    {% endfor %}
+    }
+
+    if (position in image_urls) {
+        $("div#solarsimulator-" + process_id + " table").hide()
+        $("table#cell_table_" + process_id + "_" + position).show()
+
+        $("a#cell_image_" + process_id + ">img").attr({'src': image_urls[position].thumbnail_url, 'alt': position})
+        $("a#cell_image_" + process_id).attr('href', image_urls[position].figure_url)
+    }
+}
+// ]]>
+</script>
+
+{% if shapes %}
+  <map id="map-{{ process.id }}" name="map-{{ process.id }}">
+    {% for position, shape in shapes.items %}
+      <area title="{{ position }}"
+            shape="{{ shape.type }}"
+            coords="{{ shape.coords }}"
+            onclick="showCellData{{ process.id }}({{ process.id }}, '{{ position }}')"/>
+    {% endfor %}
+  </map>
+{% endif %}
+
+<div style="float: right">
+  <a id="cell_image_{{ process.id }}" href="{{ default_cell.2 }}"
+     ><img src="{{ default_cell.1 }}" alt="{{ default_cell.0 }}"/></a>
+</div>
+
+<div style="float: right">
+  {% if shapes %}
+    <img src="{{ thumbnail_layout }}" alt="{% translate 'cell layout' %}" usemap="#map-{{ process.id }}"/>
+  {% else %}
+    <ul class="cells">
+      {% for cell in process.cells.all|sort_cells %}
+        <li onclick="showCellData{{ process.id }}({{ process.id }}, '{{ cell.position }}')">
+          {{ cell.position }}
+          {% if process.irradiation == "AM1.5" %}
+            ({{ cell.eta|round:"3" }} %)
+          {% elif process.irradiation == "OG590" or process.irradiation == "BG7" %}
+            ({{ cell.isc|round:"3" }} mA/cm²)
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>
+
+<table style="background-color: {{ process|solarsimulator_color }}">
+  <tr>
+    {% value_field process.get_irradiation_display %}
+  </tr>
+  <tr>
+      {% value_field process.temperature %}
+  </tr>
+</table>
+<div id="solarsimulator-{{ process.id }}">
+  {% for cell in process.cells.all %}
+    <table style="display: {% if cell.position == default_cell.0 %}table{% else %}none{% endif %}"
+           id="cell_table_{{ process.id }}_{{ cell.position }}">
+      <tr>{% value_field cell.position %}</tr>
+      <tr>{% value_field cell.area "" 3 %}</tr>
+      <tr>{% value_field cell.eta "" 3 %}</tr>
+      <tr>{% value_field cell.isc "" 3 %}</tr>
+      <tr>
+        <td class="field-label" style="font-weight: normal">
+          {% verbose_name SolarsimulatorCellMeasurement.data_file %}:
+        </td>
+        <td class="field-value" style="font-weight: normal">
+          {{ cell.data_file }}
+        </td>
+      </tr>
+    </table>
+  {% endfor %}
+</div>
+{% if process.comments %}
+  <table>
+    <tr>
+      <td class="field-label" style="vertical-align: top">{% verbose_name SolarsimulatorMeasurement.comments %}:</td>
+      <td class="field-value" style="font-weight: normal">{{ process.comments|markdown_samples:"collapse" }}</td>
+    </tr>
+  </table>
+{% endif %}

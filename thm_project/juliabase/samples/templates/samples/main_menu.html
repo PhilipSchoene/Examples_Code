@@ -1,0 +1,159 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% extends "samples/base.html" %}
+{% comment %}
+This file is part of JuliaBase
+{% endcomment %}
+
+{% load i18n %}
+{% load samples_extras %}
+{% load static %}
+{% load cache %}
+
+{% block local_scripts %}
+<script type="text/javascript">
+// <![CDATA[
+$(function() { juliabase.request("{% url 'samples:get_folded_main_menu_elements' %}",
+                               function(data) { for (var i=0; i < data[0].length; i++)
+                                                    $("#topic-" + data[0][i]).hide();
+                                                for (var i=0; i < data[1].length; i++)
+                                                    $("#sample-series-" + data[1][i]).hide();
+                                              }
+                               );
+               $("img.topics, img.sample-series").click(
+                    function(event) { var id = event.target.id.split('-')[2];
+                                      if ( event.target.className=="topics" ) {
+                                        var target = "#topic-";
+                                      } else {
+                                        var target = "#sample-series-";
+                                      }
+                                      juliabase.request("{% url 'samples:fold_main_menu_element' %}",
+                                                     function(data) { if (data) {
+                                                                        $(target + id).hide("fast");
+                                                                      } else {
+                                                                        $(target + id).show("fast");
+                                                                      }
+                                                                     },
+                                                     {element_id: id}, "POST");
+                                    })
+              });
+// ]]>
+</script>
+{% endblock %}
+
+{% block frame_content %}
+  {% cache 9999999 mysamples user.username user.jb_user_details.layout_last_modified user.samples_user_details.my_samples_list_timestamp %}
+    {% if topicless_samples or my_topics %}
+      <div class="my-samples">
+        <h2><a href="{% url 'samples:edit_my_samples' username=user.username %}">Samples</a></h2>
+        {% if topicless_samples %}
+          <ul class="liste sample-list" style="list-style: none">
+            {% for sample in topicless_samples %}
+              <li><a href="{{ sample.get_absolute_url }}">{{ sample }}</a>{{ sample|sample_tags:user }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+        <div class="my-samples-topics thematik">
+          {% for topic in my_topics %}
+            {% expand_topic topic user %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+  {% endcache %}
+
+  <h2 class="list-head">Add</h2>
+  <ul class="liste" style='list-style-image: url("{% static "juliabase/icons/add.png" %}")'>
+     <a href="{{ add_samples_url }}">
+    <li style='list-sytle-image: url("{% static "juliabase/icons/ruby_add.png" %}")'>Samples</li>
+     </a>
+     <a href="{% url 'samples:add_sample_series' %}">
+    <li style='list-style-image: url("{% static "juliabase/icons/chart_organisation_add.png" %}")'>
+      Sample Series</li></a>
+     <a href="{% url 'samples:add_result' %}">
+    <li style='list-style-image: url("{% static "juliabase/icons/lightbulb_add.png" %}")'>
+      Add result</li></a>
+    {% block add_things_extras %}{% endblock %}
+    {% for physical_process in physical_processes %}
+      <a href="{{ physical_process.url }}"><li>{{ physical_process.label|capfirst }}</li></a>
+    {% endfor %}
+  </ul>
+  </span>
+  
+  <div style="display:none">
+  <h2 class="list-head">Search</h2>
+  <ul class="liste" style='list-style-image: url("{% static "juliabase/icons/find.png" %}")'>
+    <a href="{% url 'samples:advanced_search' %}"><li>Advanced Search</li></a>
+    <a href="{% url 'samples:sample_search' %}"><li>Samples by name</li></a>
+    {% block search_things_extras %}{% endblock %}
+  </ul>
+  </div>
+
+  {% if lab_notebooks %}
+  <div style="display:none">
+  <h2 class="list-head">Lab notebooks</h2>
+    <ul class="liste" style='list-style-image: url("{% static "juliabase/icons/book.png" %}")'>
+      {% for lab_notebook in lab_notebooks %}
+        <a href="{{ lab_notebook.url }}"><li>{{ lab_notebook.label|capfirst }}</li></a>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  <h2 class="list-head">Topics</h2>
+    <ul class="liste" style="list-style:none">
+      {% if can_add_topic %}
+          <a href="{% url 'samples:add_topic' %}">
+        <li>Add new topic</li></a>
+      {% endif %}
+          <a href="{% url 'samples:list_topics' %}">
+        <li>Topics</li></a>
+    </ul>
+
+  {% if can_add_external_operator or has_external_contacts %}
+  <h2 class="list-head">External operators</h2>
+
+    <ul class="liste" style="list-style:none">
+      {% if can_add_external_operator %}
+        <a href="{% url 'samples:add_external_operator' %}"><li>Add external operator</li></a>
+      {% endif %}
+      {% if has_external_contacts %}
+        <a href="{% url 'samples:list_external_operators' %}"><li>Edit external operator</a></li>
+      {% endif %}
+    </ul>
+  {% endif %}
+
+  {% block menu_extras %}{% endblock %}
+
+  <h2 class="list-head">Other</h2>
+  <ul class="liste" sytle="list-style:none">
+    {% if user.is_superuser %}
+      <li style="list-style:none"><a href="admin/">Administration</a></li>
+    {% endif %}
+      <a href="{% url 'samples:edit_preferences' login_name=user.username %}">
+    <li style="list-style:none">Edit preferences</li></a>
+      <a href="{% url 'samples:topics_and_permissions' login_name=user.username %}">
+    <li style="list-style:none">My topics and permissions</li></a>
+      <a href="{% url 'samples:show_task_lists' %}">
+    <li style="list-style: none">Tasks</li></a>
+    {% if user.has_usable_password %}
+      <a href="{% url 'password_change' %}">
+    <li style='list-style-image: url("{% static "juliabase/icons/lock_edit.png" %}")'>Change password</li></a>
+    {% endif %}
+    <li style="display:none">
+      <a href="{% url 'samples:show_feed' username=user.username user_hash=user_hash %}">Newsfeed</a></li>
+    {% block miscellaneous_extras %}
+      <li style="display:none">
+        <a href="{% url 'samples:show_status' %}">Status messages</a></li>
+        <a href="{% url 'samples:merge_samples' %}">
+      <li style='list-style-image: url("{% static "juliabase/icons/arrow_merge.png" %}")'>
+        Merge samples</li></a>
+      <li style="display:none">
+        <a href="{% url 'samples:list_claims' username=user.username %}">Sample Claims</a></li>
+      <li style="display:none">
+        <a href="{% url 'samples:list_log_viewers' %}">Inspect Crawlers Log</a></li>
+      <!-- FixMe: These menu items must not be links from here but from another menu page. -->
+      <li style="display:none">
+        <a href="{% url 'samples:statistics' %}">{% translate 'server statistics'|capfirst %}</a></li>
+    {% endblock %}
+  </ul>
+{% endblock %}

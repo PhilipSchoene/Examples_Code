@@ -1,0 +1,17 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% extends "jb_base.html" %}
+{% comment %}
+This file is part of JuliaBase
+{% endcomment %}
+
+{% load i18n %}
+{% load static %}
+
+{% block css_inclusions %}
+  {{ block.super }}
+  <link rel="stylesheet" type="text/css" media="screen" href="{% static "samples/css/main.css" %}"/>
+  <link rel="stylesheet" type="text/css" media="print" href="{% static "samples/css/print.css" %}"/>
+{% endblock %}
+
+{% block app_title %}<a style="color: inherit; text-decoration: inherit"
+                        href="{% url 'samples:main_menu' %}">IAP</a>{% endblock %}

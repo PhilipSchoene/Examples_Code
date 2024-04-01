@@ -1,0 +1,47 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% extends "jb_base.html" %}
+{% comment %}
+This file is part of JuliaBase-Institute, see http://www.juliabase.org.
+Copyright © 2008–2015 Forschungszentrum Jülich GmbH, Jülich, Germany
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later
+version.
+
+In particular, you may modify this file freely and even remove this license,
+and offer it as part of a web service, as long as you do not distribute it.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program.  If not, see <http://www.gnu.org/licenses/>.
+{% endcomment %}
+
+{% load i18n %}
+
+{% block css %}
+  <style type="text/css">
+    em { color: maroon }
+  </style>
+{% endblock %}
+
+
+{% block app_title %}<a style="color: inherit; text-decoration: inherit" href="{{ default_home_url }}"
+                        >JuliaBase</a>{% endblock %}
+
+{% block title %}{% translate 'Resource not found' %}{% endblock %}
+{% block content_title %}<div class="page-header"><h1>{% translate 'Resource not found' %}</h1></div>{% endblock %}
+
+{% block frame_content %}
+<p>{% blocktranslate %}
+The resource » <em>{{ request_path }}</em> « could not be found.  Please check that the URL
+is correct, and/or check that the denoted sample, process etc is already in the
+database.
+{% endblocktranslate %}</p>
+<p style="margin: 0pt"> </p> <!-- IE7 quirk -->
+<div style="clear: both"></div>
+{% endblock %}

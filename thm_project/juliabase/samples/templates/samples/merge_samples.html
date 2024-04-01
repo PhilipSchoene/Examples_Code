@@ -1,0 +1,37 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% extends "samples/base.html" %}
+{% comment %}
+This file is part of JuliaBase, see http://www.juliabase.org.
+{% endcomment %}
+
+{% load i18n %}
+{% load juliabase %}
+{% load samples_extras %}
+{% load static %}
+
+{% block frame_content %}
+<p style="margin-left: 15px">
+   <strong style="font-size: 105%">Attention:</strong> The tags, purposes, topics, informal stacks, and current locations of the samples on the 
+   <strong>left</strong> hand side will be 
+   <strong>erased</strong> completely!
+</p>
+<form method="post">{% csrf_token %}
+  <table class="gesetz ordnung">
+    <tr>
+      <th>{{ merge_forms.0.from_sample.label }}</th>
+      <th></th>
+      <th>{{ merge_forms.0.to_sample.label }}</th>
+    </tr>
+    {% for merge_form in merge_forms %}
+      {% error_list merge_form _("General error") "<tr>" 3 %}
+      <tr>
+        <td>{{ merge_form.from_sample }}</td>
+        <td><img style="display: block; margin-left: 1em; margin-right: 1em" src="{% static "samples/red_arrow.png" %}"
+                 alt="{% translate 'red arrow' %}"/></td>
+        <td>{{ merge_form.to_sample }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+  <p class="submit-button"><input type="submit" value="Save"/></p>
+</form>
+{% endblock %}

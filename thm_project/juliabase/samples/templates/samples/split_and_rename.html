@@ -1,0 +1,94 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% extends "samples/base.html" %}
+{% comment %}
+This file is part of JuliaBase, see http://www.juliabase.org.
+Copyright © 2008–2015 Forschungszentrum Jülich GmbH, Jülich, Germany
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU Affero General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option) any
+later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
+details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+{% endcomment %}
+
+{% load i18n %}
+{% load juliabase %}
+{% load samples_extras %}
+
+{% block frame_content %}
+<form method="post">{% csrf_token %}
+  {% error_list global_data _("General error") %}
+  <table style="margin-left: auto; margin-right: auto; margin-bottom: 2ex" class="padding10" border="1">
+    <thead>
+    <tr>
+      <th>{% translate 'Piece number' %}</th>
+      <th>{{ new_names.0.1.new_name.label }}</th>
+      <th>{{ new_names.0.1.new_purpose.label }}</th>
+      <th>{{ new_names.0.1.delete.label }}</th>
+    </tr>
+    </thead>
+    {% if old_split %}
+      {% for piece in old_split.pieces.all %}
+        <tr>
+          <td style="text-align: center">{{ forloop.counter }}.</td>
+          <td><input type="text" readonly="readonly" value="{{ piece.name }}"/></td>
+          <td><input type="text" readonly="readonly" value="{{ piece.purpose }}"/></td>
+          <td> </td>
+        </tr>
+      {% endfor %}
+    {% endif %}
+    {% for number, new_name in new_names %}
+      {% error_list new_name _("Error in new name") "<tr>" 4 %}
+      <tr {% if forloop.last %}style="background-color: darkgray"{% endif %}>
+        <td style="text-align: center">
+          {% if forloop.last %}
+            <div style="width: 15em; font-size: x-small">
+              {% blocktranslate %}
+                (you must change this last name in order to create an
+                additional piece)
+              {% endblocktranslate %}
+            </div>
+          {% else %}
+            {{ number }}.
+          {% endif %}
+        </td>
+        <td style="text-align: center">
+          {{ new_name.new_name }}
+        </td>
+        <td style="text-align: center">
+          {{ new_name.new_purpose }}
+        </td>
+        <td style="text-align: center">{{ new_name.delete }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+
+  {% error_list automatic_split _("General error") %}
+  <table style="border-collapse: collapse">
+    <tr>
+      {% input_field automatic_split.number %}
+    </tr>
+  </table>
+
+  <p>
+    {{ global_data.sample_completely_split.label_tag }}
+    {{ global_data.sample_completely_split }}
+  </p>
+  <p style="margin-bottom: 0pt">
+    {{ global_data.sample_series.label_tag }}
+    {{ global_data.sample_series }}
+  </p>
+  <p class="submit-button" style="margin-top: 0pt">
+    {{ global_data.finished.label_tag }}
+    {{ global_data.finished }}
+  </p>
+  <p class="submit-button"><input type="submit" value="Save"/></p>
+</form>
+{% endblock %}

@@ -1,0 +1,105 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% extends "samples/base.html" %}
+{% comment %}
+This file is part of JuliaBase.
+{% endcomment %}
+
+{% load i18n %}
+
+{% block frame_content %}
+<h2>{% translate 'Topics' %}</h2>
+<p>
+  {% if topics %}
+    {% blocktranslate count topics|length as counter %}
+      {{ full_user_name }} is member of the following topic:
+    {% plural %}
+      {{ full_user_name }} is member of the following topics:
+    {% endblocktranslate %}
+    {% for topic in topics %}
+      <strong>{{ topic }}</strong>{% if not forloop.last %},{% endif %}
+    {% endfor %}
+  {% else %}
+    {% blocktranslate %}
+      {{ full_user_name }} isn't a member of any topic.
+    {% endblocktranslate %}
+  {% endif %}
+</p>
+
+<p>
+  {% if managed_topics %}
+   {% blocktranslate count managed_topics|length as counter %}
+      {{ full_user_name }} is manager of the following topic:
+    {% plural %}
+      {{ full_user_name }} is manager of the following topics:
+    {% endblocktranslate %}
+    {% for topic in managed_topics %}
+      <strong>{{ topic }}</strong>{% if not forloop.last %},{% endif %}
+    {% endfor %}
+  {% else %}
+    {% blocktranslate %}
+      {{ full_user_name }} isn't a manager of any topic.
+    {% endblocktranslate %}
+  {% endif %}
+</p>
+
+
+<h2>{% translate 'permissions'|capfirst %}</h2>
+
+<h3>{% translate 'General permissions' %}</h3>
+
+<p>{% translate '(This is only a rough summary.)' %}</p>
+
+<ul style="color: green; font-weight: bold">
+  <li>{% translate 'You can add new samples and sample series' %}</li>
+  <li>{% translate 'You can edit all samples and sample series that you are the currently responsible person for' %}</li>
+  <li>{% translate 'You can view all samples of your topics' %}</li>
+  <li>{% translate 'You can add results to all samples and sample series of your topics' %}</li>
+  <li>{% translate 'You can edit processes that you added' %}</li>
+</ul>
+
+
+<h3>{% translate 'Special permissions' %}</h3>
+
+<p>
+  {% blocktranslate with permissions_url as url %}
+    Have also a look at the <a href="{{ url }}">permissions for processes</a> for further information about your permissions.
+  {% endblocktranslate %}
+</p>
+
+<table border="1" class="padding5" style="width: 100%">
+  <thead>
+    <tr>
+      <th style="width: 50%">{% translate 'special permissions that you have' %}</th>
+      <th>{% translate "special permissions that you don't have" %}</th>
+    </tr>
+  </thead>
+  <tr>
+    <td>
+      {% if permissions.0 %}
+        <ul style="color: green; font-weight: bold">
+          {% for permission in permissions.0 %}
+            <li>{{ permission }}</li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p style="text-align: center ">
+          {% translate 'none' %}
+        </p>
+      {% endif %}
+    </td>
+    <td>
+      {% if permissions.1 %}
+        <ul style="color: red; font-weight: bold">
+          {% for permission in permissions.1 %}
+            <li>{{ permission }}</li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p style="text-align: center ">
+          {% translate 'none' %}
+        </p>
+      {% endif %}
+    </td>
+  </tr>
+</table>
+{% endblock %}

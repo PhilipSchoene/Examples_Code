@@ -1,0 +1,34 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% extends "samples/base.html" %}
+{% comment %}
+This file is part of JuliaBase, see http://www.juliabase.org.
+{% endcomment %}
+
+{% load i18n %}
+{% load juliabase %}
+
+{% block frame_content %}
+
+{% blocktranslate %}
+<p>You are about to delete the process “{{ process }}”.  This action cannot be
+  reverted.  The following objects will be deleted:</p>
+{% endblocktranslate %}
+
+<ul>
+  {% for class_name, instances in affected_objects.items %}
+    <li>
+      <strong>{{ class_name }}</strong>
+      <ul>
+        {% for instance in instances %}
+          <li>{{ instance }}</li>
+        {% endfor %}
+      </ul>
+    </li>
+  {% endfor %}
+</ul>
+
+<form method="post" action="{% url 'samples:delete_process' process_id=process.id %}">{% csrf_token %}
+  <p><input type="submit" alt="delete icon" value="Yes, I am sure"/></p>
+</form>
+
+{% endblock %}

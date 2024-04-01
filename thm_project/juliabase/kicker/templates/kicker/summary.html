@@ -1,0 +1,57 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% extends "kicker/base.html" %}
+{% comment %}
+This file is part of JuliaBase, see http://www.juliabase.org.
+Copyright © 2008–2015 Forschungszentrum Jülich GmbH, Jülich, Germany
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU Affero General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option) any
+later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
+details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+{% endcomment %}
+
+{% load i18n %}
+{% load juliabase %}
+{% load kicker %}
+
+{% block content_title %}<div class="page-header"><h1>{{ title }}</h1></div>{% endblock %}
+
+{% block frame_content %}
+{% if latest_matches %}
+  <div style="float:right">
+    <a href="{% url 'kicker:plot' image_format='pdf' %}"
+       ><img src="{% url 'kicker:plot' image_format='png' %}" alt='{% translate "kicker numbers" %}'/></a>
+  </div>
+  <table style="border: 2px solid gray" cellspacing="10">
+    {% for player, kicker_number in kicker_numbers %}
+      <tr>
+        <td>{{ player|nickname }}</td>
+        <td>{{ kicker_number }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+
+  <table cellspacing="10" style="font-size: x-small; margin-top: 3ex">
+    {% for match, win_team_1 in latest_matches %}
+      <tr>
+        <td>{{ match.timestamp|date:"D" }}</td>
+        <td>{{ match.player_a_1|nickname }} / {{ match.player_a_2|nickname }}
+          –<br/>{{ match.player_b_1|nickname }} / {{ match.player_b_2|nickname }}</td>
+        <td>{{ match.goals_a }}:{{ match.goals_b }}</td>
+        <td>{{ win_team_1|pretty_print_win_points|default:"—" }}</td>
+        <td>({{ match.reporter|nickname }})</td>
+      </tr>
+    {% endfor %}
+  </table>
+{% endif %}
+<p><a href="{% url 'kicker:edit_user_details' username=username %}"
+      >{% translate 'Edit your Kicker user details' %}</a></p>
+{% endblock %}

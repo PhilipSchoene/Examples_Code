@@ -1,0 +1,1361 @@
+# Spanish translation for JuliaBase-institute
+#
+# This file is part of JuliaBase-Institute, see http://www.juliabase.org.
+# Copyright © 2008–2015 Forschungszentrum Jülich GmbH, Jülich, Germany
+#
+# This program is free software: you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later
+# version.
+#
+# In particular, you may modify this file freely and even remove this license,
+# and offer it as part of a web service, as long as you do not distribute it.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+# details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: JuliaBase-institute\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-11-12 20:26+0100\n"
+"PO-Revision-Date: 2015-01-02 22:55+0100\n"
+"Last-Translator: victor tejada yau <Unknown>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: apps.py:22
+msgid "Institute"
+msgstr ""
+
+#: context_processors.py:44
+#, python-brace-format
+msgid "Mr {lastname}"
+msgstr ""
+
+#: models/depositions.py:35 models/depositions.py:36 models/depositions.py:373
+#: models/depositions.py:374
+msgid "in sccm"
+msgstr "en sccm"
+
+#: models/depositions.py:53 models/depositions.py:124
+msgid "carrier"
+msgstr "portador"
+
+#: models/depositions.py:56
+#, fuzzy
+msgid "cluster tool deposition"
+msgstr "deposicion de la camara-6"
+
+#: models/depositions.py:57
+#, fuzzy
+msgid "cluster tool depositions"
+msgstr "deposiciones de la camara-6"
+
+#: models/depositions.py:59
+#, fuzzy
+msgid "Can add cluster tool depositions"
+msgstr "deposiciones de la camara-6"
+
+#. Translators: Don't abbreviate "perms" in translation
+#. (not even to English)
+#: models/depositions.py:63
+#, fuzzy
+msgid "Can edit perms for cluster tool I depositions"
+msgstr "Puede crear y editar las deposiciones de la camara-6"
+
+#: models/depositions.py:64
+#, fuzzy
+msgid "Can view all cluster tool depositions"
+msgstr "deposiciones de la camara-6"
+
+#: models/depositions.py:65
+#, fuzzy
+msgid "Can edit all cluster tool depositions"
+msgstr "deposiciones de la camara-6"
+
+#: models/depositions.py:146
+#, fuzzy
+msgid "cluster tool deposition lab"
+msgstr "laboratorio de la deposición de la camara-6"
+
+#: models/depositions.py:165 models/depositions.py:369
+msgid "deposition"
+msgstr "Deposición"
+
+#: models/depositions.py:173
+#, fuzzy
+msgid "cluster tool layer"
+msgstr "deposicion de la camara-6"
+
+#: models/depositions.py:174
+#, fuzzy
+msgid "cluster tool layers"
+msgstr "deposicion de la camara-6"
+
+#: models/depositions.py:178 models/depositions.py:390
+#, fuzzy, python-brace-format
+msgid "layer {number} of {deposition}"
+msgstr "deposicion de la camara-6"
+
+#: models/depositions.py:187
+msgid "unknown"
+msgstr ""
+
+#: models/depositions.py:188
+msgid "rhenium"
+msgstr ""
+
+#: models/depositions.py:189
+msgid "tantalum"
+msgstr ""
+
+#: models/depositions.py:190
+msgid "tungsten"
+msgstr ""
+
+#: models/depositions.py:198 models/depositions.py:252
+msgid "deposition time"
+msgstr "deposición de tiempo"
+
+#: models/depositions.py:198 models/depositions.py:252
+msgid "format HH:MM:SS"
+msgstr "formato HH:MM:SS"
+
+#: models/depositions.py:199 models/depositions.py:229
+#: models/depositions.py:253 models/depositions.py:287
+#: models/sample_details.py:272 models/sample_details.py:338
+#: templates/samples/lab_notebook_five_chamber_deposition.html:33
+msgid "comments"
+msgstr "comentarios"
+
+#: models/depositions.py:200 models/depositions.py:230
+msgid "wire material"
+msgstr ""
+
+#: models/depositions.py:201 models/depositions.py:231
+msgid "base pressure"
+msgstr "presion base"
+
+#: models/depositions.py:201
+#, fuzzy
+msgid "in mbar"
+msgstr "en mm"
+
+#: models/depositions.py:204
+#, fuzzy
+msgid "cluster tool hot-wire layer"
+msgstr "laboratorio de la deposición de la camara-6"
+
+#: models/depositions.py:205
+#, fuzzy
+msgid "cluster tool hot-wire layers"
+msgstr "laboratorio de la deposición de la camara-6"
+
+#: models/depositions.py:228 models/depositions.py:286
+msgid "time"
+msgstr "tiempo"
+
+#: models/depositions.py:251 models/depositions.py:285
+#: models/depositions.py:372 models/depositions.py:421
+#: templates/samples/lab_notebook_five_chamber_deposition.html:28
+msgid "chamber"
+msgstr "camara"
+
+#: models/depositions.py:254 models/depositions.py:288
+#, fuzzy
+msgid "plasma start with shutter"
+msgstr "El plasma inicia con un portador"
+
+#: models/depositions.py:255 models/depositions.py:289
+msgid "deposition power"
+msgstr "poder de deposición"
+
+#: models/depositions.py:256
+msgid "in W"
+msgstr "en W"
+
+#: models/depositions.py:260
+#, fuzzy
+msgid "cluster tool PECVD layer"
+msgstr "deposicion de la camara-6"
+
+#: models/depositions.py:261
+#, fuzzy
+msgid "cluster tool PECVD layers"
+msgstr "deposicion de la camara-6"
+
+#: models/depositions.py:288
+msgid "yes"
+msgstr ""
+
+#: models/depositions.py:288
+msgid "no"
+msgstr ""
+
+#: models/depositions.py:299
+#, fuzzy
+msgid "5-chamber deposition"
+msgstr "deposicion de la camara-6"
+
+#: models/depositions.py:300
+#, fuzzy
+msgid "5-chamber depositions"
+msgstr "deposiciones de la camara-6"
+
+#: models/depositions.py:302
+#, fuzzy
+msgid "Can add 5-chamber depositions"
+msgstr "Puede crear y editar las deposiciones de la camara-6"
+
+#. Translators: Don't abbreviate "perms" in translation
+#. (not even to English)
+#: models/depositions.py:305
+#, fuzzy
+msgid "Can edit perms for 5-chamber depositions"
+msgstr "Puede crear y editar las deposiciones de la camara-6"
+
+#: models/depositions.py:306
+#, fuzzy
+msgid "Can view all 5-chamber depositions"
+msgstr "Puede crear y editar las deposiciones de la camara-6"
+
+#: models/depositions.py:307
+#, fuzzy
+msgid "Can edit all 5-chamber depositions"
+msgstr "Puede crear y editar las deposiciones de la camara-6"
+
+#: models/depositions.py:346
+#, fuzzy
+msgid "5-chamber deposition lab"
+msgstr "laboratorio de la deposición de la camara-6"
+
+#: models/depositions.py:370 models/depositions.py:419
+msgid "date"
+msgstr ""
+
+#: models/depositions.py:371 models/depositions.py:420
+msgid "layer type"
+msgstr ""
+
+#: models/depositions.py:375
+#, fuzzy
+msgid "temperature 1"
+msgstr "temperatura del calor"
+
+#: models/depositions.py:375 models/depositions.py:377
+msgid "in ℃"
+msgstr "en ℃"
+
+#: models/depositions.py:377
+#, fuzzy
+msgid "temperature 2"
+msgstr "temperatura del calor"
+
+#: models/depositions.py:381
+#, fuzzy
+msgid "5-chamber layer"
+msgstr "camara"
+
+#: models/depositions.py:382
+#, fuzzy
+msgid "5-chamber layers"
+msgstr "deposicion de la camara-6"
+
+#. Translators: sample substrate type
+#: models/physical_processes.py:40 models/physical_processes.py:390
+msgid "custom"
+msgstr ""
+
+#: models/physical_processes.py:43
+msgid "Corning glass"
+msgstr ""
+
+#: models/physical_processes.py:44 models/sample_details.py:256
+msgid "glass"
+msgstr ""
+
+#: models/physical_processes.py:45 models/sample_details.py:255
+#, fuzzy
+msgid "silicon wafer"
+msgstr "poder de deposición"
+
+#: models/physical_processes.py:46
+msgid "quartz"
+msgstr ""
+
+#: models/physical_processes.py:47
+msgid "sapphire"
+msgstr ""
+
+#: models/physical_processes.py:48
+msgid "aluminium foil"
+msgstr ""
+
+#: models/physical_processes.py:67
+msgid "substrate material"
+msgstr ""
+
+#: models/physical_processes.py:70
+msgid "substrate"
+msgstr ""
+
+#: models/physical_processes.py:71
+msgid "substrates"
+msgstr ""
+
+#: models/physical_processes.py:74
+#, python-brace-format
+msgid "{material} substrate #{number}"
+msgstr ""
+
+#: models/physical_processes.py:87
+msgid "material"
+msgstr ""
+
+#: models/physical_processes.py:106
+msgid "PDS #1"
+msgstr ""
+
+#: models/physical_processes.py:107
+msgid "PDS #2"
+msgstr ""
+
+#: models/physical_processes.py:116 models/physical_processes.py:191
+msgid "PDS number"
+msgstr ""
+
+#: models/physical_processes.py:117 models/physical_processes.py:193
+msgid "raw data file"
+msgstr ""
+
+#: models/physical_processes.py:118
+msgid "only the relative path below \"pds/\""
+msgstr ""
+
+#: models/physical_processes.py:119 models/physical_processes.py:192
+msgid "apparatus"
+msgstr ""
+
+#: models/physical_processes.py:122
+msgid "PDS measurement"
+msgstr ""
+
+#: models/physical_processes.py:123
+msgid "PDS measurements"
+msgstr ""
+
+#: models/physical_processes.py:125
+#, fuzzy
+msgid "Can add PDS measurements"
+msgstr "Puede crear y editar las deposiciones de la camara-6"
+
+#. Translators: Don't abbreviate "perms" in translation
+#. (not even to English)
+#: models/physical_processes.py:128
+#, fuzzy
+msgid "Can edit perms for PDS measurements"
+msgstr "Puede crear y editar las deposiciones de la camara-6"
+
+#: models/physical_processes.py:129
+msgid "Can view all PDS measurements"
+msgstr ""
+
+#: models/physical_processes.py:138
+#, python-brace-format
+msgid "PDS measurement of {sample}"
+msgstr ""
+
+#: models/physical_processes.py:140
+#, python-brace-format
+msgid "PDS measurement #{number}"
+msgstr ""
+
+#: models/physical_processes.py:147
+msgid "energy in eV"
+msgstr ""
+
+#: models/physical_processes.py:148
+msgid "α in cm⁻¹"
+msgstr ""
+
+#: models/physical_processes.py:148
+msgid "PDS signal in a.u."
+msgstr ""
+
+#: models/physical_processes.py:150
+msgid "unevaluated"
+msgstr ""
+
+#: models/physical_processes.py:199 models/physical_processes.py:225
+#, fuzzy
+#| msgid "deposition"
+msgid "cell position"
+msgstr "Deposición"
+
+#: models/physical_processes.py:200 models/physical_processes.py:224
+msgid "cell index"
+msgstr ""
+
+#: models/physical_processes.py:201
+msgid "data file"
+msgstr ""
+
+#: models/physical_processes.py:202
+msgid "only the relative path below \"maike_user/ascii files/\""
+msgstr ""
+
+#: models/physical_processes.py:209
+#, python-brace-format
+msgid "cell {position} of {solarsimulator_measurement}"
+msgstr ""
+
+#: models/physical_processes.py:223
+#, fuzzy, python-brace-format
+msgid "cell position {position}"
+msgstr "poder de deposición"
+
+#: models/physical_processes.py:226
+msgid "data file name"
+msgstr ""
+
+#: models/physical_processes.py:249 models/physical_processes.py:316
+msgid "irradiance"
+msgstr ""
+
+#: models/physical_processes.py:250 models/physical_processes.py:317
+msgid "temperature"
+msgstr ""
+
+#: models/physical_processes.py:250
+msgid "in ℃"
+msgstr ""
+
+#: models/physical_processes.py:254 models/physical_processes.py:269
+#: models/physical_processes.py:365
+msgid "solarsimulator photo measurement"
+msgstr ""
+
+#: models/physical_processes.py:255
+msgid "solarsimulator photo measurements"
+msgstr ""
+
+#: models/physical_processes.py:257
+#, fuzzy
+msgid "Can add photo measurements"
+msgstr "Puede crear y editar las deposiciones de la camara-6"
+
+#: models/physical_processes.py:261
+#, fuzzy
+msgid "Can edit perms for photo measurements"
+msgstr "Puede crear y editar las deposiciones de la camara-6"
+
+#: models/physical_processes.py:262
+#, fuzzy
+msgid "Can view all photo measurements"
+msgstr "Puede crear y editar las deposiciones de la camara-6"
+
+#: models/physical_processes.py:267
+#, python-brace-format
+msgid "solarsimulator photo measurement of {sample}"
+msgstr ""
+
+#: models/physical_processes.py:334
+msgid "voltage in V"
+msgstr ""
+
+#: models/physical_processes.py:335
+msgid "current density in mA/cm²"
+msgstr ""
+
+#: models/physical_processes.py:366
+msgid "area"
+msgstr ""
+
+#: models/physical_processes.py:366
+msgid "in cm²"
+msgstr ""
+
+#: models/physical_processes.py:367
+msgid "efficiency η"
+msgstr ""
+
+#: models/physical_processes.py:367 models/physical_processes.py:369
+msgid "in %"
+msgstr ""
+
+#: models/physical_processes.py:368
+msgid "maximum power point"
+msgstr ""
+
+#: models/physical_processes.py:368
+msgid "in mW"
+msgstr ""
+
+#: models/physical_processes.py:369
+msgid "fill factor"
+msgstr ""
+
+#: models/physical_processes.py:370
+msgid "short-circuit current density"
+msgstr ""
+
+#: models/physical_processes.py:370
+msgid "in mA/cm²"
+msgstr ""
+
+#: models/physical_processes.py:372
+msgid "solarsimulator photo cell measurement"
+msgstr ""
+
+#: models/physical_processes.py:373
+#, fuzzy
+msgid "solarsimulator photo cell measurements"
+msgstr "Puede crear y editar las deposiciones de la camara-6"
+
+#: models/physical_processes.py:414
+msgid "layout"
+msgstr ""
+
+#: models/physical_processes.py:415
+msgid "length"
+msgstr ""
+
+#: models/physical_processes.py:415 models/physical_processes.py:416
+msgid "in mm"
+msgstr "en mm"
+
+#: models/physical_processes.py:416
+msgid "width"
+msgstr ""
+
+#: models/physical_processes.py:417
+msgid "parameters"
+msgstr ""
+
+#: models/physical_processes.py:420
+msgid "structuring"
+msgstr ""
+
+#: models/physical_processes.py:421
+msgid "structurings"
+msgstr ""
+
+#: models/sample_details.py:47 views/form_utils.py:210
+msgid "sample"
+msgstr ""
+
+#: models/sample_details.py:51 models/sample_details.py:268
+msgid "sample details"
+msgstr ""
+
+#: models/sample_details.py:52
+msgctxt "plural"
+msgid "sample details"
+msgstr ""
+
+#: models/sample_details.py:249
+msgid "black"
+msgstr ""
+
+#: models/sample_details.py:249
+msgid "blue"
+msgstr ""
+
+#: models/sample_details.py:249
+msgid "brown"
+msgstr ""
+
+#: models/sample_details.py:249
+msgid "darkgray"
+msgstr ""
+
+#: models/sample_details.py:250
+msgid "green"
+msgstr ""
+
+#: models/sample_details.py:250
+msgid "lightblue"
+msgstr ""
+
+#: models/sample_details.py:251
+msgid "lightgreen"
+msgstr ""
+
+#: models/sample_details.py:251
+msgid "magenta"
+msgstr ""
+
+#: models/sample_details.py:252
+msgid "orange"
+msgstr ""
+
+#: models/sample_details.py:252
+msgid "red"
+msgstr ""
+
+#: models/sample_details.py:252
+msgctxt "color"
+msgid "silver"
+msgstr ""
+
+#: models/sample_details.py:253
+msgid "white"
+msgstr ""
+
+#: models/sample_details.py:253
+msgid "yellow"
+msgstr ""
+
+#: models/sample_details.py:256
+msgctxt "metall"
+msgid "silver"
+msgstr ""
+
+#: models/sample_details.py:257
+msgid "HF dip"
+msgstr ""
+
+#: models/sample_details.py:267 models/sample_details.py:335
+msgid "index"
+msgstr ""
+
+#: models/sample_details.py:269 models/sample_details.py:336
+msgid "doping"
+msgstr ""
+
+#: models/sample_details.py:270 models/sample_details.py:337
+msgid "classification"
+msgstr ""
+
+#: models/sample_details.py:273
+msgid "color"
+msgstr ""
+
+#: models/sample_details.py:274 models/sample_details.py:339
+msgid "thickness"
+msgstr ""
+
+#: models/sample_details.py:274
+#, fuzzy
+msgid "in nm"
+msgstr "en mm"
+
+#: models/sample_details.py:275 models/sample_details.py:340
+msgid "thickness reliable"
+msgstr ""
+
+#: models/sample_details.py:276 models/sample_details.py:341
+msgid "structured"
+msgstr ""
+
+#: models/sample_details.py:277 models/sample_details.py:342
+msgid "textured"
+msgstr ""
+
+#: models/sample_details.py:278
+msgid "always collapsed"
+msgstr ""
+
+#: models/sample_details.py:279
+msgid "process"
+msgstr ""
+
+#: models/sample_details.py:281
+msgid "additional process data"
+msgstr ""
+
+#: models/sample_details.py:282 models/sample_details.py:343
+msgid "verified"
+msgstr ""
+
+#: models/sample_details.py:287
+msgid "informal layer"
+msgstr ""
+
+#: models/sample_details.py:288
+msgid "informal layers"
+msgstr ""
+
+#: models/sample_details.py:365
+msgid "You must give a classification or comments or both."
+msgstr ""
+
+#: permissions.py:52
+#, python-brace-format
+msgid ""
+"You are not allowed to edit the substrate #{number} because you are not "
+"allowed to edit all affected samples."
+msgstr ""
+
+#: permissions.py:55
+msgid ""
+"You are not allowed to add a substrate because you are not allowed to edit "
+"all affected samples."
+msgstr ""
+
+#: templates/404.html:28 templates/404.html.py:29
+msgid "Resource not found"
+msgstr ""
+
+#: templates/404.html:32
+#, python-format
+msgid ""
+"\n"
+"The resource » <em>%(request_path)s</em> « could not be found.  Please check "
+"that the URL\n"
+"is correct, and/or check that the denoted sample, process etc is already in "
+"the\n"
+"database.\n"
+msgstr ""
+
+#: templates/500.html:25
+msgid "Internal JuliaBase error"
+msgstr ""
+
+#: templates/500.html:34
+msgid "Main menu"
+msgstr ""
+
+#: templates/500.html:44
+msgid "Jülich Forschungszentrum logo"
+msgstr ""
+
+#: templates/500.html:51
+msgid "Internal server error"
+msgstr ""
+
+#: templates/500.html:52
+msgid ""
+"\n"
+"<p>You experienced an internal error in the JuliaBase server software.  The\n"
+"administrators have been contacted already and will do their best in\n"
+"eliminating the bug.  Typically, they will contact you as soon as the "
+"problem\n"
+"is tackled.</p>\n"
+"\n"
+"<p>If you just submitted data to the database, don't close this window.\n"
+"It may be that the problem is being fixed and you are asked to go back\n"
+"and re-do your action, so that the data is actually written into the\n"
+"database.</p>\n"
+msgstr ""
+
+#: templates/jb_base.html:21
+msgid "INM logo"
+msgstr ""
+
+#: templates/jb_base.html:23
+msgid "Institute of Nifty New<br/>Materials (INM)"
+msgstr ""
+
+#: templates/samples/add_claim_oldstyle.html:21
+#: templates/samples/add_claim_oldstyle.html:22
+#: templates/samples/add_claim_oldstyle.html:23
+#: templates/samples/add_samples.html:22 templates/samples/edit_sample.html:28
+msgid "General error"
+msgstr ""
+
+#: templates/samples/add_claim_oldstyle.html:25 views/samples/sample.py:66
+msgid "Substrate"
+msgstr ""
+
+#: templates/samples/copy_informal_stack.html:21
+msgid ""
+"Attention: The informal stacks of the selected destination samples will be "
+"overwritten!"
+msgstr ""
+
+#: templates/samples/copy_informal_stack.html:24
+msgid "Error in destination samples"
+msgstr ""
+
+#: templates/samples/copy_informal_stack.html:28
+#: templates/samples/show_sample.html:27
+msgid "layer stack"
+msgstr ""
+
+#: templates/samples/edit_cluster_tool_deposition.html:29
+#: templates/samples/edit_five_chamber_deposition.html:22
+msgid "Error in deposition"
+msgstr ""
+
+#: templates/samples/edit_cluster_tool_deposition.html:30
+#: templates/samples/edit_five_chamber_deposition.html:23
+msgid "Error in sample list"
+msgstr ""
+
+#: templates/samples/edit_cluster_tool_deposition.html:66
+#: templates/samples/edit_five_chamber_deposition.html:58
+#: templates/samples/edit_five_chamber_deposition.html:59
+#: templates/samples/edit_sample.html:53
+msgid "Error in layer"
+msgstr ""
+
+#: templates/samples/edit_cluster_tool_deposition.html:78
+msgid "layer number"
+msgstr ""
+
+#: templates/samples/edit_cluster_tool_deposition.html:145
+msgid "Gas flows in sccm"
+msgstr ""
+
+#: templates/samples/edit_five_chamber_deposition.html:104
+msgid "Error with adding layers"
+msgstr ""
+
+#: templates/samples/edit_five_chamber_deposition.html:105
+msgid "Error with removing from My Samples"
+msgstr ""
+
+#: templates/samples/edit_pds_measurement.html:22
+msgid "Error in PDS data"
+msgstr ""
+
+#: templates/samples/edit_pds_measurement.html:23
+#: templates/samples/edit_solarsimulator_measurement.html:23
+msgid "Error in sample"
+msgstr ""
+
+#: templates/samples/edit_pds_measurement.html:24
+msgid "Extract from datafile error"
+msgstr ""
+
+#: templates/samples/edit_pds_measurement.html:25
+#: templates/samples/edit_solarsimulator_measurement.html:24
+msgid "Error with removal from “My Samples”"
+msgstr ""
+
+#: templates/samples/edit_sample.html:21
+msgid "Informal stack"
+msgstr ""
+
+#: templates/samples/edit_sample.html:48
+msgid "delete"
+msgstr ""
+
+#: templates/samples/edit_solarsimulator_measurement.html:22
+#, fuzzy
+msgid "Error in solarsimulator measurements"
+msgstr "Puede crear y editar las deposiciones de la camara-6"
+
+#: templates/samples/edit_solarsimulator_measurement.html:59
+#, fuzzy
+msgid "Error in solarsimulator measurement"
+msgstr "Puede crear y editar las deposiciones de la camara-6"
+
+#: templates/samples/edit_substrate.html:22
+msgid "Substrate error"
+msgstr ""
+
+#: templates/samples/edit_substrate.html:23
+msgid "Sample list error"
+msgstr ""
+
+#: templates/samples/lab_notebook_five_chamber_deposition.html:27
+msgid "number"
+msgstr ""
+
+#: templates/samples/lab_notebook_five_chamber_deposition.html:53
+msgid "(not finished)"
+msgstr ""
+
+#: templates/samples/lab_notebook_five_chamber_deposition.html:75
+msgid "No data found for this time range."
+msgstr ""
+
+#: templates/samples/list_claims.html:20
+msgid "http://en.wikipedia.org/wiki/Land_Run_of_1889"
+msgstr ""
+
+#: templates/samples/list_claims.html:20
+msgid "Oklahoma land rush"
+msgstr ""
+
+#: templates/samples/list_claims.html:24
+msgid "Assert a new claim to …"
+msgstr ""
+
+#: templates/samples/list_claims.html:27
+#, fuzzy
+msgid "existing samples"
+msgstr "deposición de tiempo"
+
+#: templates/samples/list_claims.html:29
+msgid "old-style sample names which do not yet exist"
+msgstr ""
+
+#: templates/samples/list_claims.html:31
+msgid "“To exist” means here “to exist in the database”."
+msgstr ""
+
+#: templates/samples/list_permissions.html:21
+msgid "woman in laboratory"
+msgstr ""
+
+#: templates/samples/permission_error.html:22
+#, python-format
+msgid ""
+"\n"
+"      Sorry, you can't access this resource.  %(description)s\n"
+"      Please contact the administrator if you think you ought to have the "
+"permission.\n"
+"    "
+msgstr ""
+
+#: templates/samples/permission_error.html:27
+msgid ""
+"\n"
+"        Also note that the head of your institute group may add you to the\n"
+"        JuliaBase topic you need to access this resource.\n"
+"      "
+msgstr ""
+
+#: templates/samples/permission_error.html:34
+msgid "This occurence isn't reported to anyone, and it is not logged."
+msgstr ""
+
+#: templates/samples/show_five_chamber_deposition.html:50
+msgid "Silane conc."
+msgstr ""
+
+#: templates/samples/show_sample.html:24
+msgid "sample label"
+msgstr ""
+
+#: templates/samples/show_sample.html:29
+msgid "copy informal stack"
+msgstr ""
+
+#: templates/samples/show_solarsimulator_photo_measurement.html:59
+msgid "cell layout"
+msgstr ""
+
+#: templates/samples/show_substrate.html:19
+msgid "Material"
+msgstr ""
+
+#: templatetags/institute_extras.py:72
+#: views/samples/cluster_tool_deposition.py:46
+msgid "hot-wire"
+msgstr ""
+
+#: views/form_utils.py:98
+#, python-brace-format
+msgid "Deposition {number} was successfully changed in the database."
+msgstr ""
+
+#: views/form_utils.py:102
+#, python-brace-format
+msgid "Deposition {number} was successfully added to the database."
+msgstr ""
+
+#: views/form_utils.py:107
+msgid "The deposition was not saved due to incorrect or missing data."
+msgstr ""
+
+#: views/form_utils.py:111
+#, python-brace-format
+msgid "Edit {name} “{number}”"
+msgstr ""
+
+#: views/form_utils.py:112
+#: views/samples/solarsimulator_photo_measurement.py:283
+#, python-brace-format
+msgid "Add {name}"
+msgstr ""
+
+#: views/form_utils.py:142
+#, python-brace-format
+msgid "{name} “{number}”"
+msgstr ""
+
+#: views/form_utils.py:177
+msgid "This number is already in use."
+msgstr ""
+
+#: views/form_utils.py:181
+#: views/samples/solarsimulator_photo_measurement.py:178
+#: views/samples/structuring.py:129
+msgid "Sample is already dead at this time."
+msgstr ""
+
+#. Translators: “YY” is year, “L” is letter, and “NNN” is number
+#: views/form_utils.py:266
+msgid "Invalid deposition number.  It must be of the form YYL-NNN."
+msgstr ""
+
+#: views/form_utils.py:269 views/form_utils.py:273
+#, python-brace-format
+msgid "The deposition letter must be an uppercase “{letter}”."
+msgstr ""
+
+#: views/samples/claim.py:49
+msgid "Samples"
+msgstr ""
+
+#: views/samples/claim.py:49
+msgid "Comma-separated"
+msgstr ""
+
+#: views/samples/claim.py:65
+#, python-brace-format
+msgid "The name {name} appears more than once."
+msgstr ""
+
+#: views/samples/claim.py:71
+#, python-brace-format
+msgid "The name {invalid_names} is not valid."
+msgid_plural "The names {invalid_names} are not valid."
+msgstr[0] ""
+msgstr[1] ""
+
+#: views/samples/claim.py:82
+#, python-brace-format
+msgid "The name {existing_names} is already existing."
+msgid_plural "The names {existing_names} are already existing."
+msgstr[0] ""
+msgstr[1] ""
+
+#: views/samples/claim.py:99 views/samples/sample.py:120
+#: views/samples/substrate.py:70
+msgid "For a custom substrate, you must give substrate comments."
+msgstr ""
+
+#: views/samples/claim.py:131
+msgid "You are not allowed to add a claim in another user's name."
+msgstr ""
+
+#: views/samples/claim.py:141
+#, python-brace-format
+msgid "Sample request from {requester}"
+msgstr ""
+
+#: views/samples/claim.py:142
+#, python-brace-format
+msgid ""
+"Hello {reviewer},\n"
+"\n"
+"{requester} wants to become the new “currently responsible person”\n"
+"of one or more samples.  Please visit\n"
+"\n"
+"    {url}\n"
+"\n"
+"for reviewing this request.  If you don't want or cannot approve\n"
+"the request, please contact {requester} directly and ask him or her\n"
+"to withdraw the request.\n"
+"\n"
+"JuliaBase.\n"
+msgstr ""
+
+#: views/samples/claim.py:172
+#, python-brace-format
+msgid "Sample claim {id_} was successfully submitted."
+msgstr ""
+
+#: views/samples/claim.py:178
+msgid "Assert claim"
+msgstr ""
+
+#: views/samples/cluster_tool_deposition.py:47
+msgid "PECVD"
+msgstr ""
+
+#: views/samples/cluster_tool_deposition.py:48
+msgid "none"
+msgstr ""
+
+#: views/samples/cluster_tool_deposition.py:58
+msgid "Layer to be added"
+msgstr ""
+
+#: views/samples/cluster_tool_deposition.py:61
+msgid "Nickname of My Layer to be added"
+msgstr ""
+
+#: views/samples/cluster_tool_deposition.py:93
+#: views/samples/five_chamber_deposition.py:39
+#: views/samples/pds_measurement.py:120
+#: views/samples/solarsimulator_photo_measurement.py:39
+#: views/samples/structuring.py:31 views/samples/substrate.py:34
+msgid "Operator"
+msgstr ""
+
+#: views/samples/cluster_tool_deposition.py:111
+#: views/samples/five_chamber_deposition.py:59
+msgid "The deposition number must not be changed."
+msgstr ""
+
+#: views/samples/cluster_tool_deposition.py:115
+#: views/samples/five_chamber_deposition.py:63
+msgid "This deposition number exists already."
+msgstr ""
+
+#: views/samples/cluster_tool_deposition.py:122
+#: views/samples/five_chamber_deposition.py:70
+msgid "The first two digits must match the year of the deposition."
+msgstr ""
+
+#: views/samples/cluster_tool_deposition.py:243
+#: views/samples/five_chamber_deposition.py:111
+msgid "duplicate this layer"
+msgstr ""
+
+#: views/samples/cluster_tool_deposition.py:244
+#: views/samples/five_chamber_deposition.py:112
+msgid "remove this layer"
+msgstr ""
+
+#: views/samples/cluster_tool_deposition.py:245
+#: views/samples/five_chamber_deposition.py:113
+msgid "move this layer"
+msgstr ""
+
+#: views/samples/cluster_tool_deposition.py:246
+#: views/samples/five_chamber_deposition.py:114
+msgid "up"
+msgstr ""
+
+#: views/samples/cluster_tool_deposition.py:246
+#: views/samples/five_chamber_deposition.py:114
+msgid "down"
+msgstr ""
+
+#: views/samples/cluster_tool_deposition.py:258
+#: views/samples/five_chamber_deposition.py:126
+msgid "You can't duplicate, move, or remove a layer at the same time."
+msgstr ""
+
+#: views/samples/cluster_tool_deposition.py:574
+#: views/samples/five_chamber_deposition.py:411
+#, python-brace-format
+msgid "The sample {samples} is already dead at this time."
+msgid_plural "The samples {samples} are already dead at this time."
+msgstr[0] ""
+msgstr[1] ""
+
+#: views/samples/cluster_tool_deposition.py:580
+#: views/samples/five_chamber_deposition.py:403
+msgid "No layers given."
+msgstr ""
+
+#: views/samples/pds_measurement.py:157
+msgid "Overwrite with file data"
+msgstr ""
+
+#: views/samples/pds_measurement.py:275
+#: views/samples/solarsimulator_photo_measurement.py:262
+#, python-brace-format
+msgid "{process} was successfully changed in the database."
+msgstr ""
+
+#: views/samples/pds_measurement.py:276
+#: views/samples/solarsimulator_photo_measurement.py:264
+#, python-brace-format
+msgid "{process} was successfully added to the database."
+msgstr ""
+
+#: views/samples/pds_measurement.py:292
+#, python-brace-format
+msgid "Edit PDS measurement of {sample}"
+msgstr ""
+
+#: views/samples/pds_measurement.py:293
+msgid "Add PDS measurement"
+msgstr ""
+
+#: views/samples/pds_measurement.py:322
+#, python-brace-format
+msgid "PDS measurement #{pds_number}"
+msgstr ""
+
+#: views/samples/sample.py:50
+msgid "no names"
+msgstr ""
+
+#. Translators: "new-style" names
+#: views/samples/sample.py:52
+msgid "new-style"
+msgstr ""
+
+#: views/samples/sample.py:53
+msgid "cleaning number"
+msgstr ""
+
+#: views/samples/sample.py:65
+msgid "Number of samples"
+msgstr ""
+
+#: views/samples/sample.py:67
+#, fuzzy
+msgid "Substrate comments"
+msgstr "comentarios"
+
+#: views/samples/sample.py:68
+msgid "Substrate originator"
+msgstr ""
+
+#: views/samples/sample.py:69
+#, fuzzy
+msgid "timestamp"
+msgstr "tiempo"
+
+#: views/samples/sample.py:71
+msgid "Current location"
+msgstr ""
+
+#: views/samples/sample.py:72
+msgid "Purpose"
+msgstr ""
+
+#: views/samples/sample.py:73
+msgid "Tags"
+msgstr ""
+
+#: views/samples/sample.py:74
+msgid "separated with commas, no whitespace"
+msgstr ""
+
+#: views/samples/sample.py:75
+msgid "Topic"
+msgstr ""
+
+#: views/samples/sample.py:76
+msgid "Rename"
+msgstr ""
+
+#: views/samples/sample.py:78
+msgid "Cleaning number"
+msgstr ""
+
+#: views/samples/sample.py:86
+#, python-brace-format
+msgid "with {markdown_link} syntax"
+msgstr ""
+
+#: views/samples/sample.py:103
+msgid "The timestamp must not be in the future."
+msgstr ""
+
+#: views/samples/sample.py:123
+msgid "You must provide a cleaning number if you want to use it for the names."
+msgstr ""
+
+#: views/samples/sample.py:236
+#, python-brace-format
+msgid ""
+"Your samples have the names from {first_name} to {last_name}.  They were "
+"added to “My Samples”."
+msgstr ""
+
+#: views/samples/sample.py:239
+#, python-brace-format
+msgid "Your sample has the name {name}.  It was added to “My Samples”."
+msgstr ""
+
+#: views/samples/sample.py:250
+msgid "Add samples"
+msgstr ""
+
+#: views/samples/sample.py:257
+#, fuzzy
+msgid "Destination samples"
+msgstr "deposición de tiempo"
+
+#: views/samples/sample.py:297
+#, python-brace-format
+msgid "Informal stack was copied from sample {sample}."
+msgstr ""
+
+#: views/samples/sample.py:301
+#, python-brace-format
+msgid "Informal stack of {sample} was successfully copied."
+msgstr ""
+
+#: views/samples/sample.py:305
+#, python-brace-format
+msgid "Copy informal stack of “{sample}”"
+msgstr ""
+
+#: views/samples/solarsimulator_photo_measurement.py:172
+msgid "No measurenents given."
+msgstr ""
+
+#: views/samples/solarsimulator_photo_measurement.py:187
+msgid "This cell position is already given."
+msgstr ""
+
+#: views/samples/solarsimulator_photo_measurement.py:197
+msgid ""
+"A solarsimulator measurement with this cell index and data file already "
+"exists."
+msgstr ""
+
+#: views/samples/solarsimulator_photo_measurement.py:281
+#, python-brace-format
+msgid "{name} of {sample}"
+msgstr ""
+
+#: views/samples/solarsimulator_photo_measurement.py:328
+#, fuzzy, python-brace-format
+msgid "Solarsimulator measurement #{number}"
+msgstr "deposición de tiempo"
+
+#: views/samples/stack.py:69
+#, python-brace-format
+msgid "Layer stack of {0}"
+msgstr ""
+
+#: views/samples/structuring.py:171
+msgid "Structuring process was successfully changed in the database."
+msgstr ""
+
+#: views/samples/structuring.py:174
+msgid "Structuring process was successfully added to the database."
+msgstr ""
+
+#: views/samples/structuring.py:186
+msgid "Edit structuring process"
+msgstr ""
+
+#: views/samples/structuring.py:186
+msgid "Add structuring process"
+msgstr ""
+
+#: views/samples/substrate.py:122
+#, python-brace-format
+msgid ""
+"Sample {0} has already processes before the timestamp of this substrate, "
+"namely from {1}."
+msgstr ""
+
+#: views/samples/substrate.py:126
+#, python-brace-format
+msgid "Sample {0} has already a substrate."
+msgstr ""
+
+#: views/samples/substrate.py:168
+#, python-brace-format
+msgid "Substrate {0} was successfully changed in the database."
+msgstr ""
+
+#: views/samples/substrate.py:173
+#, python-brace-format
+msgid "Substrate {0} was successfully added to the database."
+msgstr ""
+
+#: views/samples/substrate.py:179
+#, python-brace-format
+msgid "Edit substrate “{0}”"
+msgstr ""
+
+#: views/samples/substrate.py:179
+msgid "Add substrate"
+msgstr ""

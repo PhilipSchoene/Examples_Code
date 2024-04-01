@@ -1,0 +1,41 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% extends "samples/base.html" %}
+{% comment %}
+This file is part of JuliaBase, see http://www.juliabase.org.
+{% endcomment %}
+
+{% load i18n %}
+{% load juliabase %}
+
+{% block frame_content %}
+  <form method="post">{% csrf_token %}
+    {% if is_topic_manager %}
+      {{ is_topic_manager.as_p }}
+    {% endif %}
+    <table class="padding5">
+      <colgroup/>
+      <colgroup>
+        <col span="3" align="center"/>
+      </colgroup>
+      <thead>
+        <tr>
+          <th/>
+          <th style="padding-left: 0.5em; padding-right: 0.5em">{% translate "can add" %}</th>
+          <th style="padding-left: 0.5em; padding-right: 0.5em">{% translate "can view all" %}</th>
+          <th style="padding-left: 0.5em; padding-right: 0.5em">{% translate "can edit all" %}</th>
+          <th style="padding-left: 0.5em; padding-right: 0.5em">{% translate "can change permissions" %}</th>
+        </tr>
+      </thead>
+      {% for process, permissions in permissions_list %}
+        <tr>
+          <td>{{ process.name }}</td>
+          <td align="center">{{ permissions.can_add }}</td>
+          <td align="center">{{ permissions.can_view_all }}</td>
+          <td align="center">{{ permissions.can_edit_all }}</td>
+          <td align="center">{{ permissions.can_edit_permissions }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+    <p class="submit-button" style="clear: both"><input type="submit" value="Save"/></p>
+  </form>
+{% endblock %}

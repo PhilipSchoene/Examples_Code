@@ -1,0 +1,84 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% extends "samples/base.html" %}
+{% comment %}
+This file is part of JuliaBase, see http://www.juliabase.org.
+Copyright © 2008–2015 Forschungszentrum Jülich GmbH, Jülich, Germany
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU Affero General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option) any
+later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
+details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+{% endcomment %}
+
+{% load i18n %}
+{% load juliabase %}
+
+{% block frame_content %}
+{% if claim.closed %}
+  <p>{% translate 'This claim was either approved or withdrawn.' %}</p>
+{% else %}
+  <p>{% translate 'This claim is active and needs now to be approved by the reviewer or withdrawn by the requester.' %}</p>
+  <table class="padding5">
+    <tr>
+      <td>{% translate "requester"|capfirst %}:</td>
+      <td>{{ claim.requester|get_really_full_name }}</td>
+    </tr>
+    <tr>
+      <td>{% translate "reviewer"|capfirst %}:</td>
+      <td>{{ claim.reviewer|get_really_full_name }}</td>
+    </tr>
+  </table>
+  <p style="margin-top: 4ex">
+    {% blocktranslate with claim.requester|get_really_full_name as name %}
+      {{ name }} wishes to become the new “responsible person” of the following samples:
+    {% endblocktranslate %}
+  </p>
+  <table border="1" class="padding10" style="margin-bottom: 4ex">
+    <thead>
+    <tr>
+      <th>{% translate "sample" %}</th>
+      {% if is_reviewer %}
+        <th>{% translate "currently responsible person" %}</th>
+        <th>{% translate "purpose" %}</th>
+        <th>{% translate "topic" %}</th>
+      {% endif %}
+    </tr>
+    </thead>
+    {% for sample in claim.samples.all %}
+      <tr>
+        <td><a href="{{ sample.get_absolute_url }}">{{ sample }}</a></td>
+        {% if is_reviewer %}
+          <td>{{ sample.currently_responsible_person|get_really_full_name }}</td>
+          <td>{{ sample.purpose }}</td>
+          <td>{{ sample.topic|default:"" }}</td>
+        {% endif %}
+      </tr>
+    {% endfor %}
+  </table>
+  <form method="post">{% csrf_token %}
+    {% error_list approve _("General error") %}
+    {% error_list withdraw _("General error") %}
+    <table>
+      {% if is_reviewer %}
+        <tr>
+          {% input_field approve.close %}
+        </tr>
+      {% endif %}
+      {% if is_requester %}
+        <tr>
+          {% input_field withdraw.close %}
+        </tr>
+      {% endif %}
+    </table>
+    <p class="submit-button" style="clear: both"><input type="submit" value="Save"/></p>
+  </form>
+{% endif %}
+{% endblock %}

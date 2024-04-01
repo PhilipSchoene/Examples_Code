@@ -1,0 +1,81 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% extends "samples/base.html" %}
+{% comment %}
+This file is part of JuliaBase-Institute, see http://www.juliabase.org.
+{% endcomment %}
+
+{% load i18n %}
+{% load juliabase %}
+{% load samples_extras %}
+
+{% block frame_content %}
+<form method="post">{% csrf_token %}
+  {% error_list process _("Error in solarsimulator measurements") %}
+  {% error_list sample _("Error in sample") %}
+  {% error_list remove_from_my_samples _("Error with removal from “My Samples”") %}
+  <table class="gesetz ordnung">
+    <tr>
+      {% input_field process.timestamp %}
+    </tr>
+    <tr>
+      {% input_field sample.sample %}
+    </tr>
+    <tr>
+      {% input_field process.temperature %}
+    </tr>
+    <tr>
+      {% input_field process.irradiation %}
+    </tr>
+    {% if process.user.is_superuser %}
+      <tr>
+        {% input_field process.operator %}
+      </tr>
+      <tr>
+        {% input_field process.external_operator %}
+      </tr>
+    {% else %}
+      <tr>
+        {% input_field process.combined_operator %}
+      </tr>
+    {% endif %}
+    <tr>
+      <td>{{ process.comments.label_tag }}<br/>{% markdown_hint %}</td>
+      <td class="field-input">{{ process.comments }}</td>
+    </tr>
+    <tr>
+    {{ number.as_p }}
+    </tr>
+    </table>  
+              {% if subprocesses %}
+              {% for measurement in subprocesses %}
+              {% error_list measurement _("Error in solarsimulator measurement") "<tr>" 4 %}
+              <table class="ordnung gesetz">
+              <tr>
+                {% input_field measurement.position %}
+              </tr>
+              <tr>
+                {% input_field measurement.data_file %}
+              </tr>
+              <tr>
+                {% input_field measurement.area %}
+              </tr>
+              <tr>
+                {% input_field measurement.eta %}
+              </tr>
+              <tr>
+                {% input_field measurement.isc %}
+              </tr>
+            </table>
+            {% endfor %}
+            {% endif %}
+
+  <div style="display: none">
+    {# Hidden so that it's only set/changed by the remote client. #}
+    {{ process.timestamp_inaccuracy }}
+  </div>
+
+  {% include "samples/edit_description.html" %}
+
+  <p class="submit-button"><input type="submit" value="Save"/></p>
+</form>
+{% endblock %}

@@ -1,0 +1,18 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% extends "samples/base.html" %}
+{% comment %}
+This file is part of JuliaBase, see http://www.juliabase.org.
+{% endcomment %}
+
+{% load i18n %}
+{% load juliabase %}
+
+{% block content_title %}{% endblock %}
+
+{% block frame_content %}
+  <h1 class="screen-only">{% translate "Data Matrix code" %}</h1>
+  <table style="border-collapse: collapse; text-align: center">
+    <tr><td><img style="display: block" src="{{ data_matrix_url }}"/></td></tr>
+    <tr><td style="font-family: mono; line-height: 1; font-size: 10px">{{ data }}</td></tr>
+  </table>
+{% endblock %}

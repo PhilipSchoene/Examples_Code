@@ -1,0 +1,36 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% extends "samples/base.html" %}
+{% comment %}
+This file is part of JuliaBase, see http://www.juliabase.org.
+{% endcomment %}
+
+{% load i18n %}
+{% load juliabase %}
+{% load samples_extras %}
+
+{% block frame_content %}
+<form method="post">{% csrf_token %}
+  {% translate "new topic"|capfirst as error_list_title %}
+  {% error_list new_topic error_list_title %}
+  <table class="ordnung">
+    <tr>
+      {% input_field new_topic.new_topic_name %}
+    </tr>
+    <tr>
+      {% input_field new_topic.parent_topic %}
+    </tr>
+    <tr>
+      {% input_field new_topic.topic_manager %}
+    </tr>
+    <tr>
+      {% input_field new_topic.confidential %}
+    </tr>
+    <tr style="border:none">
+    <td></td>
+    <td>
+    <p class="submit-button" style="clear: both"><input type="submit" value="Save"/></p>
+    </td>
+    </tr>
+  </table>
+</form>
+{% endblock %}

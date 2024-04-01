@@ -1,0 +1,57 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% extends "samples/templates/samples/edit_sample.html" %}
+{% comment %}
+This file is part of JuliaBase-Institute, see http://www.juliabase.org.
+{% endcomment %}
+
+{% load i18n %}
+{% load juliabase %}
+{% load samples_extras %}
+
+{% block sample_details %}
+  <h2>{% translate 'Informal stack' %}</h2>
+
+  {% if informal_layers.non_form_errors %}
+    <table class="tight-fullwidth">
+      <tr>
+        <td class="error-messages">
+	  <p>{% translate "General error" %}</p>{{ informal_layers.non_form_errors }}
+        </td>
+      </tr>
+    </table>
+  {% endif %}
+  {{ informal_layers.management_form }}
+  <table border="1">
+    <thead>
+    <tr>
+      <th>{% verbose_name InformalLayer.index %}</th>
+      <th>{% verbose_name InformalLayer.doping %} / {% verbose_name InformalLayer.classification %}</th>
+      <th>{% verbose_name InformalLayer.comments %}</th>
+      <th>{% verbose_name InformalLayer.color %}</th>
+      <th>{% verbose_name InformalLayer.thickness %} {{ informal_layers.forms.0.thickness.help_text }}</th>
+      <th style="font-size: x-small">{% verbose_name InformalLayer.thickness_reliable %}</th>
+      <th style="font-size: x-small">{% verbose_name InformalLayer.structured %}</th>
+      <th style="font-size: x-small">{% verbose_name InformalLayer.textured %}</th>
+      <th style="font-size: x-small">{% verbose_name InformalLayer.always_collapsed %}</th>
+      <th style="font-size: x-small">{% verbose_name InformalLayer.verified %}</th>
+      <th style="font-size: x-small">{% translate 'delete' %}</th>
+    </tr>
+    </thead>
+    {% for layer in informal_layers.forms %}
+      {% error_list layer _("Error in layer") "<tr>" 11 %}
+      <tr style="text-align: center">
+        <td style="text-align: center">{{ layer.id }}{{ layer.index }}</td>
+        <td>{{ layer.doping }}{{ layer.classification }}</td>
+        <td>{{ layer.comments }}</td>
+        <td>{{ layer.color }}</td>
+        <td>{{ layer.thickness }}</td>
+        <td>{{ layer.thickness_reliable }}</td>
+        <td>{{ layer.structured }}</td>
+        <td>{{ layer.textured }}</td>
+        <td>{{ layer.always_collapsed }}</td>
+        <td>{{ layer.verified }}</td>
+        <td>{{ layer.DELETE }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

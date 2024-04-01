@@ -1,0 +1,62 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% extends "samples/base.html" %}
+{% comment %}
+This file is part of JuliaBase-Institute, see http://www.juliabase.org.
+{% endcomment %}
+
+{% load i18n %}
+{% load juliabase %}
+{% load samples_extras %}
+
+{% block frame_content %}
+<form method="post">{% csrf_token %}
+  {% error_list process _("Substrate error") %}
+  {% error_list samples _("Sample list error") %}
+  <table class="gesetz ordnung">
+    <tr class="req">
+      {% input_field samples.sample_list %}
+    </tr>
+    <tr class="req">
+      {% input_field process.material %}
+    </tr>
+    <tr class="req">
+      {% input_field process.doping %}
+    </tr>
+    <tr>
+      {% input_field process.dopant %}
+    </tr>
+    <tr>
+      {% input_field process.timestamp %}
+    </tr>
+    {% if process.user.is_superuser %}
+      <tr>
+        {% input_field process.operator %}
+      </tr>
+      <tr>
+        {% input_field process.external_operator %}
+      </tr>
+    {% else %}
+      <tr>
+        {% input_field process.combined_operator %}
+      </tr>
+    {% endif %}
+    <tr>
+      {% input_field process.size %}
+    </tr>
+    <tr>
+     <td class="field-label">{{ process.comments.label_tag }}<br/>{% markdown_hint %}</td>
+      <td>{{ process.comments }}</td>
+    </tr>
+  </table>
+  <div style="display: none">
+    {# Hidden so that it's only set/changed by the remote client. #}
+    {{ process.timestamp_inaccuracy }}
+  </div>
+
+  {% include "samples/edit_description.html" %}
+
+  <p class="submit-button" style="clear: both"><input type="submit" value="Save"/></p>
+</form>
+
+
+{% endblock %}

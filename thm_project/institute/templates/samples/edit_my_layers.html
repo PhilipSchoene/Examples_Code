@@ -1,0 +1,30 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% extends "samples/base.html" %}
+{% comment %}
+This file is part of JuliaBase, see http://www.juliabase.org.
+{% endcomment %}
+
+{% load i18n %}
+{% load juliabase %}
+{% load samples_extras %}
+
+{% block frame_content %}
+<form method="post">{% csrf_token %}
+  <table>
+    <tr>
+      <th>{{ my_layers.0.nickname.label }}</th>
+      <th>{{ my_layers.0.deposition_and_layer.label }}</th>
+      <th>{{ my_layers.0.delete.label }}</th>
+    </tr>
+    {% for layer in my_layers %}
+      {% error_list layer _("Error in My Layer") "<tr>" 3 %}
+      <tr>
+        <td>{{ layer.nickname }}</td>
+        <td>{{ layer.deposition_and_layer }}</td>
+        <td>{{ layer.delete }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+  <p class="submit-button"><input type="submit" value="Save"/></p>
+</form>
+{% endblock %}

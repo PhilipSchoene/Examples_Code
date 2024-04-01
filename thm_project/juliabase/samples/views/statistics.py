@@ -1,0 +1,70 @@
+# This file is part of JuliaBase
+
+"""Views with statistical data visualisation, and the “about” view.  So far, I
+have only one statistics page with cache status data.  However, one can extend
+this in the institution's app.
+"""
+
+import sys, math
+import matplotlib
+from django.views.decorators.cache import cache_page, cache_control
+from django.utils.translation import ugettext as _
+from django.shortcuts import render
+from django.db import connection
+from django.conf import settings
+import django
+from jb_common import __version__
+import jb_common.utils.base as utils
+
+
+def statistics(request):
+    """View for various internal server statistics and plots.  Note that you
+    needn't be logged in for accessing this.
+
+    :param request: the current HTTP Request object
+
+    :type request: HttpRequest
+
+    :return:
+      the HTTP response object
+
+    :rtype: HttpResponse
+    """
+    cache_hit_rate = utils.cache_hit_rate()
+    if cache_hit_rate is not None and not math.isnan(cache_hit_rate):
+        cache_hit_rate = int(round(utils.cache_hit_rate() * 100))
+    return render(request, "samples/statistics.html",
+                  {"title": _("JuliaBase server statistics"), "cache_hit_rate": cache_hit_rate})
+
+
+@cache_control(max_age=0)  # This is for language switching
+@cache_page(3600)
+def about(request):
+    """The “about” view.  It displays general superficial information about
+    JuliaBase.  This view is more or less static – it shows only the components
+    of JuliaBase and versioning information.
+
+    Note that you needn't be logged in for accessing this.
+
+    :param request: the current HTTP Request object
+
+    :type request: HttpRequest
+
+    :return:
+      the HTTP response object
+
+    :rtype: HttpResponse
+    """
+    context = {"title": _("Userguide"),
+               "language_version": sys.version.split()[0],
+               "matplotlib_version": matplotlib.__version__,
+               "framework_version": django.get_version(),
+               "juliabase_version": __version__
+    }
+    db_configuration = settings.DATABASES.get("default", {})
+    db_backend = db_configuration.get("ENGINE")
+    if db_backend == "django.db.backends.postgresql":
+        cursor = connection.cursor()
+        cursor.execute("SELECT version()")
+        context["postgresql_version"] = cursor.fetchone()[0].split()[1]
+    return render(request, "samples/about.html", context)

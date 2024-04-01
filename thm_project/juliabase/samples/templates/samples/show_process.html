@@ -1,0 +1,80 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% extends "samples/base.html" %}
+{% comment %}
+This file is part of JuliaBase.
+{% endcomment %}
+
+{% load i18n %}
+{% load juliabase %}
+{% load samples_extras %}
+{% load static %}
+
+{% block content_title %}{% endblock %}
+
+{% block frame_content %}
+        {% spaceless %}
+          <div class="process-head">
+            <strong>{{ title }}</strong>
+            {% block process_icons %}{% if edit_url %}
+               <a href="{{ edit_url }}?next={{ url|urlquote_plus }}" style="margin-left:10px">Edit</a>
+            {% endif %}{% if delete_url %}
+               <a href="{{ delete_url }}">Delete</a>
+            {% endif %}{% if duplicate_url %}
+               <a href="{{ duplicate_url }}">Duplicate</a>
+            {% endif %}{% if export_url %}
+               <a style="display:none" href="{{ export_url }}?next={{ url|urlquote_plus }}">Table</a>
+            {% endif %}{% if resplit_url %}
+               <a href="{{ resplit_url }}?next={{ url|urlquote_plus }}">Resplit</a>
+            {% endif %}{% endblock process_icons %}
+            {% if not process.finished %}
+               <span style="margin-left: 2em; color: red; font-size: small">{% translate "(not finished)" %}</span>
+            {% endif %}
+               <span class="stamp">
+                 {{ process.operator|get_really_full_name }}, {{ process|timestamp }}
+               </span>
+           </div>
+        {% endspaceless %}
+  <div class="process process-neat" style="margin-top:10px">
+    {% if samples or sample_series %}
+      <p style="margin-left: 20px; font-size: 102%"> 
+        {% if samples %}
+          {% blocktranslate count samples|length as counter with samples.0.get_absolute_url as link and samples.0.name as name %}
+            This process was applied to the sample <a href="{{ link }}">{{ name }}</a>.
+          {% plural %}
+            This process was applied to the following samples:  <!-- To please compilemessages: {{ link }} {{ name }} -->
+          {% endblocktranslate %}
+          {% if not samples|length_is:"1" %}
+            <ul>
+              {% for sample in samples %}
+                <li><a href="{{ sample.get_absolute_url }}">{{ sample }}</a></li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endif %}
+        {% if sample_series %}
+          {% blocktranslate count sample_series|length as counter with sample_series.0.get_absolute_url as link and sample_series.0.name as name %}
+            This process was applied to the sample series <a href="{{ link }}">{{ name }}</a>.
+          {% plural %}
+            This process was applied to the following sample_series:
+            <!-- To please compilemessages: {{ link }} {{ name }} -->
+          {% endblocktranslate %}
+          {% if not sample_series|length_is:"1" %}
+            <ul>
+              {% for single_sample_series in sample_series %}
+                <li><a href="{{ single_sample_series.get_absolute_url }}">{{ single_sample_series.name }}</a></li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endif %}
+      </p>
+    {% endif %}
+
+    <div style="clear:right">
+      {% if extended_html_body %}
+        {{ extended_html_body }}
+      {% else %}
+        {{ html_body }}
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

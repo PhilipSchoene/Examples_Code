@@ -1,0 +1,50 @@
+{% comment %}
+This file is part of JuliaBase, see http://www.juliabase.org.
+Copyright © 2008–2015 Forschungszentrum Jülich GmbH, Jülich, Germany
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU Affero General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option) any
+later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
+details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+{% endcomment %}
+
+{% load i18n %}
+{% load samples_extras %}
+
+<p>
+  {% blocktranslate with entry.originator|get_really_full_name:"mailto" as originator and process.get_absolute_url as url %}
+    {{ originator }} changed <a href="{{ url }}">{{ process }}</a>.
+  {% endblocktranslate %}
+  {% blocktranslate count process.samples.all.count as counter %}
+    This affected the following sample:
+  {% plural %}
+    This affected the following samples:
+  {% endblocktranslate %}
+</p>
+
+<ul>
+  {% for sample in process.samples.all %}
+    <li><a href="{{ sample.get_absolute_url }}">{{ sample }}</a></li>
+  {% endfor %}
+</ul>
+
+<p>
+  {% if entry.important %}
+    {% translate 'The change was significant.' %}
+  {% else %}
+    {% translate 'The change was minor.' %}
+  {% endif %}
+  {% translate 'Description of the change:' %}
+</p>
+
+<blockquote>
+  {{ entry.description|markdown_samples }}
+</blockquote>

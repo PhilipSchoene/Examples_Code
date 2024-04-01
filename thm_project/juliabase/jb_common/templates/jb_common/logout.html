@@ -1,0 +1,17 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% extends "jb_common/base.html" %}
+{% comment %}
+This file is part of JuliaBase.
+{% endcomment %}
+
+{% load i18n %}
+
+{% block frame_content %}
+
+<div style="margin-left: 25px">
+
+<p>Thank you for using our database.</p>
+<p><a href="{% url 'login' %}">Log in again</a></p>
+
+</div>
+{% endblock %}

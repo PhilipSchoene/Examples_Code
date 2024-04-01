@@ -1,0 +1,26 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% comment %}
+This file is part of JuliaBase-Institute.
+{% endcomment %}
+{% load i18n %}
+{% load samples_extras %}
+
+<table style="margin-left: 15px" class="gesetz ordnung">
+<tr>
+  <td>Material:</td><td><strong>{{ process.get_material_display }}</strong></td>
+</tr>
+<tr>
+  {% value_field process.get_doping_display %}
+</tr>
+<tr>
+  {% value_field process.dopant %}
+</tr>
+<tr>
+  {% value_field process.size %}
+</tr>
+</table>
+{% if process.comments %}
+  <blockquote>
+    {{ process.comments|markdown_samples }}
+  </blockquote>
+{% endif %}

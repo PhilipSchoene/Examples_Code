@@ -1,0 +1,58 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% extends "samples/base.html" %}
+{% comment %}
+This file is part of JuliaBase, see http://www.juliabase.org.
+{% endcomment %}
+
+{% load i18n %}
+{% load juliabase %}
+{% load samples_extras %}
+
+{% block css %}
+<style type="text/css">
+  table.padding { border-spacing: 0pt }
+  table.padding th, table.padding td { padding: 3px }
+  td.row, td.last { border-top: solid 1px black }
+  td.last { border-bottom: solid 1px black }
+</style>
+{% endblock %}
+
+{% block frame_content %}
+<form method="post">{% csrf_token %}
+  <table class="padding">
+    {% if single_prefix or prefixes%}
+      <tr>
+        <td> </td>
+        <td>
+          {% if single_prefix %}
+            {{ single_prefix }}…
+          {% else %}
+            {% error_list prefixes _("Error in prefixes") %}
+            <div>
+              {{ prefixes.prefix }}…
+            </div>
+          {% endif %}
+        </td>
+        <td> </td>
+        <td> {{ samples.0.1.save_alias.label }} </td>
+      </tr>
+    {% endif %}
+    {% for sample, new_name in samples %}
+      <tr>
+        <td class="{% if forloop.last %}last{% else %}row{% endif %}">{{ sample }}</td>
+        <td class="{% if forloop.last %}last{% else %}row{% endif %}" style="text-align: center">→</td>
+        <td class="{% if forloop.last %}last{% else %}row{% endif %}">
+          {% error_list new_name _("Error in new name") %}
+          <div>
+            …{{ new_name.name }}
+          </div>
+        </td>
+        <td class="{% if forloop.last %}last{% else %}row{% endif %}">{{ new_name.save_alias }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+  <p class="submit-button" style="clear: both"><input type="submit" value="Save"/></p>
+</form>
+
+
+{% endblock %}

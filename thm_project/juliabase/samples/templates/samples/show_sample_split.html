@@ -1,0 +1,51 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% comment %}
+This file is part of JuliaBase, see http://www.juliabase.org.
+Copyright © 2008–2015 Forschungszentrum Jülich GmbH, Jülich, Germany
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU Affero General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option) any
+later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
+details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+{% endcomment %}
+
+{% load i18n %}
+{% load samples_extras %}
+
+<p>
+  {% if parent %}
+    {% translate 'The parental sample' %}
+      <a href="{{ parent.get_absolute_url }}">{{ parent.name }}</a>
+    {% translate 'was split into the following pieces:' %}
+  {% else %}
+    {% blocktranslate %}
+      The sample was split into the following pieces:
+    {% endblocktranslate %}
+  {% endif %}
+</p>
+
+{% with number=process.pieces.count %}
+  <ul class="sample-list"{% if number > 10 %} style="list-style-position: inside; padding-left: 0pt"{% endif %}>
+    {% for piece in process.pieces.all %}
+      {% if piece != original_sample %}
+        <li{% if number > 10 %} style="float: left; margin-left: 1em"{% endif %}>
+          <a href="{{ piece.get_absolute_url }}">{{ piece.name }}</a>
+          {% if piece == latest_descendant %}
+            {% translate '(the ancestor of this one)' %}
+          {% endif %}
+        </li>
+      {% else %}
+        <li{% if number > 10 %} style="float: left; margin-left: 1em"{% endif %}>{{ piece.name }}
+        {% translate '(this one)' %}</li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+{% endwith %}

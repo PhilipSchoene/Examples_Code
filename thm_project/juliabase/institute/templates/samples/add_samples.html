@@ -1,0 +1,53 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% extends "samples/base.html" %}
+{% comment %}
+This file is part of JuliaBase-Institute
+{% endcomment %}
+
+{% load i18n %}
+{% load juliabase %}
+{% load samples_extras %}
+
+{% block frame_content %}
+<form method="post">{% csrf_token %}
+  {% error_list add_samples _("General error") %}
+  <table>
+    <tr>
+      {% input_field add_samples.number_of_samples %}
+    </tr><tr>
+      {% input_field add_samples.substrate %}
+    </tr><tr>
+      {% input_field add_samples.substrate_comments %}
+    </tr>
+    {% if external_operators_available %}
+      <tr>
+        {% input_field add_samples.substrate_originator %}
+      </tr>
+    {% endif %}
+    <tr>
+      {% input_field add_samples.timestamp %}
+    </tr><tr>
+      {% input_field add_samples.current_location %}
+    </tr><tr>
+      {% input_field add_samples.purpose %}
+    </tr><tr>
+      {% input_field add_samples.tags %}
+    </tr><tr>
+      {% input_field add_samples.topic %}
+    </tr>
+    <tr>
+      {% input_field add_samples.cleaning_number %}
+    </tr>
+    <tr>
+      <td class="field-label">{{ add_samples.rename.label }}:</td>
+      <td class="field-input">{{ add_samples.rename }}</td>
+    </tr>
+  </table>
+  <div style="display: none">
+    {{ add_samples.timestamp_inaccuracy }}
+  </div> 
+  <p class="submit-button" style="clear: both"><input type="submit"/></p>
+</form>
+
+
+{% endblock %}

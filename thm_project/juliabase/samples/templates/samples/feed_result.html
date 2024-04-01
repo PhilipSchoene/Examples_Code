@@ -1,0 +1,64 @@
+{% comment %}
+This file is part of JuliaBase, see http://www.juliabase.org.
+Copyright © 2008–2015 Forschungszentrum Jülich GmbH, Jülich, Germany
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU Affero General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option) any
+later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
+details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+{% endcomment %}
+
+{% load i18n %}
+{% load samples_extras %}
+
+<p>
+  {% if entry.is_new %}
+    {% blocktranslate with entry.originator|get_really_full_name:"mailto" as originator and entry.result.get_absolute_url as url and entry.result.title as title %}
+      {{ originator }} added the result “<a href="{{ url }}">{{ title }}</a>”.
+    {% endblocktranslate %}
+  {% else %}
+    {% blocktranslate with entry.originator|get_really_full_name:"mailto" as originator and entry.result.get_absolute_url as url and entry.result.title as title %}
+      {{ originator }} edited the result “<a href="{{ url }}">{{ title }}</a>”.
+    {% endblocktranslate %}
+  {% endif %}
+  {% translate 'This affected the following samples and/or sample series:' %}
+</p>
+
+{% if entry.result.samples.count %}
+  <ul>
+    {% for sample in entry.result.samples.all %}
+      <li><a href="{{ sample.get_absolute_url }}">{{ sample }}</a></li>
+    {% endfor %}
+  </ul>
+{% endif %}
+{% if entry.result.sample_series.count %}
+  <p>{% translate 'Series:' %}</p>
+  <ul>
+    {% for sample_series in entry.result.sample_series.all %}
+      <li><a href="{{ sample_series.get_absolute_url }}">{{ sample_series.name }}</a></li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+{% if not entry.is_new %}
+  <p>
+    {% if entry.important %}
+      {% translate 'The change was significant.' %}
+    {% else %}
+      {% translate 'The change was minor.' %}
+    {% endif %}
+    {% translate 'Description of the change:' %}
+  </p>
+{% endif %}
+
+<blockquote>
+  {{ entry.description|markdown_samples }}
+</blockquote>

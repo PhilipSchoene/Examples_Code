@@ -1,0 +1,22 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% extends "samples/base.html" %}
+{% comment %}
+This file is part of JuliaBase, see http://www.juliabase.org.
+{% endcomment %}
+
+{% load i18n %}
+{% load juliabase %}
+{% load samples_extras %}
+
+{% block frame_content %}
+<form method="post">{% csrf_token %}
+  {% error_list sample_death _("General error") %}
+  <table>
+    <tr>
+      {% input_field sample_death.reason %}
+    </tr>
+  </table>
+
+  <p class="submit-button"><input type="submit" value="Save"/></p>
+</form>
+{% endblock %}

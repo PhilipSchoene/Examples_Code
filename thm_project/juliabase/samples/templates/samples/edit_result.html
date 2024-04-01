@@ -1,0 +1,99 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% extends "samples/base.html" %}
+{% comment %}
+This file is part of JuliaBase, see http://www.juliabase.org.
+{% endcomment %}
+
+{% load i18n %}
+{% load juliabase %}
+{% load samples_extras %}
+
+{% block frame_content %}
+<form enctype="multipart/form-data" method="post">{% csrf_token %}
+  {% error_list result _("Error in result") %}
+  {% error_list related_data _("General error") %}
+  <table class="ordnung gesetz">
+    <tr>
+      {% input_field result.title %}
+      <td></td>
+      <td></td>
+      <td style="text-align: center">Samples</td>
+      <td style="text-align: center">Sample series</td>
+    </tr>
+      {% if result.user.is_superuser %}
+      <tr>
+        <td>{{ result.operator.label_tag }}</td>
+        <td>{{ result.operator }}</td>
+        <td rowspan="5"></td>
+        <td rowspan="5"></td>
+        <td rowspan="5">{{ related_data.samples }}</td>
+        <td rowspan="5">{{ related_data.sample_series }}</td>
+      </tr> 
+      <tr>
+        <td>{{ result.external_operator.label_tag }}</td>
+        <td>{{ result.external_operator }}</td>
+      </tr>
+      {% else %}
+      <tr>
+        <td>{{ result.combined_operator.label_tag }}</td>
+        <td>{{ result.combined_operator }}</td>
+        <td rowspan="4"></td>
+        <td rowspan="4"></td> 
+        <td rowspan="4">{{ related_data.samples }}</td>
+        <td rowspan="4">{{ related_data.sample_series }}</td>
+      </tr>
+      {% endif %}
+    <tr>
+      {% input_field result.timestamp %}
+    </tr>
+    <tr>
+      {% input_field result.comments %}
+    </tr>
+    <tr>
+      <td class="field-label">{{ related_data.image_file.label_tag }}</td>
+      <td class="field-input">{{ related_data.image_file }}</td>
+    </tr>
+    {% error_list dimensions _("Error in dimensions") "<tr>" 2 %}
+    <tr style="display:none">
+      <td class="field-label"><label for="{{ dimensions.number_of_quantities.id_for_label }}"
+                 >{% translate 'Number of quantities × values' %}:</label></td>
+      <td class="field-input" colspan="3">{{ dimensions.number_of_quantities }} × {{ dimensions.number_of_values }}</td>
+    </tr>
+  </table>
+
+  <div style="display: none">{{ previous_dimensions.number_of_quantities }}{{ previous_dimensions.number_of_values }}</div>
+
+  {% if quantities and value_lists %}
+    <table style="margin-left: auto; margin-right: auto; text-align: center; margin-top: 2ex; border-collapse: collapse">
+      <thead>
+        <tr>
+          {% for quantity in quantities %}
+            <th style=
+                "border-top: solid black 2px; border-bottom: solid black 1px; padding-top: 0.5ex; padding-bottom: 0.5ex"
+                >{% error_list quantity _("Error in quantity") %}{{ quantity.quantity }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      {% for value_list in value_lists %}
+        <tr>
+          {% for value in value_list %}
+            <td{% if forloop.parentloop.first or forloop.parentloop.last %}
+                  style="{% if forloop.parentloop.first %}padding-top: 0.5ex; {% endif %}
+                         {% if forloop.parentloop.last %}padding-bottom: 0.5ex; border-bottom: solid black 2px{% endif %}"
+                  {% endif %}>{% error_list value _("Error in value") %}{{ value.value }}</td>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+    </table>
+  {% endif %}
+
+  <div style="display: none">
+    {{ result.timestamp_inaccuracy }}
+  </div>
+
+  {% include "samples/edit_description.html" %}
+
+  <p class="submit-button" style="clear: both"><input type="submit" value="Save"/></p>
+</form>
+
+{% endblock %}

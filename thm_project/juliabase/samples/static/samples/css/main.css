@@ -1,0 +1,42 @@
+/*
+This file is part of JuliaBase, see http://www.juliabase.org.
+Copyright © 2008–2015 Forschungszentrum Jülich GmbH, Jülich, Germany
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU Affero General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option) any
+later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
+details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+table.edit-description { border: inset 2px black; padding: 0.5ex 1ex; background-color: #f0eee1; float: right;
+			 margin: 1em 0px 1em 1em; clear: left }
+
+div.my-samples-topics { margin-left: 2em }
+div.my-samples-series { margin-left: 2em }
+
+ul.sample-series-list { list-style-image: url("/static/juliabase/icons/chart_organisation.png") }
+ul.sample-list { list-style-image: url("/static/juliabase/icons/ruby.png") }
+
+div.my-samples { width: 50%; float: right }
+div.my-samples h2 { margin-top: 0pt }
+
+ul.radio-select { list-style-type: none; display: inline; margin-left: 0; padding-left:0 }
+ul.radio-select li { display: inline; margin-right: 1em }
+
+p.operator_and_timestamp { float: right; font-size: small }
+a.edit-button, a.duplicate-button { font-size: small; white-space: nowrap }
+a.edit-icon, form.edit-icon { margin-left: 0.3em }
+
+div.process { margin-top: 3ex; clear: both }
+span.aliases { font-size: x-small; font-weight: normal }
+
+/* This solves in some cases the problem with jerky jQuery animation due to non-collapsing margins during animation. */
+div.process-body > *:first-child { margin-top: 0pt }

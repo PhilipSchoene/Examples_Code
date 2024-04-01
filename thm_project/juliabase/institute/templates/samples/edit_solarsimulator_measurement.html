@@ -1,0 +1,104 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% extends "samples/base.html" %}
+{% comment %}
+This file is part of JuliaBase-Institute, see http://www.juliabase.org.
+Copyright © 2008–2015 Forschungszentrum Jülich GmbH, Jülich, Germany
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later
+version.
+
+In particular, you may modify this file freely and even remove this license,
+and offer it as part of a web service, as long as you do not distribute it.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program.  If not, see <http://www.gnu.org/licenses/>.
+{% endcomment %}
+
+{% load i18n %}
+{% load juliabase %}
+{% load samples_extras %}
+
+{% block frame_content %}
+<form method="post">{% csrf_token %}
+  {% error_list process _("Error in solarsimulator measurements") %}
+  {% error_list sample _("Error in sample") %}
+  {% error_list remove_from_my_samples _("Error with removal from “My Samples”") %}
+  <table class="padding5">
+    <tr>
+      {% input_field process.timestamp %}
+    </tr>
+    <tr>
+      {% input_field sample.sample %}
+    </tr>
+    <tr>
+      {% input_field process.irradiation %}
+    </tr>
+    <tr>
+      {% input_field process.temperature %}
+    </tr>
+    {% if process.user.is_superuser %}
+      <tr>
+        {% input_field process.operator %}
+      </tr>
+      <tr>
+        {% input_field process.external_operator %}
+      </tr>
+    {% else %}
+      <tr>
+        {% input_field process.combined_operator %}
+      </tr>
+    {% endif %}
+    <tr>
+      <td class="field-label">{{ process.comments.label_tag }}<br/>{% markdown_hint %}</td>
+      <td class="field-input" colspan="3">{{ process.comments }}</td>
+    </tr>
+  </table>
+
+  {{ number.as_p }}
+
+  {% if subprocesses %}
+    <table style="width: 100%">
+      {% for measurement in subprocesses %}
+        <tr>
+          <td style="border-style: solid; border-color: black; border-width: thin">
+            <table style="width: 100%">
+              {% error_list measurement _("Error in solarsimulator measurement") "<tr>" 4 %}
+              <tr>
+                {% input_field measurement.position %}
+              </tr>
+              <tr><td><br/></td></tr>
+              <tr>
+                {% input_field measurement.data_file %}
+              </tr>
+              <tr>
+                {% input_field measurement.area %}
+                {% input_field measurement.eta %}
+              </tr>
+              <tr>
+                {% input_field measurement.isc %}
+              </tr>
+              <tr><td><br/></td></tr>
+            </table>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% endif %}
+
+  <div style="display: none">
+    {# Hidden so that it's only set/changed by the remote client. #}
+    {{ process.timestamp_inaccuracy }}
+  </div>
+
+  {% include "samples/edit_description.html" %}
+
+  <p class="submit-button"><input type="submit" value="Rentner"/></p>
+</form>
+{% endblock %}

@@ -1,0 +1,106 @@
+.. -*- mode: rst; coding: utf-8; ispell-local-dictionary: "english" -*-
+..
+.. This file is part of JuliaBase, see http://www.juliabase.org.
+.. Copyright © 2008–2015 Forschungszentrum Jülich GmbH, Jülich, Germany
+..
+.. This program is free software: you can redistribute it and/or modify it under
+.. the terms of the GNU Affero General Public License as published by the Free
+.. Software Foundation, either version 3 of the License, or (at your option) any
+.. later version.
+..
+.. This program is distributed in the hope that it will be useful, but WITHOUT
+.. ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+.. FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
+.. details.
+..
+.. You should have received a copy of the GNU Affero General Public License
+.. along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+====================
+Hacking on JuliaBase
+====================
+
+This *unfinished* chapter explains how to contribute to the JuliaBase project
+itself instead of adapting it to your institution.
+
+
+.. index:: architecture
+
+Architecture
+============
+
+Since JuliaBase is based on the Django Web framework, it consists of several
+Django apps.  The core app is called “jb_common”.  It provides functionality
+which is essential for all JuliaBase components.  On top of that, the app
+“samples” contains all features of a samples database.  However, it does not
+contain institute-specific code in order to remain generic and flexible.  This
+institute-specific code resides in an app of its own and must be created by a
+skilled programmer.
+
+JuliaBase is shipped together with an example institute app called “inm”.  It
+provides not only a demo for JuliaBase, it also is a good starting point for
+your own app.  Besides, essential testing of JuliaBase can only be done on top
+of inm.
+
+
+.. index::
+   pair: coding; guidelines
+
+Coding guidelines
+=================
+
+JuliaBase source code modules should not exceed 1000 lines of code.  You should
+stick to `PEP 8`_ and the `Django coding guidelines`_.  String literals are
+double-quoted unless double quotes appear in them::
+
+    "This is a string literal"
+    'This is "another" string literal'
+
+Never use ``u`` in front of a string literal.  Instead, JuliaBase code uses the
+``unicode_literals`` future import.
+
+JuliaBase makes one exception from PEP 8: It allows lines with 125 columns
+instead of only 80.
+
+All variables and source code comments should be in English.
+
+.. _`PEP 8`: http://www.python.org/dev/peps/pep-0008/
+.. _`Django coding guidelines`: http://docs.djangoproject.com/en/dev/internals/contributing/?from=olddocs#coding-style
+
+.. note::
+
+   I skip all docstrings in the code examples in this document because
+   otherwise, the examples would be too bloated.  However, write rich
+   Docstrings for all non-trivial functions and methods.  Write them in `ReST
+   format`_.
+
+.. _`ReST format`: http://sphinx-doc.org/rest.html
+
+Internationalization is a very important point in JuliaBase.  All strings
+exposed to the user should be marked as translatable by putting them in
+``_("...")`` unless you have very good reason not to do so (e.g. for some
+proper names).  Note that in code which is executed at module load time
+(e.g. model and form fields), ``_`` should stand for ``ugettext_lazy``, whereas
+within functions and methods which are executed on each request, it should be
+``ugettext``.  You may achieve this by setting ``_`` to ``ugettext_lazy`` at
+the beginning of the module, and to ``ugettext`` at the end.
+
+
+Boilerplate code
+----------------
+
+Start every file with:
+
+.. code-block:: python
+
+    #!/usr/bin/env python3
+    #
+    # {Licence}
+
+    """{Module docstring}
+    """
+    
+    {Python standard library imports}
+    {Non-standard imports (Numpy, Scipy, matplotlib etc)
+    {Django imports}
+    {JuliaBase imports}

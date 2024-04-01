@@ -1,0 +1,39 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% comment %}
+This file is part of JuliaBase-Institute, see http://www.juliabase.org.
+{% endcomment %}
+
+{% load i18n %}
+{% load samples_extras %}
+
+<table style="margin-left: 15px" class="gesetz ordnung">
+  <tr>
+    {% value_field process.length %}
+  </tr>
+  <tr>
+    {% value_field process.alpha %}
+  </tr>
+  <tr>
+    {% value_field process.beta %}
+  </tr>
+  <tr>
+    {% value_field process.posi %}
+  </tr>
+  <tr>
+    {% value_field process.get_method_display %}
+  </tr>
+  {% if process.comments %}
+    <tr>
+      <td class="field-label" style="vertical-align: top">{% verbose_name ThicknessMeasurement.comments %}:</td>
+      <td class="field-value" style="font-weight: normal">{{ process.comments|markdown_samples:"collapse" }}</td>
+    </tr>
+  {% endif %}
+</table>
+{% if process.file %}
+<table style="margin-left: 15px" class="gesetz ordnung">
+  <tr>
+    <td>Local URL:</td>
+    <td>\\thm-netapp\thm-OE670\Projekte\laufend\35PE\50-Daten\Charakterisierung\PL\{{ process.file }}</td>
+  </td>
+</table>
+{% endif %}

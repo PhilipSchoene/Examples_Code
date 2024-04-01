@@ -1,0 +1,167 @@
+.. -*- mode: rst; coding: utf-8; ispell-local-dictionary: "english" -*-
+..
+.. This file is part of JuliaBase, see http://www.juliabase.org.
+.. Copyright © 2008–2015 Forschungszentrum Jülich GmbH, Jülich, Germany
+..
+.. This program is free software: you can redistribute it and/or modify it under
+.. the terms of the GNU Affero General Public License as published by the Free
+.. Software Foundation, either version 3 of the License, or (at your option) any
+.. later version.
+..
+.. This program is distributed in the hope that it will be useful, but WITHOUT
+.. ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+.. FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
+.. details.
+..
+.. You should have received a copy of the GNU Affero General Public License
+.. along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+.. index::
+   pair: utility; functions
+
+=========
+Utilities
+=========
+
+In the following sections, the most important functions, classes, and exception
+classes are mentioned and explained.  This covers everything that is used in
+the “institute” app.  It should give you a solid starting point for creating an
+own institute app.  Nevertheless, the utility modules contain even more
+functions and classes.
+
+
+Common helpers
+==============
+
+
+String-related
+--------------
+
+The following names are found in the module :py:mod:`jb_common.utils.base`.
+
+.. autofunction:: jb_common.utils.base.format_enumeration
+.. autofunction:: jb_common.utils.base.camel_case_to_underscores
+.. autofunction:: jb_common.utils.base.camel_case_to_human_text
+
+
+File-related
+------------
+
+The following names are found in the module :py:mod:`jb_common.utils.base`.
+
+.. autofunction:: jb_common.utils.base.find_file_in_directory
+.. autofunction:: jb_common.utils.base.check_filepath
+.. autofunction:: jb_common.utils.base.is_update_necessary
+.. autofunction:: jb_common.utils.base.remove_file
+.. autofunction:: jb_common.utils.base.mkdirs
+
+
+Generating responses
+--------------------
+
+The following names are found in the module :py:mod:`jb_common.utils.base`.
+
+.. autoexception:: jb_common.utils.base.JSONRequestException
+.. autofunction:: jb_common.utils.base.is_json_requested
+.. autofunction:: jb_common.utils.base.respond_in_json
+.. autofunction:: jb_common.utils.base.static_response
+
+The following name is found in the module :py:mod:`samples.utils.views`.
+
+.. autofunction:: samples.utils.views.successful_response
+
+
+Sample-related
+--------------
+
+The following names are found in the module :py:mod:`samples.utils.views`.
+
+.. autofunction:: samples.utils.views.dead_samples
+.. autofunction:: samples.utils.views.lookup_sample
+.. autofunction:: samples.utils.views.remove_samples_from_my_samples
+.. autofunction:: samples.utils.views.extract_preset_sample
+.. autofunction:: samples.utils.views.restricted_samples_query
+
+The following names are found in the module :py:mod:`samples.utils.sample_names`.
+
+.. autofunction:: samples.utils.sample_names.get_sample
+.. autofunction:: samples.utils.sample_names.does_sample_exist
+.. autofunction:: samples.utils.sample_names.normalize_sample_name
+
+The following names are found in the module :py:mod:`samples.utils.sample_name_formats`.
+
+.. autofunction:: samples.utils.sample_name_formats.verbose_sample_name_format
+.. autofunction:: samples.utils.sample_name_formats.sample_name_format
+
+
+Miscellaneous
+-------------
+
+The following names are found in the module :py:mod:`samples.utils.views`.
+
+.. autofunction:: samples.utils.views.convert_id_to_int
+.. autofunction:: samples.utils.views.table_export
+
+The following names are found in the module :py:mod:`jb_common.utils.base`.
+
+.. autofunction:: jb_common.utils.base.get_really_full_name
+.. autofunction:: jb_common.utils.base.check_markdown
+.. autofunction:: jb_common.utils.base.help_link
+.. autofunction:: jb_common.utils.base.send_email
+.. autofunction:: jb_common.utils.base.round
+.. autofunction:: jb_common.utils.base.generate_permissions
+
+
+Feed reporting
+==============
+
+The following name is found in the module :py:mod:`samples.utils.views`.
+
+.. autoclass:: samples.utils.views.Reporter
+               :members:
+
+
+Form field classes
+==================
+
+The following names are found in the module :py:mod:`jb_common.utils.views`.
+
+.. autoclass:: jb_common.utils.views.UserField
+               :members: set_users, set_users_without
+.. autoclass:: jb_common.utils.views.MultipleUsersField
+               :members: set_users
+.. autoclass:: jb_common.utils.views.TopicField
+               :members: set_topics
+
+
+Form classes
+============
+
+The following names are found in the module :py:mod:`samples.utils.views`.
+
+.. autoclass:: samples.utils.views.ProcessForm
+               :members: is_referentially_valid
+.. autoclass:: samples.utils.views.DepositionForm
+               :members: is_referentially_valid
+.. autoclass:: samples.utils.views.SampleSelectForm
+.. autoclass:: samples.utils.views.DepositionSamplesForm
+.. autoclass:: samples.utils.views.EditDescriptionForm
+
+
+Plots
+=====
+
+The following names are found in the module :py:mod:`samples.utils.plots`.
+
+.. autoexception:: samples.utils.plots.PlotError
+.. autofunction:: samples.utils.plots.read_plot_file_beginning_at_line_number
+.. autofunction:: samples.utils.plots.read_plot_file_beginning_after_start_value
+
+
+URLs
+====
+
+The following name is found in the module :py:mod:`samples.utils.urls`.
+
+.. autoclass:: samples.utils.urls.PatternGenerator
+               :members:

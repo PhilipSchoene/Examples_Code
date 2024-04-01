@@ -1,0 +1,60 @@
+{% comment %}
+This file is part of JuliaBase, see http://www.juliabase.org.
+Copyright © 2008–2015 Forschungszentrum Jülich GmbH, Jülich, Germany
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU Affero General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option) any
+later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
+details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+{% endcomment %}
+
+{% load i18n %}
+{% load samples_extras %}
+
+{% with entry.samples.all as samples %}
+  <p>
+    {% blocktranslate count samples|length as counter with entry.originator|get_really_full_name:"mailto" as originator and samples.0 as first_sample and samples.0.get_absolute_url as first_url %}
+      {{ originator }} has edited the sample <a href="{{ first_url }}">{{ first_sample }}</a>.
+    {% plural %}
+      {{ originator }} has edited the following samples:  <!-- {{ first_url }} {{ first_sample }} (to appease gettext) -->
+    {% endblocktranslate %}
+  </p>
+
+  {% if not samples|length_is:"1" %}
+    <ul>
+      {% for sample in samples %}
+	<li><a href="{{ sample.get_absolute_url }}">{{ sample }}</a></li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  <p>
+    {% if entry.responsible_person_changed %}
+      <em>
+	{% blocktranslate count samples|length as counter %}
+	  You are now the new responsible person for this sample.
+	{% plural %}
+	  You are now the new responsible person for these samples.
+	{% endblocktranslate %}
+      </em>
+    {% elif entry.important %}
+      {% translate 'The change was significant.' %}
+    {% else %}
+      {% translate 'The change was minor.' %}
+    {% endif %}
+    {% translate 'Description of the change:' %}
+  </p>
+
+{% endwith %}
+
+<blockquote>
+  {{ entry.description|markdown_samples }}
+</blockquote>

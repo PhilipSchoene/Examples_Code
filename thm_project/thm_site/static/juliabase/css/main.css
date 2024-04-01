@@ -1,0 +1,268 @@
+/*
+This file is part of JuliaBase.
+*/
+
+@import url(https://fonts.googleapis.com/css?family=Ubuntu:400,700,400italic,700italic&effect=emboss);
+
+body {
+    background-color: black;
+    font-family: "Ubuntu", "DejaVu Sans", "Bitstream Vera Sans", "Trebuchet MS", Verdana, sans-serif;
+    margin: 0pt; padding: 0pt;
+}
+p.logo-text {
+    margin: 0pt 0pt 0pt -0.05em;
+    font-size: 30px;
+    color: white;
+    font-weight: bold;
+}
+
+div.dangs {
+    overflow: hidden;
+    background-color: black;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    border-bottom-style: groove;
+    border-bottom-width: 2px;
+    border-bottom-color: white;
+}
+
+nav.dings{
+    margin: 10px;
+    text-align: center;    
+}
+
+nav.dings a{
+    color: white;
+    text-decoration: none;
+    padding: 10px 30px;
+}
+
+nav.dings a:hover{
+    background-color: #5c5c5c;
+}
+
+div.main {
+    margin: 60px 45px 40px;
+}
+
+div.outer-frame {
+    clear: both;
+    margin-top: 10px;
+    border-color: black;
+    border-width: thin;
+    border-radius: 12px;
+    -moz-border-radius: 12px;
+    -webkit-border-radius: 12px;
+    border-style: solid;
+}
+
+div.inner-frame {
+    margin: 1px;
+    padding: 10px;
+    border-color: black;
+    border-width: thin;
+    border-style: solid;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    background-color: white;
+    min-height: 0px;   /* IE7 quirk */
+}
+div.inner-frame a{
+    color: black;
+    text-decoration: none;
+}
+
+div.inner-frame a:hover{
+    text-decoration: underline;
+    color: #787878;
+}
+
+table.headbar {
+    font-size: small;
+    color: white;
+    background-color: #045078;
+    width: 100%;
+    border-collapse: collapse
+}
+
+table.headbar a { color: white }
+table.headbar td { padding: 0.3ex 25px 0.5ex }
+table.headbar td.login-data { text-align: right }
+table.headbar td.info { text-align: left }
+
+
+div[class^="report"] { color: white; padding: 0.3ex 25px 0.5ex; text-align: right; font-size: small }
+div.report-success { background-color: green }
+div.report-error { background-color: red }
+div.report-debug { background-color: gainsboro; color: black }
+div.report-warning { background-color: coral }
+div.report-info { background-color: mediumpurple }
+
+h1 { margin-top: 0pt }
+
+span.field-label { margin-right: 0.5em }
+span.field-value { font-weight: bold }
+td.field-value { text-align: left }
+td.field-value { font-weight: bold; vertical-align: text-top }
+
+td.field-input { vertical-align: center }
+
+td.field-label { text-align: right; vertical-align: text-top; padding-right: 0.3em; padding-left: 0px }
+span.help { font-size: small; font-weight: normal; margin-left: 0.6em }
+span.unit-of-measurement { padding-left: 0.3em }
+
+/* MESSAGES & ERRORS */
+div.errorlist, td.error-messages { text-align: left; font-size: x-small; padding: 0pt }
+div.errorlist, td.error-messages p { padding: 0.5ex 0.5ex 0pt 0.5ex; margin: 0pt 0pt 0pt 0pt;
+                     color:white; background-color: maroon; font-weight: bold }
+ul.errorlist { margin:0 !important; padding: 0pt 0pt 0.5ex 0pt !important; background-color: maroon; font-weight: normal }
+.errorlist li { padding: 0pt 0.5ex 0pt 0.5ex; display:block; color:white }
+div.errorlist li { padding-left: 0pt }
+
+table.about { font-size: large; margin-top: 2ex; margin-bottom: 0pt; width: 50% }
+table.about th { border-bottom: solid gray 1px; padding-right: 2em; text-align: right; width: 40%; vertical-align: top }
+table.about td { text-align: left; width: 50%; vertical-align: top; text-indent: -3em; padding-left: 3.5em;
+         padding-bottom: 2ex }
+
+span.uptime { font-size: small }
+span.version { font-size: small }
+
+div.process-head { color: white;
+                   background-color: black;
+                   border-radius: 10px;
+                   margin: 10px;
+                   padding: 10px 15px;
+                   font-size: 115%;
+                   border: none }
+
+div.process-head a { color: white;
+                     font-size: 80%;
+                     text-align: center;
+                     text-decoration: none;
+                     padding: 10px 15px }
+
+div.process-head a:hover { background-color: #5c5c5c;
+                           text-decoration: none;
+                           color: white }
+
+div.process-neat { margin: 10px;
+                   padding: 5px 15px }
+
+span.stamp { float:right;
+             font-size: 70% }
+
+span.stamp a { padding: 0 }
+
+h2.list-head { margin-left: 40px }
+
+ul.liste { padding: 5px;
+           border-radius: 10px;
+           margin-left: 30px;
+           width: 30% }
+
+ul.liste li { border: 1pt solid black;
+              font-size: 95%;
+              margin-top: 15px;
+              border-radius: 10px;
+              padding: 10px 30px;
+              padding-left: 30px }
+
+ul.liste li:hover { background-color: #5c5c5c;
+                    cursor: pointer; 
+                    color: white }
+
+div.thematik ul { padding: 5px;
+                  width: 30%;
+                  list-style: none }
+
+div.thematik li { border: 1pt solid black;
+                  border-radius: 10px;
+                  font-size: 95%;
+                  margin-top: 10px;
+                  padding: 10px 30px;
+                  padding-left: 30px }
+
+div.thematik li:hover { background-color: #5c5c5c;
+                        cursor: pointer;
+                        color: white }
+
+div.thematik li:hover a { color: white }
+            
+table.ordnung { border-collapse: collapse;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 20px }
+
+table.ordnung tr { border-bottom: 1pt solid #ddd }
+
+table.ordnung td { padding: 5px 10px;
+                   vertical-align: middle;
+                   text-align: left;
+                   padding-top: 10px;
+                   font-size: 102% }
+
+table.ordnung input { border: 1pt solid black;
+                      border-radius: 2px;
+                      padding: 5px 10px;
+                      font-size: 90% }
+                     
+table.ordnung input:focus { background-color: rgb(242,242,242) }
+
+table.gesetz select { border: 1pt solid black;
+                      border-radius: 1px; 
+                      padding: 5px 10px; 
+                      font-size: 90% }
+
+table.gesetz select:focus { background-color: rgb(242,242,242) }
+
+tr.req td:first-child { font-weight: bold }
+                                  
+p.submit-button { text-align: right;
+                  margin-bottom: 5px;
+                  margin-right: 7px; 
+                  clear: right }
+
+p.submit-button input[type="submit"] { background-color: black;
+                        color: white;
+                        border: none;
+                        font-size: 110%;
+                        text-decoration: none;
+                        padding: 10px 30px;
+                        border-radius: 10px;
+                        text-align: center }
+
+p.submit-button input[type="submit"]:hover { background-color: #5c5c5c;
+                              cursor: pointer }
+
+p.link-button a { background-color: black;
+                  color: white;
+                  border: none;
+                  font-size: 102%;
+                  text-decoration: none;
+                  padding: 10px 30px;
+                  border-radius: 10px;
+                  text-align: center }
+
+p.link-button a:hover { background-color: #5c5c5c;
+                        text-decoration: none;
+                        color: white }
+
+a > img, img[usemap] { border: none }
+
+optgroup { font-weight: bold; font-style: normal }
+
+span.markdown-hint { font-size: small }
+
+ul.radio-select { list-style-type: none; display: inline; margin-left: 0; padding-left:0 }
+ul.radio-select li { display: inline; margin-right: 1em }
+
+table.tight-fullwidth { border-collapse: collapse; width: 100% }
+table.container { width: 100% }
+table.padding5 th, table.padding5 td { padding: 5px }
+table.padding8 th, table.padding8 td { padding: 8px }
+table.padding10 th, table.padding10 td { padding: 10px }
+
+table.lab-notebook { margin-top: 2ex; border-top: 2px solid; border-bottom: 2px solid; border-collapse: collapse }
+table.lab-notebook th, table.lab-notebook td { padding: 6px }

@@ -1,0 +1,26 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% extends "jb_common/base.html" %}
+{% comment %}
+This file is part of JuliaBase.
+{% endcomment %}
+
+{% load i18n %}
+
+{% block frame_content %}
+<table class="padding10" style="margin-bottom: 2ex">
+  <tr>
+    <td class="field-label">Username:</td><td class="field-value">{{ shown_user.username }}</td>
+  </tr>
+  {% if shown_user.email %}
+    <tr>
+      <td class="field-label">Email address:</td>
+      <td class="field-value" style="font-weight: normal"><a href="mailto:{{ shown_user.email }}">{{ shown_user.email }}</a></td>
+    </tr>
+  {% endif %}
+  {% if department %}
+    <tr>
+      <td class="field-label">Department:</td><td class="field-value">{{ department }}</td>
+    </tr>
+  {% endif %}
+</table>
+{% endblock %}

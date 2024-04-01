@@ -1,0 +1,45 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% extends "samples/base.html" %}
+{% comment %}
+This file is part of JuliaBase, see http://www.juliabase.org.
+{% endcomment %}
+
+{% load i18n %}
+{% load juliabase %}
+{% load samples_extras %}
+
+{% block frame_content %}
+<form method="post">{% csrf_token %}
+
+  {% error_list sample_series _("Error in sample series") %}
+
+  <table class="ordnung gesetz" style="float: left; margin-bottom: 3ex; width: 45%">
+    {% if is_new %}
+      <tr>
+        <td class="field-label">{{ sample_series.short_name.label_tag }}</td>
+        <td class="field-input">{{ name_prefix }}-{{ sample_series.short_name }}</td>
+      </tr>
+    {% endif %}
+    <tr {% if is_new %}style="display: none"{% endif %}>
+      {% input_field sample_series.currently_responsible_person %}
+    </tr>
+    <tr>
+      {% input_field sample_series.topic %}
+    </tr>
+    <tr>
+      <td class="field-label">{{ sample_series.description.label_tag }}<br/>{% markdown_hint %}</td>
+      <td class="field-input">{{ sample_series.description }}</td>
+    </tr>
+  </table>
+
+  <div style="float: left; margin-left: 5em; margin-bottom: 3ex">
+    <span style="margin-right: 0.5em">{{ sample_series.samples.label_tag }}</span>{{ sample_series.samples }}
+  </div>
+
+  {% include "samples/edit_description.html" %}
+
+  <p class="submit-button" style="clear: both"><input type="submit" value="Save"/></p>
+</form>
+
+
+{% endblock %}

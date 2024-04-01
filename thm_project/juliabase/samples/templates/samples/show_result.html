@@ -1,0 +1,50 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% comment %}
+This file is part of JuliaBase, see http://www.juliabase.org.
+Copyright © 2008–2015 Forschungszentrum Jülich GmbH, Jülich, Germany
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU Affero General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option) any
+later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
+details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+{% endcomment %}
+
+{% load samples_extras %}
+
+{% if thumbnail_url and image_url %}
+  <div class="process-neat">
+    <a style="display: block" href="{{ image_url }}"><img style="display: block" src="{{ thumbnail_url }}" 
+                                                          alt="{{ process }}"/></a>
+  </div>
+{% endif %}
+
+{% if quantities %}
+  <table class="gesetz ordnung">
+    <thead>
+      <tr>
+        {% for quantity in quantities %}
+          <th style="border-top: solid black 2px; border-bottom: solid black 1px"
+              >{{ quantity }}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    {% for value_list in value_lists %}
+      <tr>
+        {% for value in value_list %}
+          <td{% if forloop.parentloop.last %} style="border-bottom: solid black 2px"{% endif %}>{{ value|quantity }}</td>
+        {% endfor %}
+      </tr>
+    {% endfor %}
+  </table>
+{% endif %}
+
+{{ process.comments|markdown_samples }}
+

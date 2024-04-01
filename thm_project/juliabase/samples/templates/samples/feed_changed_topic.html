@@ -1,0 +1,17 @@
+{% comment %}
+This file is part of JuliaBase, see http://www.juliabase.org.
+{% endcomment %}
+
+{% load i18n %}
+
+<p>
+  {% if entry.action == "added" %}
+    {% blocktranslate with entry.topic as topic %}
+      You were added to topic “{{ topic }}”.
+    {% endblocktranslate %}
+  {% else %}
+    {% blocktranslate with entry.topic as topic %}
+      You are no longer a member of topic “{{ topic }}”.
+    {% endblocktranslate %}
+  {% endif %}
+</p>

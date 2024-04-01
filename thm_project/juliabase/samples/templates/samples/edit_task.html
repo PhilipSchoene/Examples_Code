@@ -1,0 +1,50 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% extends "samples/base.html" %}
+{% comment %}
+This file is part of JuliaBase, see http://www.juliabase.org.
+{% endcomment %}
+
+{% load i18n %}
+{% load juliabase %}
+{% load samples_extras %}
+
+{% block frame_content %}
+<form method="post">{% csrf_token %}
+  {% error_list task _("Error in deposition") %}
+  {% error_list samples _("Error in sample list") %}
+
+  <table class="gesetz ordnung">
+    <tr>
+      <td class="field-label">{{ task.status.label_tag }}</td>
+      <td class="field-input">{{ task.status }}</td>
+      <td></td>
+      <td></td>
+      <td style="text-align: center">Samples</td>
+    </tr>
+    <tr>
+      <td class="field-label">{{ task.process_class.label_tag }}</td>
+      <td class="field-input">{{ task.process_class }}</td>
+      <td></td>
+      <td></td>
+      <td rowspan="5">{{ samples.sample_list }}</td>
+    </tr>
+    <tr>
+      <td class="field-label">{{ task.priority.label_tag }}</td>
+      <td class="field-input">{{ task.priority }}</td>
+    </tr>
+    <tr>
+      <td class="field-label">{{ task.finished_process.label_tag }}</td>
+      <td class="field-input">{{ task.finished_process }}</td>
+    </tr>
+    <tr>
+      <td class="field-label">{{ task.operator.label_tag }}</td>
+      <td class="field-input">{{ task.operator }}</td>
+    <tr>
+      <td class="field-label">{{ task.comments.label_tag }}<br/>{% markdown_hint %}</td>
+      <td class="field-input">{{ task.comments }}</td>
+    </tr>
+  </table>
+
+  <p class="submit-button" style="clear: both"><input type="submit" value="Save"/></p>
+</form>
+{% endblock %}

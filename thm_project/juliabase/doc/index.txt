@@ -1,0 +1,122 @@
+.. -*- mode: rst; coding: utf-8; ispell-local-dictionary: "english" -*-
+..
+.. This file is part of JuliaBase, see http://www.juliabase.org.
+.. Copyright © 2008–2015 Forschungszentrum Jülich GmbH, Jülich, Germany
+..
+.. This program is free software: you can redistribute it and/or modify it under
+.. the terms of the GNU Affero General Public License as published by the Free
+.. Software Foundation, either version 3 of the License, or (at your option) any
+.. later version.
+..
+.. This program is distributed in the hope that it will be useful, but WITHOUT
+.. ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+.. FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
+.. details.
+..
+.. You should have received a copy of the GNU Affero General Public License
+.. along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+.. meta::
+   :description: JuliaBase is an open-source web framework written in Python
+                 for creating databases for samples or specimens as used in
+                 research and development.
+
+
+============
+Introduction
+============
+
+Your scientific institute or working group creates lots of samples, and your
+team needs a tool to keep track of them?  JuliaBase is made for exactly that!
+It is a database solution for samples, their processing and their
+characterization, with the following features:
+
+- intuitive browser-based interface, fully working even on mobile devices
+- maximal flexibility for being adapted perfectly to your production and
+  measurement setups, and to your workflows
+- possibility to manage more than one department in a single database
+- fine-grained access control
+- connects to your LDAP server for user management
+- keeps track of samples across sample splits
+- support for pre-evaluating raw data and creating plots
+- automatic notification of changes in your samples
+- sample management by sample series, topics, and tags
+- arbitrarily complex searches made easy, e.g. “find all samples with infrared
+  measurements, deposited together with a sample on glass substrate with a
+  conductivity greater than :math:`10^{-6}` S/cm; oh yes, and only from this year and made
+  by John”
+- export to spreadsheets
+- automatic lab notebooks
+- database interaction from own programs, e.g. for connecting your measurement
+  setup directly to the database
+- fully translatable; core is available in English and German so far
+- fully brandable; adjust the look to your corporate identity and/or your taste
+- mature codebase
+- compliance with state-of-the-art Web standards and security considerations
+- fully open source
+
+We believe that the database should adapt to the people and the existing
+workflows rather than the other way round!
+
+However, there is no free lunch … JuliaBase's flexibility comes at a cost.  You
+have to create the Python code to describe your setups and apparatuses.
+Leaving out fancy things, this is copy, paste, and modify of < 100 lines of
+code for each apparatus.  JuliaBase contains code for typical processing and
+measurement setups that you can use as a starting point.
+
+
+Contact
+=======
+
+See :doc:`project` for how to find the right contact person and how to get in
+touch with the JuliaBase community.
+
+See also the `impressum`_ of JuliaBase's website.
+
+.. _impressum: http://www.juliabase.org/downloads/impressum.html
+
+
+Technical overview
+==================
+
+For better evaluation, here is a short list of the technical aspects of
+JuliaBase:
+
+- JuliaBase is built on top of the `Django web framework`_.
+- JuliaBase is written 100% in the Python programming language (version 3.2 onward).
+- Although other setups are possible, the easiest server installation bases on
+  Linux, PostgreSQL, and Apache.
+- Hardware requirements are very low; a 100 people institute could be served by
+  a single ordinary desktop computer.
+
+.. _Django web framework: https://www.djangoproject.com/
+
+
+.. _Public releases:
+
+Public releases
+===============
+
+You can `download JuliaBase`_ from GitHub as .tar.gz or zip files.
+Alternatively, you may visit the current state of the `source code repository`_
+there.
+
+.. _source code repository: https://github.com/juliabase/juliabase
+.. _download JuliaBase: https://github.com/juliabase/juliabase/releases
+
+
+Getting started
+===============
+
+If you want to give JuliaBase a try, visit the :doc:`demo site <demo>`.  If you
+like it, the next step could be :doc:`installing it
+</programming/installation>`.  Its installation includes the demo site, so you
+have immediately something up and running, and you can evaluate it even better.
+
+If you consider actually using JuliaBase, have a look at the full :doc:`table
+of contents <toc>`.  This documentation also exists `in PDF format`_.
+
+.. _in PDF format: http://www.juliabase.org/downloads/juliabase.pdf
+
+..  LocalWords:  toc

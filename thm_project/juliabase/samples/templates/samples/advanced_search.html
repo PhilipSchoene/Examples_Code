@@ -1,0 +1,84 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% extends "samples/base.html" %}
+{% comment %}
+This file is part of JuliaBase, see http://www.juliabase.org.
+Copyright © 2008–2015 Forschungszentrum Jülich GmbH, Jülich, Germany
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU Affero General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option) any
+later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
+details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+{% endcomment %}
+
+{% load i18n %}
+{% load samples_extras %}
+
+{% block local_scripts %}
+<script type="text/javascript">
+// <![CDATA[
+$(function() {
+    $('form[method="get"]').submit(function(event) {
+        var $target = $(event.target);
+        $target.find("input:not(.submit-always),select:not(.submit-always),textarea:not(.submit-always)").each(function() {
+            if ($(this).val() == "") $(this).attr("disabled", "disabled")
+        })
+    })
+ });
+// ]]>
+</script>
+{% endblock %}
+
+{% block frame_content %}
+<form method="get">
+  {{ search_root.as_p }}
+  {% if search_tree %}
+    {% display_search_tree search_tree %}
+  {% endif %}
+  {% if no_permission_message %}
+    {{ no_permission_message }}
+  {% endif %}
+  {% include "samples/table_export_content_block.html" %}
+</form>
+
+{% if search_performed %}
+  <p>
+    {% if too_many_results %}
+      {% blocktranslate %}
+        Too many matches were found.  I show only {{ max_results }} of them.
+      {% endblocktranslate %}
+    {% endif %}
+  </p>
+  <form method="post">{% csrf_token %}
+    {% if results %}
+      {% if something_to_add %}
+        <p>{% translate 'Mark samples to add them to “My Samples”.' %}</p>
+      {% endif %}
+      <ul>
+        {% for result, add_form in results %}
+          <li><a href="{{ result.get_absolute_url }}">{{ result }}</a>
+            {% if add_form %}
+              {{ add_form.add_to_my_samples }}
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>{% translate 'Nothing found.' %}</p>
+    {% endif %}
+
+    <p class="submit-button" style="clear: both"><input type="submit" value="{% translate 'add samples' %}"/></p>
+  </form>
+
+{% else %}
+  <p>{% translate 'No search was performed yet.' %}</p>
+{% endif %}
+
+{% endblock %}

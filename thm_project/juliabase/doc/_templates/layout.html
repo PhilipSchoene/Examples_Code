@@ -1,0 +1,26 @@
+{#
+    sphinxdoc/layout.html
+    ~~~~~~~~~~~~~~~~~~~~~
+
+    Sphinx layout template for the sphinxdoc theme.
+
+    :copyright: Copyright 2007-2014 by the Sphinx team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
+#}
+{%- extends "basic/layout.html" %}
+
+{% block relbar1 %}
+
+<div style="background-color: white; padding: 5px 10px 15px 10px">
+  <div style="width:100%; height:134px; background-size:cover; background-position:top left; background-repeat:no-repeat;
+              background-image:url('{{ pathto("_static/juliabase.png", 1) }}');"/>
+</div>
+
+{{ relbar() }}
+
+{% endblock %}
+
+{# put the sidebar before the body #}
+{% block sidebar1 %}{{ sidebar() }}{% endblock %}
+{% block sidebar2 %}{% endblock %}
+

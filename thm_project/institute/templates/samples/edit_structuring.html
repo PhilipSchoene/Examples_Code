@@ -1,0 +1,59 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% extends "samples/base.html" %}
+{% comment %}
+This file is part of JuliaBase-Institute, see http://www.juliabase.org.
+{% endcomment %}
+
+{% load i18n %}
+{% load juliabase %}
+{% load samples_extras %}
+
+{% block frame_content %}
+<form method="post">{% csrf_token %}
+  {% error_list process _("Error in structuring process") %}
+  {% error_list sample _("Error in sample") %}
+  {% error_list remove_from_my_samples _("Error with removal from “My Samples”") %}
+
+  <table class="padding5">
+    <tr>
+      {% input_field sample.sample %}
+      <td colspan="2"> </td>
+    </tr>
+    <tr>
+      {% input_field process.timestamp %}
+      <td colspan="2"> </td>
+    </tr>
+    {% if process.user.is_superuser %}
+      <tr>
+        {% input_field process.operator %}
+      </tr>
+      <tr>
+        {% input_field process.external_operator %}
+      </tr>
+    {% else %}
+      <tr>
+        {% input_field process.combined_operator %}
+      </tr>
+    {% endif %}
+    <tr>
+      {% input_field process.layout %}
+    </tr>
+  </table>
+
+
+  {% include "samples/edit_description.html" %}
+
+  {% if remove_from_my_samples %}
+    <div style="text-align: right; clear: both">
+      {{ remove_from_my_samples.as_p }}
+    </div>
+  {% endif %}
+
+  <div style="display: none">
+    {# Hidden so that it's only set/changed by the remote client. #}
+    {{ process.timestamp_inaccuracy }}
+  </div>
+
+  <p class="submit-button" style="clear: both"><input type="submit" value="Save"/></p>
+</form>
+{% endblock %}

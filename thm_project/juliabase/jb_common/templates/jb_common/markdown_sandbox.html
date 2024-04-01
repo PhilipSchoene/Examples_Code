@@ -1,0 +1,58 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% extends "jb_common/base.html" %}
+{% comment %}
+This file is part of JuliaBase.
+{% endcomment %}
+
+{% load i18n %}
+{% load juliabase %}
+{% load samples_extras %}
+
+{% block css %}
+<style type="text/css">
+  td { vertical-align: top }
+</style>
+{% endblock %}
+
+
+{% block frame_content %}
+
+{% blocktranslate %}
+  <p>JuliaBase uses the lightweight markup language “Markdown” for comments.  It
+  doesn't support images and headings though.  As compensation, it adds
+  implicit sample and sample series linking.  Follow the help link at the top
+  of the page for further information.</p>
+
+  <p>Here, you can test the markup as you like.  What you enter here is never
+  saved.</p>
+{% endblocktranslate %}
+
+<form method="post">{% csrf_token %}
+  {% error_list sandbox _("Error in markup") %}
+  <table border="1" style="width: 100%" class="padding">
+    <thead>
+      <tr>
+        {# Translators: Input for markdown conversion #}
+        <th style="width: 50%">{% translate 'input' %}</th>
+        {# Translators: result of conversion #}
+        <th>{% translate 'result' %}</th>
+      </tr>
+    </thead>
+    <tr>
+      <td style="text-align: center">
+        {{ sandbox.sandbox }}
+      </td>
+      <td>
+        {% if extracted_content %}
+          <div>
+            {{ extracted_content|markdown }}
+          </div>
+        {% endif %}
+      </td>
+    </tr>
+  </table>
+  {# Translators: result of markdown conversion #}
+  <p class="submit-button" style="clear: both"><button type="submit">{% translate 'Generate result' %}</button></p>
+</form>
+
+{% endblock %}

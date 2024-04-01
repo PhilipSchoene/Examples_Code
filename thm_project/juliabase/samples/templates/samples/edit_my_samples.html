@@ -1,0 +1,49 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% extends "samples/base.html" %}
+{% comment %}
+This file is part of JuliaBase, see http://www.juliabase.org.
+{% endcomment %}
+
+{% load i18n %}
+{% load juliabase %}
+{% load samples_extras %}
+
+{% block frame_content %}
+<form method="post">{% csrf_token %}
+  {% error_list action _("General error") %}
+  {% error_list my_samples _("Error in “My Samples”") %}
+  <span>
+  <table style="float: left; margin-left: 15px" class="gesetz ordnung">
+    <tr>
+      {% input_field action.new_currently_responsible_person %}
+    </tr><tr>
+      {% input_field action.new_topic %}
+    </tr><tr>
+      {% input_field action.new_current_location %}
+    </tr><tr>
+      {% input_field action.new_tags %}
+    </tr><tr>
+      {% input_field action.copy_to_user %}
+    </tr><tr>
+      {% input_field action.clearance %}
+    </tr><tr>
+      <td class="field-label">{{ action.comment.label_tag }}<br/>{% markdown_hint %}</td>
+      <td class="field-input">{{ action.comment }}</td>
+    </tr><tr>
+      {% input_field action.remove_from_my_samples %}
+    </tr>
+  </table>
+  </span>
+  <span>
+  <table class="gesetz ordnung">
+    <tr>
+      {% input_field my_samples.samples %}
+    </tr>
+  </table>
+  </span>
+
+  <p class="submit-button" style="clear: both"><input type="submit" value="Save"/></p>
+</form>
+
+
+{% endblock %}

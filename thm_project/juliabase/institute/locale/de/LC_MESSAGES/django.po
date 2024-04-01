@@ -1,0 +1,1486 @@
+# German translations for JuliaBase-institute
+#
+# This file is part of JuliaBase-Institute, see http://www.juliabase.org.
+# Copyright © 2008–2015 Forschungszentrum Jülich GmbH, Jülich, Germany
+#
+# This program is free software: you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later
+# version.
+#
+# In particular, you may modify this file freely and even remove this license,
+# and offer it as part of a web service, as long as you do not distribute it.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+# details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: JuliaBase-institute\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-05-17 23:20+0200\n"
+"PO-Revision-Date: 2018-05-17 23:22+0200\n"
+"Last-Translator: Torsten Bronger <bronger@physik.rwth-aachen.de>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: institute/apps.py:31
+msgid "Institute"
+msgstr "Institut"
+
+#: institute/apps.py:45
+msgctxt "top-level menu item"
+msgid "explore"
+msgstr "erkunden"
+
+#: institute/apps.py:46
+msgid "samples by name"
+msgstr "Proben nach Name"
+
+#: institute/apps.py:46
+msgid "depositions by number"
+msgstr "Depositionen nach Nummer"
+
+#: institute/apps.py:48
+msgid "manage"
+msgstr "verwalten"
+
+#: institute/apps.py:49
+msgid "edit “My Layers”"
+msgstr "“Meine Schichten” ändern"
+
+#: institute/context_processors.py:33
+#, python-brace-format
+msgid "Mrs {user.last_name}"
+msgstr "Frau {user.last_name}"
+
+#: institute/context_processors.py:33
+#, python-brace-format
+msgid "Mr. {user.last_name}"
+msgstr "Herr {user.last_name}"
+
+#: institute/models/depositions.py:50
+msgid "carrier"
+msgstr "Carrier"
+
+#: institute/models/depositions.py:53
+msgid "cluster tool deposition"
+msgstr "Cluster-Tool-Deposition"
+
+#: institute/models/depositions.py:54
+msgid "cluster tool depositions"
+msgstr "Cluster-Tool-Depositionen"
+
+#: institute/models/depositions.py:83
+msgid "cluster tool deposition lab"
+msgstr "Labor des Cluster-Tools"
+
+#: institute/models/depositions.py:94 institute/models/depositions.py:184
+msgid "deposition"
+msgstr "Deposition"
+
+#: institute/models/depositions.py:98
+msgid "cluster tool layer"
+msgstr "Schicht des Cluster-Tools"
+
+#: institute/models/depositions.py:99
+msgid "cluster tool layers"
+msgstr "Schichten des Cluster-Tools"
+
+#: institute/models/depositions.py:102 institute/models/depositions.py:200
+#, python-brace-format
+msgid "layer {number} of {deposition}"
+msgstr "Schicht {number} von {deposition}"
+
+#: institute/models/depositions.py:106
+msgid "unknown"
+msgstr "unbekannt"
+
+#: institute/models/depositions.py:107
+msgid "rhenium"
+msgstr "Rhenium"
+
+#: institute/models/depositions.py:108
+msgid "tantalum"
+msgstr "Tantal"
+
+#: institute/models/depositions.py:109
+msgid "tungsten"
+msgstr "Wolfram"
+
+#: institute/models/depositions.py:115 institute/models/depositions.py:134
+msgid "deposition time"
+msgstr "Depositionszeit"
+
+#: institute/models/depositions.py:115 institute/models/depositions.py:134
+msgid "format HH:MM:SS"
+msgstr "Format HH:MM:SS"
+
+#: institute/models/depositions.py:116 institute/models/depositions.py:135
+#: institute/models/sample_details.py:283
+#: institute/templates/samples/lab_notebook_five_chamber_deposition.html:41
+msgid "comments"
+msgstr "Kommentare"
+
+#: institute/models/depositions.py:117
+msgid "wire material"
+msgstr "Drahtmaterial"
+
+#: institute/models/depositions.py:118
+msgid "base pressure"
+msgstr "Basisdruck"
+
+#: institute/models/depositions.py:121
+msgid "cluster tool hot-wire layer"
+msgstr "Hot-Wire-Schicht im Cluster-Tool"
+
+#: institute/models/depositions.py:122
+msgid "cluster tool hot-wire layers"
+msgstr "Hot-Wire-Schichten im Cluster-Tool"
+
+#: institute/models/depositions.py:133 institute/models/depositions.py:186
+#: institute/templates/samples/lab_notebook_five_chamber_deposition.html:36
+msgid "chamber"
+msgstr "Kammer"
+
+#: institute/models/depositions.py:136
+msgid "plasma start with shutter"
+msgstr "Plasma startet mit Shutter"
+
+#: institute/models/depositions.py:137
+msgid "deposition power"
+msgstr "Depositionsleistung"
+
+#: institute/models/depositions.py:142
+msgid "cluster tool PECVD layer"
+msgstr "PECVD-Schicht im Cluster-Tool"
+
+#: institute/models/depositions.py:143
+msgid "cluster tool PECVD layers"
+msgstr "PECVD-Schichten im Cluster-Tool"
+
+#: institute/models/depositions.py:150
+msgid "5-chamber deposition"
+msgstr "5-Kammer-Deposition"
+
+#: institute/models/depositions.py:151
+msgid "5-chamber depositions"
+msgstr "5-Kammer-Depositionen"
+
+#: institute/models/depositions.py:164
+msgid "5-chamber deposition lab"
+msgstr "5-Kammer-Depositionslabor"
+
+#: institute/models/depositions.py:185
+msgid "layer type"
+msgstr "Schichttyp"
+
+#: institute/models/depositions.py:189
+msgid "temperature 1"
+msgstr "Temperatur 1"
+
+#: institute/models/depositions.py:191
+msgid "temperature 2"
+msgstr "Temperatur 2"
+
+#: institute/models/depositions.py:196
+msgid "5-chamber layer"
+msgstr "5-Kammer-Schicht"
+
+#: institute/models/depositions.py:197
+msgid "5-chamber layers"
+msgstr "5-Kammer-Schichten"
+
+#. Translators: sample substrate type
+#: institute/models/physical_processes.py:50
+#: institute/models/physical_processes.py:276
+msgid "custom"
+msgstr "speziell"
+
+#: institute/models/physical_processes.py:53
+msgid "Corning glass"
+msgstr "Corning-Glas"
+
+#: institute/models/physical_processes.py:54
+#: institute/models/sample_details.py:269
+msgid "glass"
+msgstr "Glas"
+
+#: institute/models/physical_processes.py:55
+#: institute/models/sample_details.py:268
+msgid "silicon wafer"
+msgstr "Silizium-Wafer"
+
+#: institute/models/physical_processes.py:56
+msgid "quartz"
+msgstr "Quarz"
+
+#: institute/models/physical_processes.py:57
+msgid "sapphire"
+msgstr "Saphir"
+
+#: institute/models/physical_processes.py:58
+msgid "aluminium foil"
+msgstr "Alufolie"
+
+#: institute/models/physical_processes.py:72
+msgid "substrate material"
+msgstr "Substratmaterial"
+
+#: institute/models/physical_processes.py:75
+#: institute/templates/samples/add_claim_oldstyle.html:33
+#: institute/views/samples/sample.py:62
+msgid "substrate"
+msgstr "Substrat"
+
+#: institute/models/physical_processes.py:76
+msgid "substrates"
+msgstr "Substrate"
+
+#: institute/models/physical_processes.py:82
+#, python-brace-format
+msgid "{material} substrate #{number}"
+msgstr "{material}-Substrat Nr. {number}"
+
+#: institute/models/physical_processes.py:86
+msgid "PDS #1"
+msgstr "PDS 1"
+
+#: institute/models/physical_processes.py:87
+msgid "PDS #2"
+msgstr "PDS 2"
+
+#: institute/models/physical_processes.py:93
+msgid "PDS number"
+msgstr "PDS-Nummer"
+
+#: institute/models/physical_processes.py:94
+msgid "raw data file"
+msgstr "Rohdaten-Datei"
+
+#: institute/models/physical_processes.py:95
+#: institute/models/physical_processes.py:233
+#, python-brace-format
+msgid "only the relative path below \"{path}\""
+msgstr "nur der relative Pfad unterhalb von \"{path}\""
+
+#: institute/models/physical_processes.py:96
+msgid "apparatus"
+msgstr "Anlage"
+
+#: institute/models/physical_processes.py:99
+msgid "PDS measurement"
+msgstr "PDS-Messung"
+
+#: institute/models/physical_processes.py:100
+msgid "PDS measurements"
+msgstr "PDS-Messungen"
+
+#: institute/models/physical_processes.py:110
+msgid "energy in eV"
+msgstr "Energie in eV"
+
+#: institute/models/physical_processes.py:111
+msgid "α in cm⁻¹"
+msgstr "α in cm⁻¹"
+
+#: institute/models/physical_processes.py:131
+msgid "irradiation"
+msgstr "Beleuchtung"
+
+#: institute/models/physical_processes.py:132
+msgid "temperature"
+msgstr "Temperatur"
+
+#: institute/models/physical_processes.py:135
+#: institute/models/physical_processes.py:230
+msgid "solarsimulator measurement"
+msgstr "Sonnensimulator-Messung"
+
+#: institute/models/physical_processes.py:136
+msgid "solarsimulator measurements"
+msgstr "Sonnensimulator-Messungen"
+
+#: institute/models/physical_processes.py:175
+msgid "η of best cell"
+msgstr "η der besten Zelle"
+
+#: institute/models/physical_processes.py:191
+msgid "voltage in V"
+msgstr "Spannung in V"
+
+#: institute/models/physical_processes.py:192
+msgid "current density in mA/cm²"
+msgstr "Stromdichte in mA/cm²"
+
+#: institute/models/physical_processes.py:231
+msgid "cell position"
+msgstr "Zellposition"
+
+#: institute/models/physical_processes.py:232
+msgid "data file"
+msgstr "Datendatei"
+
+#: institute/models/physical_processes.py:235
+msgid "area"
+msgstr "Fläche"
+
+#: institute/models/physical_processes.py:236
+msgid "efficiency η"
+msgstr "Effizienz η"
+
+#: institute/models/physical_processes.py:237
+msgid "short-circuit current density"
+msgstr "Kurzschluss­strom­dichte"
+
+#: institute/models/physical_processes.py:240
+msgid "solarsimulator cell measurement"
+msgstr "Sonnensimulator-Zellmessung"
+
+#: institute/models/physical_processes.py:241
+msgid "solarsimulator cell measurements"
+msgstr "Sonnensimulator-Zellmessungen"
+
+#: institute/models/physical_processes.py:246
+#, python-brace-format
+msgid "cell {position} of {solarsimulator_measurement}"
+msgstr "Zelle {position} von {solarsimulator_measurement}"
+
+#: institute/models/physical_processes.py:300
+msgid "layout"
+msgstr "Layout"
+
+#: institute/models/physical_processes.py:301
+msgid "length"
+msgstr "Länge"
+
+#: institute/models/physical_processes.py:302
+msgid "width"
+msgstr "Breite"
+
+#: institute/models/physical_processes.py:303
+msgid "parameters"
+msgstr "Parameter"
+
+#: institute/models/physical_processes.py:306
+msgid "structuring"
+msgstr "Strukturierung"
+
+#: institute/models/physical_processes.py:307
+msgid "structurings"
+msgstr "Strukturierungen"
+
+#: institute/models/physical_processes.py:310
+msgid "profilometer + edge"
+msgstr "Profilometer + Kante"
+
+#: institute/models/physical_processes.py:311
+msgid "ellipsometer"
+msgstr "Ellipsometer"
+
+#: institute/models/physical_processes.py:312
+msgid "calculated from deposition parameters"
+msgstr "berechnet aus Depo-Parametern."
+
+#: institute/models/physical_processes.py:313
+msgid "estimate"
+msgstr "Schätzung"
+
+#: institute/models/physical_processes.py:314
+msgid "other"
+msgstr "anderes"
+
+#: institute/models/physical_processes.py:321
+msgid "layer thickness"
+msgstr "Schichtdicke"
+
+#: institute/models/physical_processes.py:322
+msgid "measurement method"
+msgstr "Messmethode"
+
+#: institute/models/physical_processes.py:325
+msgid "layer thickness measurement"
+msgstr "Schichtdickenmessung"
+
+#: institute/models/physical_processes.py:326
+msgid "layer thickness measurements"
+msgstr "Schichtdickenmessungen"
+
+#: institute/models/sample_details.py:49
+msgid "sample"
+msgstr "Probe"
+
+#: institute/models/sample_details.py:53 institute/models/sample_details.py:278
+msgid "sample details"
+msgstr "Probendetails"
+
+#: institute/models/sample_details.py:54
+msgctxt "plural"
+msgid "sample details"
+msgstr "Probendetails"
+
+#: institute/models/sample_details.py:262
+msgid "black"
+msgstr "schwarz"
+
+#: institute/models/sample_details.py:262
+msgid "blue"
+msgstr "blau"
+
+#: institute/models/sample_details.py:262
+msgid "brown"
+msgstr "braun"
+
+#: institute/models/sample_details.py:262
+msgid "darkgray"
+msgstr "dunkelgrau"
+
+#: institute/models/sample_details.py:263
+msgid "green"
+msgstr "grün"
+
+#: institute/models/sample_details.py:263
+msgid "lightblue"
+msgstr "hellblau"
+
+#: institute/models/sample_details.py:264
+msgid "lightgreen"
+msgstr "hellgrün"
+
+#: institute/models/sample_details.py:264
+msgid "magenta"
+msgstr "magenta"
+
+#: institute/models/sample_details.py:265
+msgid "orange"
+msgstr "orange"
+
+#: institute/models/sample_details.py:265
+msgid "red"
+msgstr "rot"
+
+#: institute/models/sample_details.py:265
+msgctxt "color"
+msgid "silver"
+msgstr "silbern"
+
+#: institute/models/sample_details.py:266
+msgid "white"
+msgstr "weiß"
+
+#: institute/models/sample_details.py:266
+msgid "yellow"
+msgstr "gelb"
+
+#: institute/models/sample_details.py:269
+msgctxt "metall"
+msgid "silver"
+msgstr "Silber"
+
+#: institute/models/sample_details.py:270
+msgid "HF dip"
+msgstr "HF-Dipp"
+
+#: institute/models/sample_details.py:277
+msgid "index"
+msgstr "Index"
+
+#: institute/models/sample_details.py:280
+msgid "doping"
+msgstr "Dotierung"
+
+#: institute/models/sample_details.py:281
+msgid "classification"
+msgstr "Klassifikation"
+
+#: institute/models/sample_details.py:284
+msgid "color"
+msgstr "Farbe"
+
+#: institute/models/sample_details.py:285
+msgid "thickness"
+msgstr "Dicke"
+
+#: institute/models/sample_details.py:286
+msgid "thickness reliable"
+msgstr "Dicke zuverlässig"
+
+#: institute/models/sample_details.py:287
+msgid "structured"
+msgstr "strukturiert"
+
+#: institute/models/sample_details.py:288
+msgid "textured"
+msgstr "texturiert"
+
+#: institute/models/sample_details.py:289
+msgid "always collapsed"
+msgstr "immer verkürzt"
+
+#: institute/models/sample_details.py:290
+msgid "process"
+msgstr "Prozess"
+
+#: institute/models/sample_details.py:292
+msgid "additional process data"
+msgstr "zuzätzliche Prozessdaten"
+
+#: institute/models/sample_details.py:293
+msgid "verified"
+msgstr "überprüft"
+
+#: institute/models/sample_details.py:298
+msgid "informal layer"
+msgstr "informelle Schicht"
+
+#: institute/models/sample_details.py:299
+msgid "informal layers"
+msgstr "informelle Schichten"
+
+#: institute/models/sample_details.py:381
+msgid "You must give a classification or comments or both."
+msgstr "Sie müssen eine Klassifikation oder Kommentare angeben, oder beides."
+
+#: institute/permissions.py:56
+#, python-brace-format
+msgid ""
+"You are not allowed to edit the substrate #{number} because you are not "
+"allowed to edit all affected samples."
+msgstr ""
+"Sie dürfen das Substrat Nr. {number} nicht ändern, weil Sie nicht alle "
+"beteiligten Proben ändern dürfen."
+
+#: institute/permissions.py:59
+msgid ""
+"You are not allowed to add a substrate because you are not allowed to edit "
+"all affected samples."
+msgstr ""
+"Sie dürfen kein Substrat hinzufügen, weil Sie nicht alle beteiligten Proben "
+"ändern dürfen."
+
+#: institute/signals.py:70
+#, python-brace-format
+msgid "{user_name} uses {apparatus}"
+msgstr "{user_name} benutzt {apparatus}"
+
+#: institute/signals.py:71
+#, python-brace-format
+msgid ""
+"Dear supervisors of {apparatus_plural},\n"
+"\n"
+"{user_name} has created their first {apparatus}.\n"
+msgstr ""
+"An die Verantwortlichen von {apparatus_plural},\n"
+"\n"
+"{user_name} hat seinen/ihren ersten Prozess „{apparatus}“ angelegt.\n"
+
+#: institute/templates/404.html:36 institute/templates/404.html:37
+msgid "Resource not found"
+msgstr "Ressource nicht gefunden"
+
+#: institute/templates/404.html:40
+#, python-format
+msgid ""
+"\n"
+"The resource » <em>%(request_path)s</em> « could not be found.  Please check "
+"that the URL\n"
+"is correct, and/or check that the denoted sample, process etc is already in "
+"the\n"
+"database.\n"
+msgstr ""
+"\n"
+"Die Ressource » <em>%(request_path)s</em> « konnte nicht gefunden werden.  "
+"Bitte überprüfen Sie, ob die URL korrekt ist und/oder die angegebene Probe, "
+"der angegebene Prozess etc. schon in der Datenbank existiert.\n"
+
+#: institute/templates/500.html:33
+msgid "Internal JuliaBase error"
+msgstr "Interner JuliaBase-Fehler"
+
+#: institute/templates/500.html:41
+msgid "Main menu"
+msgstr "Hauptmenü"
+
+#: institute/templates/500.html:54
+msgid "Internal server error"
+msgstr "Interner Server-Fehler"
+
+#: institute/templates/500.html:55
+msgid ""
+"\n"
+"<p>You experienced an internal error in the JuliaBase server software.  The\n"
+"administrators have been contacted already and will do their best in\n"
+"eliminating the bug.  Typically, they will contact you as soon as the "
+"problem\n"
+"is tackled.</p>\n"
+"\n"
+"<p>If you just submitted data to the database, don't close this window.\n"
+"It may be that the problem is being fixed and you are asked to go back\n"
+"and re-do your action, so that the data is actually written into the\n"
+"database.</p>\n"
+msgstr ""
+"\n"
+"<p>Sie sind auf einen internen Fehler der JuliaBase-Serversoftware "
+"gestoßen.  Die Administatoren wurden bereits benachrichtigt und werden ihr "
+"bestes tun, den Fehler zu beheben.  Typischerweise werden sie Sie "
+"benachrichtigen, sobald der Fehler behoben ist.</p>\n"
+"\n"
+"<p>Falls Sie gerade Daten an die Datenbank übertragen haben, schließen Sie "
+"dieses Fenster nicht.  Es könnte sein, dass das Problem gelöst wird und Sie "
+"aufgefordert werden, zurückzugehen und Ihre letzte Aktion zu wiederholen, "
+"damit die Daten tatsächlich in die Datenbank geschrieben werden.</p>\n"
+
+#: institute/templates/bug_tracker.html:36
+#: institute/templates/bug_tracker.html:37
+msgid "No bug tracker here"
+msgstr "Hier kein Bug-Tracker"
+
+#: institute/templates/bug_tracker.html:40
+msgid ""
+" Normally, clicking on the green bug icon would lead to a\n"
+"page where one could enter a new bug.  This way, users can report issues to "
+"the\n"
+"<em>local</em> web developer, who then may forward some of them\n"
+"to <a href=\"https://github.com/juliabase/juliabase/issues/new"
+"\">JuliaBase's\n"
+"central issue tracker</a>.  However, this demo site deliberately doesn't "
+"have a\n"
+"bug tracker installed so that this message can be delivered.  You may\n"
+"use <a href=\"http://trac.edgewall.org/\">Trac</a>\n"
+"or <a href=\"http://www.redmine.org/\">Redmine</a> for issue tracking, or "
+"link to\n"
+"a <a href=\"https://github.com\">GitHub</a> page."
+msgstr ""
+"Normalerweise führt ein Klick auf das grüne Käfer-Icon auf eine Seite, auf "
+"der man einen neuen Bug eintragen kann.  Auf diese Weise wird ein solcher an "
+"den <em>lokalen</em> Web-Entwickler gemeldet, welcher seinerseits einige "
+"davon an <a href=\"https://github.com/juliabase/juliabase/issues/new"
+"\">JuliaBases zentralen Bugtracker</a> weiterleiten könnte.  Diese Demo-Site "
+"hat allerdings keinen Bug-Tracker installiert, damit eben diese Meldung "
+"angezeigt werden kann.  Man könnte <a href=\"http://trac.edgewall.org/"
+"\">Trac</a> oder <a href=\"http://www.redmine.org/\">Redmine</a> zum "
+"Bugtracking benutzen, oder auf eine <a href=\"https://github.com\">GitHub</"
+"a>-Seite verlinken.  "
+
+#: institute/templates/jb_base.html:38
+msgid "INM logo"
+msgstr "Logo des INM"
+
+#: institute/templates/jb_base.html:40
+msgid "Institute of Nifty New<br/>Materials (INM)"
+msgstr "Institut für pfiffige neue<br/>Materialien (INM)"
+
+#: institute/templates/jb_base.html:44
+msgid "JuliaBase logo"
+msgstr "JuliaBase-Logo"
+
+#: institute/templates/samples/add_claim_oldstyle.html:29
+#: institute/templates/samples/add_claim_oldstyle.html:30
+#: institute/templates/samples/add_claim_oldstyle.html:31
+#: institute/templates/samples/add_samples.html:30
+#: institute/templates/samples/edit_sample.html:35
+msgid "General error"
+msgstr "Allgemeiner Fehler"
+
+#: institute/templates/samples/copy_informal_stack.html:29
+msgid ""
+"Attention: The informal stacks of the selected destination samples will be "
+"overwritten!"
+msgstr ""
+"Achtung: Die informellen Stapel der ausgewählten Zielproben werden "
+"überschrieben!"
+
+#: institute/templates/samples/copy_informal_stack.html:32
+msgid "Error in destination samples"
+msgstr "Fehler in Zielproben"
+
+#: institute/templates/samples/copy_informal_stack.html:36
+#: institute/templates/samples/show_sample.html:35
+msgid "layer stack"
+msgstr "Schichtstapel"
+
+#: institute/templates/samples/edit_cluster_tool_deposition.html:37
+#: institute/templates/samples/edit_five_chamber_deposition.html:30
+msgid "Error in deposition"
+msgstr "Fehler in der Deposition"
+
+#: institute/templates/samples/edit_cluster_tool_deposition.html:38
+#: institute/templates/samples/edit_five_chamber_deposition.html:31
+#: institute/templates/samples/edit_layer_thickness_measurement.html:31
+msgid "Error in sample list"
+msgstr "Fehler in Probenliste"
+
+#: institute/templates/samples/edit_cluster_tool_deposition.html:78
+#: institute/templates/samples/edit_five_chamber_deposition.html:68
+#: institute/templates/samples/edit_five_chamber_deposition.html:69
+#: institute/templates/samples/edit_sample.html:58
+msgid "Error in layer"
+msgstr "Fehler in der Schicht"
+
+#: institute/templates/samples/edit_cluster_tool_deposition.html:89
+msgid "layer number"
+msgstr "Schichtnummer"
+
+#: institute/templates/samples/edit_cluster_tool_deposition.html:152
+msgid "Gas flows in sccm"
+msgstr "Gasflüsse in sccm"
+
+#: institute/templates/samples/edit_five_chamber_deposition.html:101
+msgid "Error with adding layers"
+msgstr "Fehler beim hinzufügen von Schichten"
+
+#: institute/templates/samples/edit_five_chamber_deposition.html:102
+msgid "Error with removing from My Samples"
+msgstr "Fehler beim Entfernen von „Meinen Schichten“"
+
+#: institute/templates/samples/edit_layer_thickness_measurement.html:30
+msgid "Error in measurement"
+msgstr "Fehler in der Messung"
+
+#: institute/templates/samples/edit_my_layers.html:34
+msgid "Error in My Layer"
+msgstr "Fehler in Meiner Schicht"
+
+#: institute/templates/samples/edit_pds_measurement.html:30
+msgid "Error in PDS data"
+msgstr "Fehler in den PDS-Daten"
+
+#: institute/templates/samples/edit_pds_measurement.html:31
+#: institute/templates/samples/edit_solarsimulator_measurement.html:31
+#: institute/templates/samples/edit_structuring.html:31
+msgid "Error in sample"
+msgstr "Fehler in den Proben"
+
+#: institute/templates/samples/edit_pds_measurement.html:32
+msgid "Extract from datafile error"
+msgstr "Fehler mit dem extrahieren aus der Datendatei"
+
+#: institute/templates/samples/edit_pds_measurement.html:33
+#: institute/templates/samples/edit_solarsimulator_measurement.html:32
+#: institute/templates/samples/edit_structuring.html:32
+msgid "Error with removal from “My Samples”"
+msgstr "Fehler beim Entfernen von „Meine Proben“"
+
+#: institute/templates/samples/edit_sample.html:29
+msgid "Informal stack"
+msgstr "Informeller Stapel"
+
+#: institute/templates/samples/edit_sample.html:54
+msgid "delete"
+msgstr "löschen"
+
+#: institute/templates/samples/edit_solarsimulator_measurement.html:30
+msgid "Error in solarsimulator measurements"
+msgstr "Fehler in Sonnensimulator-Messungen"
+
+#: institute/templates/samples/edit_solarsimulator_measurement.html:72
+msgid "Error in solarsimulator measurement"
+msgstr "Fehler in der Sonnensimulator-Messung"
+
+#: institute/templates/samples/edit_structuring.html:30
+msgid "Error in structuring process"
+msgstr "Fehler im Strukturierungsprozess"
+
+#: institute/templates/samples/edit_substrate.html:30
+msgid "Substrate error"
+msgstr "Fehler mit dem Substrat"
+
+#: institute/templates/samples/edit_substrate.html:31
+msgid "Sample list error"
+msgstr "Fehler mit der Probenliste"
+
+#: institute/templates/samples/lab_notebook_five_chamber_deposition.html:35
+msgid "number"
+msgstr "Nummer"
+
+#: institute/templates/samples/lab_notebook_five_chamber_deposition.html:79
+msgid "No data found for this time range."
+msgstr "Keine Daten aus diesen Zeitraum gefunden."
+
+#: institute/templates/samples/list_claims.html:28
+msgid "Assert a new claim to …"
+msgstr "Einen neuen Anspruch einreichen auf …"
+
+#: institute/templates/samples/list_claims.html:31
+msgid "existing samples"
+msgstr "existierende Proben"
+
+#: institute/templates/samples/list_claims.html:33
+msgid "old-style sample names which do not yet exist"
+msgstr "Probennamen nach „alter Art“, die bislang noch nicht existieren"
+
+#: institute/templates/samples/list_claims.html:35
+msgid "“To exist” means here “to exist in the database”."
+msgstr "„Existieren“ bedeutet hier „in der Probendatenbank existieren“."
+
+#: institute/templates/samples/main_menu.html:28
+msgid "Depositions by number"
+msgstr "Depositionen nach Nummer"
+
+#: institute/templates/samples/main_menu.html:34
+msgid "Edit “My Layers”"
+msgstr "“Meine Schichten” ändern"
+
+#: institute/templates/samples/show_five_chamber_deposition.html:65
+msgid "Silane conc."
+msgstr "Silankonz."
+
+#: institute/templates/samples/show_sample.html:32
+msgid "sample label"
+msgstr "Probenetikette"
+
+#: institute/templates/samples/show_sample.html:37
+msgid "copy informal stack"
+msgstr "informellen Stapel kopieren"
+
+#: institute/templates/samples/show_solarsimulator_measurement.html:64
+msgid "cell layout"
+msgstr "Zelllayout"
+
+#: institute/templates/samples/show_substrate.html:27
+msgid "Material"
+msgstr "Material"
+
+#: institute/templatetags/institute_extras.py:78
+#: institute/views/samples/cluster_tool_deposition.py:113
+msgid "hot-wire"
+msgstr "Hot-Wire"
+
+#. Translators: “YY” is year, “L” is letter, and “NNN” is number
+#: institute/utils/views.py:58
+msgid "Invalid deposition number.  It must be of the form YYL-NNN."
+msgstr "Ungültige Depositionsnummer.  Sie muss von der Form JJB-NNN sein."
+
+#: institute/utils/views.py:61 institute/utils/views.py:65
+#, python-format
+msgid "The deposition letter must be an uppercase “%(letter)s”."
+msgstr "Der Anlangen-Buchstabe muss ein großes „%(letter)s“ sein."
+
+#: institute/views/samples/claim.py:54
+msgid "Samples"
+msgstr "Proben"
+
+#: institute/views/samples/claim.py:54
+msgid "Comma-separated"
+msgstr "Komma-separiert"
+
+#: institute/views/samples/claim.py:69
+#, python-format
+msgid "The name %(name)s appears more than once."
+msgstr "Der Name %(name)s kommt mehr als einmal vor."
+
+#: institute/views/samples/claim.py:76
+#, python-format
+msgid "The name %(invalid_names)s is not valid."
+msgid_plural "The names %(invalid_names)s are not valid."
+msgstr[0] "Der Name %(invalid_names)s ist ungültig."
+msgstr[1] "Die Namen %(invalid_names)s sind ungültig."
+
+#: institute/views/samples/claim.py:87
+#, python-format
+msgid "The name %(existing_names)s is already existing."
+msgid_plural "The names %(existing_names)s are already existing."
+msgstr[0] "Der Name %(existing_names)s existiert schon."
+msgstr[1] "Die Namen %(existing_names)s existieren schon."
+
+#: institute/views/samples/claim.py:108 institute/views/samples/sample.py:112
+#: institute/views/samples/substrate.py:43
+msgid "For a custom substrate, you must give substrate comments."
+msgstr ""
+"Sie müssen ein „spezielles Substrat“ in den Substrat-Kommentaren näher "
+"beschreiben."
+
+#: institute/views/samples/claim.py:156
+msgid "You are not allowed to add a claim in another user's name."
+msgstr ""
+"Sie dürfen keinen Anspruch auf Proben im Namen eines anderen Benutzers "
+"erheben."
+
+#: institute/views/samples/claim.py:166
+#, python-brace-format
+msgid "Sample request from {requester}"
+msgstr "Probenanfrage von {requester}"
+
+#: institute/views/samples/claim.py:167
+#, python-brace-format
+msgid ""
+"Hello {reviewer},\n"
+"\n"
+"{requester} wants to become the new “currently responsible person”\n"
+"of one or more samples.  Please visit\n"
+"\n"
+"    {url}\n"
+"\n"
+"for reviewing this request.  If you don't want or cannot approve\n"
+"the request, please contact {requester} directly and ask him or her\n"
+"to withdraw the request.\n"
+"\n"
+"JuliaBase.\n"
+msgstr ""
+"Hallo {reviewer},\n"
+"\n"
+"{requester} möchte gerne die neue „aktuell verantwortliche Person“\n"
+"von einer oder mehreren Proben werden.  Bitte besuchen Sie\n"
+"\n"
+"    {url}\n"
+"\n"
+"um diese Anfrage zu überprüfen.  Wenn Sie die Anfrage nicht genehmigen\n"
+"können, kontaktieren Sie bitte {requester} direkt und bitten\n"
+"ihn oder sie, die Anfrage zurückzuziehen.\n"
+"\n"
+"JuliaBase.\n"
+
+#: institute/views/samples/claim.py:196
+#, python-brace-format
+msgid "Sample claim {id_} was successfully submitted."
+msgstr "Der Anspruch {id_} wurde erfolgreich eingereicht."
+
+#: institute/views/samples/claim.py:202
+msgid "Assert claim"
+msgstr "Anspruch erheben"
+
+#: institute/views/samples/cluster_tool_deposition.py:53
+#: institute/views/samples/five_chamber_deposition.py:47
+msgid "The first two digits must match the year of the deposition."
+msgstr "Die ersten zwei Ziffern müssen zum Jahr der Deposition passen."
+
+#: institute/views/samples/cluster_tool_deposition.py:113
+msgid "PECVD"
+msgstr "PECVD"
+
+#: institute/views/samples/my_layers.py:44
+msgid "Nickname"
+msgstr "Spitzname"
+
+#: institute/views/samples/my_layers.py:45
+msgid "Layer identifier"
+msgstr "Schichtbezeichner"
+
+#: institute/views/samples/my_layers.py:46
+msgid "in the form \"deposition number\"-\"layer number\""
+msgstr "in der Form \"Depositionsnummer\"-\"Schichtnummer\""
+
+#: institute/views/samples/my_layers.py:47
+msgid "Delete"
+msgstr "Löschen"
+
+#: institute/views/samples/my_layers.py:55
+msgid "Deposition and layer number must be separated by \"-\"."
+msgstr "Depositions- und Schichtnummer müssen mit \"-\" getrennt sein."
+
+#: institute/views/samples/my_layers.py:60
+msgid "Deposition number doesn't exist."
+msgstr "Diese Depositionsnummer existiert nicht."
+
+#: institute/views/samples/my_layers.py:64
+msgid "Layer number isn't a number."
+msgstr "Schichtnummer ist keine Nummer."
+
+#: institute/views/samples/my_layers.py:67
+msgid "This layer does not exist in this deposition."
+msgstr "Diese Schicht existiert nicht in dieser Deposition."
+
+#: institute/views/samples/my_layers.py:144
+msgid "Nickname is already given."
+msgstr "Dieser Spitzname ist schon vergeben."
+
+#: institute/views/samples/my_layers.py:161
+msgid "Successfully changed “My Layers”"
+msgstr "“Meine Schichten” erfolgreich geändert"
+
+#: institute/views/samples/my_layers.py:163
+msgid "Nothing changed."
+msgstr "Nichts geändert."
+
+#: institute/views/samples/my_layers.py:183
+msgid "You can't access the “My Layers” section of another user."
+msgstr ""
+"Sie können nicht auf die „Meine-Schichten“-Seite eines anderen Benutzes "
+"zugreifen."
+
+#: institute/views/samples/my_layers.py:192
+msgid "Changes are not saved yet."
+msgstr "Die Änderungen sind noch nicht gespeichert."
+
+#: institute/views/samples/my_layers.py:196
+msgid "My Layers"
+msgstr "Meine Schichten"
+
+#: institute/views/samples/pds_measurement.py:100
+msgid "This PDS number exists already."
+msgstr "Diese PDS-Nummer ist schon vergeben."
+
+#: institute/views/samples/pds_measurement.py:117
+msgid "Overwrite with file data"
+msgstr "Mit Datei-Daten überschreiben"
+
+#: institute/views/samples/sample.py:47
+msgid "no names"
+msgstr "keine Namen"
+
+#. Translators: "new-style" names
+#: institute/views/samples/sample.py:49
+msgid "new-style"
+msgstr "neue Art"
+
+#: institute/views/samples/sample.py:50 institute/views/samples/sample.py:73
+msgid "cleaning number"
+msgstr "Reinigungsnummer"
+
+#: institute/views/samples/sample.py:61
+msgid "Number of samples"
+msgstr "Anzahl der Proben"
+
+#: institute/views/samples/sample.py:63
+msgid "Substrate comments"
+msgstr "Substrat-Kommentare"
+
+#: institute/views/samples/sample.py:64
+msgid "Substrate originator"
+msgstr "Substrat-Urheber"
+
+#: institute/views/samples/sample.py:65
+msgid "timestamp"
+msgstr "Zeitstempel"
+
+#: institute/views/samples/sample.py:67
+msgid "Current location"
+msgstr "Aktueller Probenort"
+
+#: institute/views/samples/sample.py:68
+msgid "Purpose"
+msgstr "Zweck"
+
+#: institute/views/samples/sample.py:69
+msgid "Tags"
+msgstr "Tags"
+
+#: institute/views/samples/sample.py:70
+msgid "separated with commas, no whitespace"
+msgstr "getrennt durch Kommas, keine Leerzeichen"
+
+#: institute/views/samples/sample.py:71
+msgid "Topic"
+msgstr "Thema"
+
+#: institute/views/samples/sample.py:72
+msgid "Rename"
+msgstr "Namen vergeben"
+
+#: institute/views/samples/sample.py:80
+#, python-brace-format
+msgid "with {markdown_link} syntax"
+msgstr "mit {markdown_link}-Syntax"
+
+#: institute/views/samples/sample.py:96
+msgid "The timestamp must not be in the future."
+msgstr "Der Zeitstempel darf nicht in der Zukunft liegen."
+
+#: institute/views/samples/sample.py:115
+msgid "You must provide a cleaning number if you want to use it for the names."
+msgstr ""
+"Sie müssen eine Renigungsnummer angeben, wenn Sie diese für die Namen "
+"verwenden wollen."
+
+#: institute/views/samples/sample.py:225
+#, python-brace-format
+msgid ""
+"Your samples have the names from {first_name} to {last_name}.  They were "
+"added to “My Samples”."
+msgstr ""
+"Ihre Proben haben die Namen {first_name} bis {last_name}.  Sie wurden zu "
+"„Meine Proben“ hinzugefügt."
+
+#: institute/views/samples/sample.py:228
+#, python-brace-format
+msgid "Your sample has the name {name}.  It was added to “My Samples”."
+msgstr ""
+"Ihre Probe hat den Namen {name}.  Sie wurde zu „Meine Proben“ hinzugefügt."
+
+#: institute/views/samples/sample.py:238
+msgid "Add samples"
+msgstr "Proben hinzufügen"
+
+#: institute/views/samples/sample.py:244
+msgid "Destination samples"
+msgstr "Zielproben"
+
+#: institute/views/samples/sample.py:282
+#, python-brace-format
+msgid "Informal stack was copied from sample {sample}."
+msgstr "Der informelle Stapel von Probe {sample} wurde übernommen."
+
+#: institute/views/samples/sample.py:286
+#, python-brace-format
+msgid "Informal stack of {sample} was successfully copied."
+msgstr "Der informelle Stapel von Probe {sample} wurde erfolgreich kopiert."
+
+#: institute/views/samples/sample.py:290
+#, python-brace-format
+msgid "Copy informal stack of “{sample}”"
+msgstr "Informellen Stapel von „{sample}“ kopieren"
+
+#: institute/views/samples/stack.py:45
+#, python-brace-format
+msgid "Layer stack of {0}"
+msgstr "Schichtstapel von {0}"
+
+#: institute/views/samples/statistics.py:26
+msgid "JuliaBase server statistics"
+msgstr "JuliaBase-Server-Statistiken"
+
+#: institute/views/samples/substrate.py:68
+#, python-brace-format
+msgid ""
+"Sample {0} has already processes before the timestamp of this substrate, "
+"namely from {1}."
+msgstr ""
+"Probe {0} hat bereits Prozesse vor dem Zeitstempel dieses Substrates, "
+"nämlich von {1}."
+
+#: institute/views/samples/substrate.py:74
+#, python-brace-format
+msgid "Sample {0} has already a substrate."
+msgstr "Die Probe {0} hat bereits ein Substrat."
+
+#~ msgid "Substrate"
+#~ msgstr "Substrat"
+
+#~ msgid "Cleaning number"
+#~ msgstr "Reinigungsnummer"
+
+#~ msgid "Deposition {number} was successfully changed in the database."
+#~ msgstr ""
+#~ "Die Deposition {number} wurde erfolgreich in der Datenbank geändert."
+
+#~ msgid "Deposition {number} was successfully added to the database."
+#~ msgstr ""
+#~ "Die Deposition {number} wurde erfolgreich zur Datenbank hinzugefügt."
+
+#~ msgid "The deposition was not saved due to incorrect or missing data."
+#~ msgstr ""
+#~ "Die Deposition wurde nicht gespeichert, weil noch Angaben fehlen oder "
+#~ "inkorrekt sind."
+
+#~ msgid "Edit {name} “{number}”"
+#~ msgstr "{name} „{number}“ ändern"
+
+#~ msgid "Add {name}"
+#~ msgstr "{name} hinzufügen"
+
+#~ msgid "(not finished)"
+#~ msgstr "(nicht ab­ge­schlos­sen)"
+
+#~ msgid ""
+#~ "\n"
+#~ "      Sorry, you can't access this resource.  %(description)s\n"
+#~ "      Please contact the administrator if you think you ought to have the "
+#~ "permission.\n"
+#~ "    "
+#~ msgstr ""
+#~ "\n"
+#~ "Leider dürfen Sie nicht auf diese Ressource zugreifen.  %(description)s  "
+#~ "Bitte kontaktieren Sie den Administrator, wenn Sie glauben, dass Sie die "
+#~ "Berechtigung haben sollten."
+
+#~ msgid ""
+#~ "\n"
+#~ "        Also note that the head of your institute group may add you to "
+#~ "the\n"
+#~ "        JuliaBase topic you need to access this resource.\n"
+#~ "      "
+#~ msgstr ""
+#~ "\n"
+#~ "Beachten Sie außerdem, dass der Leiter Ihrer Institutsgruppe Sie zum "
+#~ "Thema hinzufügen könnte, das Sie benötigen, um auf diese Ressource "
+#~ "zuzugreifen."
+
+#~ msgid "This occurence isn't reported to anyone, and it is not logged."
+#~ msgstr ""
+#~ "Dieses Ereignis wird niemandem gemeldet und in keine Logdatei geschrieben."
+
+#~ msgid "Can view all cluster tool depositions"
+#~ msgstr "Darf alle Cluster-Tool-Depositionen sehen"
+
+#~ msgid "Can edit all cluster tool depositions"
+#~ msgstr "Darf alle Cluster-Tool-Depositionen ändern"
+
+#~ msgid "none"
+#~ msgstr "keine"
+
+#~ msgid "Layer to be added"
+#~ msgstr "Schicht, die hinzugefügt werden soll"
+
+#~ msgid "Nickname of My Layer to be added"
+#~ msgstr "Spitzname Meiner Schicht, die hinzugefügt werden soll"
+
+#~ msgid "duplicate this layer"
+#~ msgstr "diese Schicht duplizieren"
+
+#~ msgid "remove this layer"
+#~ msgstr "diese Schicht löschen"
+
+#~ msgid "move this layer"
+#~ msgstr "diese Schicht verschieben"
+
+#~ msgid "up"
+#~ msgstr "hoch"
+
+#~ msgid "down"
+#~ msgstr "runter"
+
+#~ msgid "You can't duplicate, move, or remove a layer at the same time."
+#~ msgstr ""
+#~ "Sie können nicht gleichzeitig dieselbe Schicht duplizieren, entfernen "
+#~ "oder verschieben."
+
+#~ msgid "The sample {samples} is already dead at this time."
+#~ msgid_plural "The samples {samples} are already dead at this time."
+#~ msgstr[0] "Die Probe {samples} ist zu diesem Zeitpunkt schon tot."
+#~ msgstr[1] "Die Proben {samples} sind zu diesem Zeitpunkt schon tot."
+
+#~ msgid "No layers given."
+#~ msgstr "Keine Schichten angebeben."
+
+#~ msgid "{measurement} was successfully changed in the database."
+#~ msgstr "{measurement} wurde erfolgreich in der Datenbank geändert."
+
+#~ msgid "{measurement} was successfully added to the database."
+#~ msgstr "{measurement} wurde erfolgreich zur Datenbank hinzugefügt."
+
+#~ msgid "Thickness of {sample}"
+#~ msgstr "Dicke von {sample}"
+
+#~ msgid "Add thickness"
+#~ msgstr "Dicke hinzufügen"
+
+#~ msgid "{process} was successfully changed in the database."
+#~ msgstr "{process} wurde erfolgreich in der Datenbank geändert."
+
+#~ msgid "{process} was successfully added to the database."
+#~ msgstr "{process} wurde erfolgreich zur Datenbank hinzugefügt."
+
+#~ msgid "Edit PDS measurement of {sample}"
+#~ msgstr "Ändern der PDS-Messung von {sample}"
+
+#~ msgid "Add PDS measurement"
+#~ msgstr "PDS-Messung hinzufügen"
+
+#~ msgid "No measurenents given."
+#~ msgstr "Keine Messungen angebeben."
+
+#~ msgid "This cell position is already given."
+#~ msgstr "Diese Zellposition ist schon vergeben."
+
+#~ msgid "{name} of {sample}"
+#~ msgstr "{name} von {sample}"
+
+#~ msgid "Sample is already dead at this time."
+#~ msgstr "Die Probe ist zu diesem Zeitpunkt schon tot."
+
+#~ msgid "Structuring process was successfully changed in the database."
+#~ msgstr "Strukturierungsprozess wurde erfolgreich in der Datenbank geändert."
+
+#~ msgid "Structuring process was successfully added to the database."
+#~ msgstr "Strukturierungsprozess wurde erfolgreich zur Datenbank hinzugefügt."
+
+#~ msgid "Edit structuring process"
+#~ msgstr "Strukturierungsprozess ändern"
+
+#~ msgid "Add structuring process"
+#~ msgstr "Strukturierungsprozess hinzufügen"
+
+#~ msgid "Substrate {0} was successfully changed in the database."
+#~ msgstr "Substrat {0} wurde erfolgreich in der Datenbank geändert."
+
+#~ msgid "Substrate {0} was successfully added to the database."
+#~ msgstr "Substrat {0} wurde erfolgreich zur Datenbank hinzugefügt."
+
+#~ msgid "Edit substrate “{0}”"
+#~ msgstr "Ändern des Substrates „{0}“"
+
+#~ msgid "Add substrate"
+#~ msgstr "Substrat hinzufügen"
+
+#~ msgid "Can add cluster tool depositions"
+#~ msgstr "Darf Cluster-Tool-Depositionen hinzufügen"
+
+#~ msgid "Can edit perms for cluster tool I depositions"
+#~ msgstr "Darf die Berechtigungen für Cluster-Tool-I-Depositionen ändern"
+
+#~ msgid "Can add 5-chamber depositions"
+#~ msgstr "Darf 5-Kammer-Depositionen hinzufügen"
+
+#~ msgid "Can edit perms for 5-chamber depositions"
+#~ msgstr "Darf die Berechtigungen für 5-Kammer-Depositionen ändern"
+
+#~ msgid "Can view all 5-chamber depositions"
+#~ msgstr "Darf alle 5-Kammer-Depositionen sehen"
+
+#~ msgid "Can edit all 5-chamber depositions"
+#~ msgstr "Darf alle 5-Kammer-Depositionen ändern"
+
+#~ msgid "Can add PDS measurements"
+#~ msgstr "Darf PDS-Messungen hinzufügen"
+
+#~ msgid "Can edit perms for PDS measurements"
+#~ msgstr "Darf die Berechtigungen für PDS-Messungen ändern"
+
+#~ msgid "Can view all PDS measurements"
+#~ msgstr "Darf alle PDS-Messungen sehen"
+
+#~ msgid "Can add solarsimulator measurements"
+#~ msgstr "Darf Sonnensimulator-Messungen hinzufügen"
+
+#~ msgid "Can edit perms for solarsimulator measurements"
+#~ msgstr "Darf die Berechtigungen für Sonnensimlulator-Messungen ändern"
+
+#~ msgid "Can view all solarsimulator measurements"
+#~ msgstr "Darf alle Sonnensimlulator-Messungen sehen"
+
+#~ msgid "Jülich Forschungszentrum logo"
+#~ msgstr "Logo des Forschungszentrums Jülich"
+
+#~ msgid "{name} “{number}”"
+#~ msgstr "{name} „{number}“"
+
+#~ msgid "Operator"
+#~ msgstr "Operateur"
+
+#~ msgid "time"
+#~ msgstr "Zeit"
+
+#~ msgid "yes"
+#~ msgstr "ja"
+
+#~ msgid "no"
+#~ msgstr "nein"
+
+#~ msgid "date"
+#~ msgstr "Datum"
+
+#~ msgid "material"
+#~ msgstr "Material"
+
+#~ msgid "PDS measurement of {sample}"
+#~ msgstr "PDS-Messung von {sample}"
+
+#~ msgid "PDS measurement #{number}"
+#~ msgstr "PDS-Messung Nr. {number}"
+
+#~ msgid "in ℃"
+#~ msgstr "in ℃"
+
+#~ msgid "solarsimulator measurement of {sample}"
+#~ msgstr "Sonnensimlulator-Messung von {sample}"
+
+#~ msgid "in cm²"
+#~ msgstr "in cm²"
+
+#~ msgid "in %"
+#~ msgstr "in %"
+
+#~ msgid "in mA/cm²"
+#~ msgstr "in mA/cm²"
+
+#~ msgid "structuring of {sample}"
+#~ msgstr "Strukturierung von {sample}"
+
+#~ msgid "PDS measurement #{pds_number}"
+#~ msgstr "PDS-Messung Nr. {pds_number}"
+
+#~ msgid "Solarsimulator measurement #{number}"
+#~ msgstr "Sonnensimlulatormessung Nr. {number}"
+
+#~ msgid "in sccm"
+#~ msgstr "in sccm"
+
+#~ msgid "in mbar"
+#~ msgstr "in mbar"
+
+#~ msgid "in W"
+#~ msgstr "in W"
+
+#~ msgid "in ℃"
+#~ msgstr "in ℃"
+
+#~ msgid "in mm"
+#~ msgstr "in mm"
+
+#~ msgid "in nm"
+#~ msgstr "in nm"
+
+#~ msgid "PDS signal in a.u."
+#~ msgstr "PDS-Signal in w.E."
+
+#~ msgid "unevaluated"
+#~ msgstr "unausgewertet"
+
+#~ msgid "cell index"
+#~ msgstr "Zellindex"
+
+#~ msgid "cell position {position}"
+#~ msgstr "Zellposition {position}"
+
+#~ msgid "data file name"
+#~ msgstr "Datendatei"
+
+#~ msgid "Can add photo measurements"
+#~ msgstr "Darf Hellmessungen hinzufügen"
+
+#~ msgid "maximum power point"
+#~ msgstr "Maximum-Power-Point"
+
+#~ msgid "in mW"
+#~ msgstr "in mW"
+
+#~ msgid "fill factor"
+#~ msgstr "Füllfaktor"
+
+#~ msgid "http://en.wikipedia.org/wiki/Land_Run_of_1889"
+#~ msgstr "http://de.wikipedia.org/wiki/Oklahoma_Land_Run"
+
+#~ msgid "Oklahoma land rush"
+#~ msgstr "Oklahoma Land Run"
+
+#~ msgid "woman in laboratory"
+#~ msgstr "Frau im Labor"
+
+#~ msgid ""
+#~ "A solarsimulator measurement with this cell index and data file already "
+#~ "exists."
+#~ msgstr ""
+#~ "Eine Sonnensimlulatormessung mit diesem Zellindex und dieser Datendatei "
+#~ "existiert bereits."
+
+#~ msgid "switch to %(language)s"
+#~ msgstr "wechsle zu %(language)s"
+
+#~ msgid "Welcome,"
+#~ msgstr "Willkommen,"
+
+#~ msgid "Report feature wish or bug"
+#~ msgstr "Bug oder Featurewunsch melden"
+
+#~ msgid "Help"
+#~ msgstr "Hilfe"
+
+#~ msgid "Log out"
+#~ msgstr "Abmelden"
+
+#~ msgid "Log in"
+#~ msgstr "Anmelden"
+
+#~ msgid "The database server"
+#~ msgstr "Der Datenbank-Server"
+
+#~ msgid "The samples database"
+#~ msgstr "Die Probendatenbank"

@@ -1,0 +1,41 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% extends "samples/templates/samples/show_sample.html" %}
+{% comment %}
+This file is part of JuliaBase-Institute, see http://www.juliabase.org.
+Copyright © 2008–2015 Forschungszentrum Jülich GmbH, Jülich, Germany
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later
+version.
+
+In particular, you may modify this file freely and even remove this license,
+and offer it as part of a web service, as long as you do not distribute it.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program.  If not, see <http://www.gnu.org/licenses/>.
+{% endcomment %}
+
+{% load i18n %}
+{% load juliabase %}
+{% load static %}
+
+{% block extra_sample_header %}
+  <div class="screen-only" style="float: right"><a
+          href="{% url 'institute:printer_label' sample_id=sample.sample.id %}"
+                                                   ><img width="40" height="40" style="display: block"
+          alt="{% translate 'sample label' %}" src="{% static "samples/qrcode.png" %}"/></a></div>
+  {% if sample.informal_stack_thumbnail_url %}
+    <div style="float:right; margin-left: 1em; margin-right: 1em; margin-bottom: 1ex">
+      <a href="{{ sample.informal_stack_url }}"><img src="{{ sample.informal_stack_thumbnail_url }}" alt="{% translate 'layer stack' %}"/></a><a 
+           href="{% url 'institute:copy_informal_stack' sample_name=sample.sample.name %}?next={{ sample.sample.get_absolute_url|urlquote_plus }}"
+                          ><img src="{% static "juliabase/icons/application_cascade.png" %}" alt="copy stack icon" title="{% translate 'copy informal stack' %}"
+                                width="16" height="16"/></a>
+    </div>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,29 @@
+{# -*- indent-tabs-mode: nil -*- #}
+{% extends "samples/base.html" %}
+{% comment %}
+This file is part of JuliaBase, see http://www.juliabase.org.
+{% endcomment %}
+
+{% load i18n %}
+{% load juliabase %}
+{% load samples_extras %}
+
+{% block frame_content %}
+<form method="post">{% csrf_token %}
+  {% error_list edit_topic _("Error in topic data") %}
+  <table class="ordnung gesetz">
+    <tr>
+      {% input_field edit_topic.members %}
+    </tr>
+    <tr>
+      {% input_field edit_topic.topic_manager %}
+    </tr>
+    <tr>
+      {% input_field edit_topic.confidential %}
+    </tr>
+  </table>
+  <p class="submit-button" style="clear: both"><input type="submit" value="Save"/></p>
+</form>
+
+
+{% endblock %}

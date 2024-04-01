@@ -1,0 +1,634 @@
+.. -*- mode: rst; coding: utf-8; ispell-local-dictionary: "english" -*-
+..
+.. This file is part of JuliaBase, see http://www.juliabase.org.
+.. Copyright © 2008–2015 Forschungszentrum Jülich GmbH, Jülich, Germany
+..
+.. This program is free software: you can redistribute it and/or modify it under
+.. the terms of the GNU Affero General Public License as published by the Free
+.. Software Foundation, either version 3 of the License, or (at your option) any
+.. later version.
+..
+.. This program is distributed in the hope that it will be useful, but WITHOUT
+.. ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+.. FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
+.. details.
+..
+.. You should have received a copy of the GNU Affero General Public License
+.. along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+.. index:: settings
+
+==================
+Settings reference
+==================
+
+
+In order to have the default values for the following settings available, you
+must start your :file:`settings.py` with::
+
+    from jb_common.settings_defaults import *
+    from samples.settings_defaults import *
+
+We recommend to use the :file:`settings.py` in JuliaBase's root directory as a
+starting point.
+
+
+General JuliaBase settings
+==========================
+
+
+.. index:: ADD_SAMPLES_VIEW
+
+ADD_SAMPLES_VIEW
+----------------
+
+Default: ``""`` (Empty string)
+
+Name of the view to add samples.  For example::
+
+    ADD_SAMPLES_VIEW = "institute:add_samples"
+
+This view function must have exactly one parameter, namely the ``request``
+instance.
+
+
+.. index:: CACHE_ROOT
+
+CACHE_ROOT
+----------
+
+Default: ``"/tmp/juliabase_cache"``
+
+The path where dispensable (in the sense of re-creatable) files are stored.
+JuliaBase mostly uses this directory to store images, e.g. plot files.  If the
+path doesn't exist when the JuliaBase service is started, it is created.  The
+default value should be changed to e.g. ``"/var/cache/juliabase"``.  Note that
+such a path needs to be created by you because Juliabase doesn't have the
+necessary permissions.  Also note that such a path needs to be writable by the
+webserver process JuliaBase is running on.
+
+
+.. index:: CRAWLER_LOGS_ROOT
+
+CRAWLER_LOGS_ROOT
+-----------------
+
+Default: ``""`` (Empty string)
+
+Path to the crawlers' log files.  In this directory, the log file for a
+particular process class is called :file:`{class_name}.log`.  Mind the
+spelling: ``MyProcessClassName`` becomes :file:`my_process_class_name.log`.
+
+
+.. index:: CRAWLER_LOGS_WHITELIST
+
+CRAWLER_LOGS_WHITELIST
+----------------------
+
+Default: ``[]`` (Empty list)
+
+List of process classes for which the crawler log is public, i.e. not
+restricted to users that are allowed to add new processes of that kind.
+
+
+.. index:: DEBUG_EMAIL_REDIRECT_USERNAME
+
+DEBUG_EMAIL_REDIRECT_USERNAME
+-----------------------------
+
+Default: ``""`` (Empty string)
+
+Username of a user to which all outgoing email should be sent if the Django
+setting ``DEBUG=True``.  If this name is invalid, in particular if it is empty,
+no emails are sent at all in debugging mode.  This prevents embarrassment
+caused by emails sent to other people while merely debugging your code.
+
+
+.. index:: HELP_LINK_PREFIX
+
+HELP_LINK_PREFIX
+----------------
+
+Default:: ``"http://www.juliabase.org/"``
+
+URL prefix to be prepended to all help link given in the
+:py:func:`~jb_common.utils.base.help_link` decorator.
+
+
+.. index:: INITIALS_FORMATS
+.. _INITIALS_FORMATS:
+
+INITIALS_FORMATS
+----------------
+
+Default::
+
+    INITIALS_FORMATS = \
+        {"user": {"pattern": r"[A-Z]{2,4}|[A-Z]{2,3}\d|[A-Z]{2}\d{2}",
+                  "description": _("The initials start with two uppercase letters.  "
+                                   "They contain uppercase letters and digits only.  "
+                                   "Digits are at the end.")},
+         "external_contact": {
+                  "pattern": r"[A-Z]{4}|[A-Z]{3}\d|[A-Z]{2}\d{2}",
+                  "description": _("The initials start with two uppercase letters.  "
+                                   "They contain uppercase letters and digits only.  "
+                                   "Digits are at the end.  "
+                                   "The length is exactly 4 characters.")}
+         }
+
+This maps the kind of initials to their properties.  It must contain exactly
+the two keys ``"user"`` and ``"external_contact"``.  See :ref:`Initials` for
+more information.
+
+
+.. index:: JAVASCRIPT_I18N_APPS
+
+JAVASCRIPT_I18N_APPS
+--------------------
+
+Default: ``["django.contrib.auth", "samples", "jb_common"]``
+
+List containing all apps which contain translations that should be used in
+JavaScript code.  The apps are named as in the Django setting
+``INSTALLED_APPS``.  See the `Django documentation
+<https://docs.djangoproject.com/en/dev/topics/i18n/translation/#internationalization-in-javascript-code>`__
+for further information.
+
+
+.. index:: MERGE_CLEANUP_FUNCTION
+
+MERGE_CLEANUP_FUNCTION
+----------------------
+
+Default: ``""`` (Empty string)
+
+Name of the view in Python's dot notation which points to a function which is
+called after each sample merge.  This function must take exactly two
+parameters, the sample that is merged and the sample that this sample is merged
+into.  It is possible to leave this settings empty; then, nothing special is
+called.
+
+
+.. index:: NAME_PREFIX_TEMPLATES
+
+NAME_PREFIX_TEMPLATES
+---------------------
+
+Default: ``[]`` (Empty list)
+
+List of string templates that define possible sample name prefixes.  See
+:doc:`sample_names` for more information.
+
+
+.. index:: SAMPLE_NAME_FORMATS
+
+SAMPLE_NAME_FORMATS
+-------------------
+
+Default::
+
+    SAMPLE_NAME_FORMATS = {"provisional": {"possible_renames": {"default"}},
+                           "default":     {"pattern": r"[-A-Za-z_/0-9#()]*"}}
+
+This setting defines which sample names are allowed in your database.  It maps
+the names of the formats to their properties.  See :doc:`sample_names` for more
+information.
+
+
+.. index:: TEMP_STATIC_DIRS
+
+TEMP_STATIC_DIRS
+----------------
+
+Default: ``[]``
+
+Contains a list of directories from which temporary static files are served
+which should be deleted immediately after having been served.
+
+Important: If `USE_X_SENDFILE`_ is ``True``, all temporary static files are
+served by the ``X-Sendfile-Temporary`` header.  When using Apache with at least
+version 1.0 of `mod_xsendfile`_, this means that Apache serves the file and
+immediately deletes it afterwards.  You have to set the Apache flag
+``AllowFileDelete`` correctly for this to work.
+
+.. _mod_xsendfile: http://www.juliabase.org/downloads/impressum.html
+
+
+.. index:: THUMBNAIL_WIDTH
+
+THUMBNAIL_WIDTH
+---------------
+
+Default: ``400``
+
+This number represents the width in pixels of the thumbnails of plots and
+images that are generated for the sample data sheet.
+
+
+.. index:: USE_X_SENDFILE
+
+USE_X_SENDFILE
+--------------
+
+Default: ``False``
+
+If ``True``, JuliaBase assumes that the web server is interpreting the
+``X-Sendfile`` header and serves a static file (e.g. an image) itself.
+Otherwise, JuliaBase serves the file, which may be slower and more
+time-consuming.  In most cases, it doesn't matter, though.
+
+
+.. index:: LDAP
+
+Settings for LDAP
+=================
+
+
+.. index:: LDAP_ACCOUNT_FILTER
+
+LDAP_ACCOUNT_FILTER
+-------------------
+
+Default: ``"(!(userAccountControl:1.2.840.113556.1.4.803:=2))"``
+
+LDAP filter for filtering LDAP members that are eligible for JuliaBase access.
+The default filter finds any member which is not inactive.  The default value
+works well for Active Directory domain controllers.
+
+
+.. index:: LDAP_ADDITIONAL_ATTRIBUTES
+
+LDAP_ADDITIONAL_ATTRIBUTES
+--------------------------
+
+Default: ``[]`` (Empty list)
+
+JuliaBase limits the attributes it receives for every user to a certain subset,
+e.g. the user's real name and their department.  If your code needs additional
+LDAP attributes, put their names into this list.  An example might be::
+
+    LDAP_ADDITIONAL_ATTRIBUTES = ["telephoneNumber", "msExchUserCulture",
+                                  "physicalDeliveryOfficeName"]
+
+
+.. index:: LDAP_ADDITIONAL_USERS
+
+LDAP_ADDITIONAL_USERS
+---------------------
+
+Default: ``{}`` (Empty dict)
+
+Dictionary mapping user names to JuliaBase department names.  This contains
+users that are in the LDAP directory but are not in one of the departments
+listed in the setting `LDAP_DEPARTMENTS`_ explained below.  The use case is
+that some people working in the organization but not in the department(s) may
+still be eligible for database access.  By putting them in
+``LDAP_ADDITIONAL_USERS``, they are allowed to login.  They are associated with
+the department they are mapped to.
+
+
+.. index:: LDAP_DEPARTMENTS
+
+LDAP_DEPARTMENTS
+----------------
+
+Default: ``{}`` (Empty dict)
+
+Dictionary mapping LDAP department names to JuliaBase department names.  If
+your LDAP directory data sets contain the "department" attribute, this setting
+determines which department get access to JuliaBase.  If this setting is empty,
+all LDAP members get access.
+
+If the LDAP doesn't contain the "department" attribute, this setting should be
+empty.
+
+
+.. index:: LDAP_GROUPS_TO_PERMISSIONS
+
+LDAP_GROUPS_TO_PERMISSIONS
+--------------------------
+
+Default: ``{}`` (Empty dict)
+
+Dictionary mapping LDAP group names to sets of Django permission names.  Use
+the Django ``codename`` of the permission, without any app label.  An example
+might be::
+
+    LDAP_GROUPS_TO_PERMISSIONS = {
+            "TG_IEF-5_teamleaders": {"view_every_sample", "adopt_samples",
+                                     "edit_permissions_for_all_physical_processes",
+                                     "add_externaloperator",
+                                     "view_every_externaloperator",
+                                     "add_topic", "change_topic"}
+        }
+
+Note that you should not change permissions in JuliaBase's admin interface that
+occur in ``LDAP_GROUPS_TO_PERMISSIONS``.  They will be overwritten during the
+next synchronization with the LDAP directory (in particular, at next user
+login).  Consider these permissions being managed exclusively automatically.
+
+
+.. index:: LDAP_LOGIN_TEMPLATE
+
+LDAP_LOGIN_TEMPLATE
+-------------------
+
+Default: ``"{username}"``
+
+This pattern is used to bind to (a.k.a. login into) the LDAP server.  JuliaBase
+uses this binding only to check whether the user's credentials (login,
+password) are valid.  ``{username}`` is replaced by the username of the user
+that tries to login into JuliaBase.  A typical value for this setting is
+
+::
+
+   LDAP_LOGIN_TEMPLATE = "{username}@mycompany.com"
+
+
+.. index:: LDAP_PASSWORD
+
+LDAP_PASSWORD
+-------------
+
+Default: ``None``
+
+Login password of the functional LDAP user that is used to bind to the LDAP for
+retrieving data.  In some LDAP configurations, anonymous binding is allowed.
+Then, you don't need this setting.
+
+
+.. index:: LDAP_SEARCH_DN
+
+LDAP_SEARCH_DN
+--------------
+
+Default: ``""`` (Empty string)
+
+The “distinguished name” (DN) which should be used as the base of the search
+for user details in the LDAP directory.  It is typically something like::
+
+    LDAP_SEARCH_DN = "DC=ad,DC=mycompany,DC=com"
+
+
+.. index:: LDAP_URLS
+
+LDAP_URLS
+---------
+
+Default: ``[]`` (Empty list)
+
+List of URLs of LDAP directories.  If you want to use LDAP, this must contain
+at least one URL.  It may contain more if there are multiple redundant LDAP
+servers.  In this case, JuliaBase will try each of them until it finds a
+working one.  An example value may be::
+
+    LDAP_URLS = ["ldaps://dc-e01.ad.mycompany.com:636"]
+
+Here, 636 is the port number of LDAP-over-TLS.  Note that in order to use TLS,
+you must start the URL with ``ldaps://``.
+
+
+.. index:: LDAP_USER
+
+LDAP_USER
+---------
+
+Default: ``None``
+
+Login name of the functional LDAP user that is used to bind to the LDAP for
+retrieving data.  In some LDAP configurations, anonymous binding is allowed.
+Then, you don't need this setting.  Note that `LDAP_LOGIN_TEMPLATE`_ is applied
+to this name.
+
+
+.. index:: JB_LOGGING_PATH
+
+JB_LOGGING_PATH
+---------------
+
+Default: ``"/tmp/jb_common.log"``
+
+Path to the log file of JuliaBase.  Currently, it only logs the requests with
+timestamps, URL, and the currently logged-in user.
+
+
+Django settings with special meaning in JuliaBase
+=================================================
+
+Note that JuliaBase does not change the meaning or the default value of Django
+settings.
+
+
+.. index:: LANGUAGES (setting)
+
+LANGUAGES
+---------
+
+This settings determines which flags to offer at the top of the screen.  Since
+JuliaBase is available in English and German so far, a sensible value may be::
+
+    LANGUAGES = [("de", _("German")), ("en", _("English"))]
+
+Note that the ``_(...)`` makes the language names themselves translatable.  To
+get this working, you must import ``ugettext_lazy`` into :file:`settings.py`::
+
+    from django.utils.translation import ugettext_lazy as _
+
+
+.. index:: CACHES (setting)
+
+CACHES
+------
+
+JuliaBase makes heavy use of Django's cache framework.  Thus, we recommend to
+configure an efficient caching backend like Redis::
+
+    CACHES = {
+        "default": {
+            "BACKEND": "django_redis.cache.RedisCache",
+            "LOCATION": "redis://127.0.0.1:6379/1",
+            "TIMEOUT": 3600 * 24 * 28,
+            "OPTIONS": {
+                "CLIENT_CLASS": "django_redis.client.DefaultClient",
+                }
+            }
+        }
+
+
+.. index:: DEBUG (setting)
+
+DEBUG
+-----
+
+JuliaBase behaves slightly differently if ``DEBUG=True``.  In particular, all
+outgoing emails are redirected to `DEBUG_EMAIL_REDIRECT_USERNAME`_.
+
+
+.. index:: DEFAULT_FROM_EMAIL
+
+DEFAULT_FROM_EMAIL
+------------------
+
+JuliaBase uses this Django setting also for its own outgoing emails.
+
+
+.. index:: INSTALLED_APPS
+
+INSTALLED_APPS
+--------------
+
+The minimal set of installed apps for JuliaBase is::
+
+    INSTALLED_APPS = [
+        "django.contrib.auth",
+        "django.contrib.contenttypes",
+        "django.contrib.sessions",
+        "django.contrib.admin",
+        "django.contrib.messages",
+        "django.contrib.staticfiles",
+        "institute",
+        "samples",
+        "jb_common"
+    ]
+
+Of course, you must replace ``j_institute`` by your own institute's app.
+Furthermore, you may add as many apps as you like, as long as the inner order
+is preserved.
+
+
+.. index:: LOGIN_URL
+
+LOGIN_URL
+---------
+
+The default URL configuration of JuliaBase puts the login view so that you
+should say::
+
+    LOGIN_URL = "/login"
+
+
+.. index:: LOGIN_REDIRECT_URL
+
+LOGIN_REDIRECT_URL
+------------------
+
+JuliaBase assumes that this setting contains the home page of the database
+application.  It is used in the default templates if you click on the
+“JuliaBase” name on the top.  You may simply set it to ``"/"``.
+
+
+.. index:: MIDDLEWARE
+
+MIDDLEWARE
+----------
+
+The following is a minimal set of middleware JuliaBase is working with::
+
+    MIDDLEWARE = [
+        "django.middleware.common.CommonMiddleware",
+        "django.contrib.sessions.middleware.SessionMiddleware",
+        "django.contrib.messages.middleware.MessageMiddleware",
+        "jb_common.middleware.MessageMiddleware",
+        "django.middleware.locale.LocaleMiddleware",
+        "django.contrib.auth.middleware.AuthenticationMiddleware",
+        "jb_common.middleware.LocaleMiddleware",
+        "samples.middleware.juliabase.ExceptionsMiddleware",
+    ]
+
+Note that while you may add further middleware, you must not change the inner
+ordering of existing middleware.
+
+
+.. index:: SECRET_KEY
+
+SECRET_KEY
+----------
+
+Note that in the :file:`settings.py` file shipped with JuliaBase, the
+``SECRET_KEY`` is read from the file :file:`~/.juliabase_secret_key`.  If this
+file doesn't exist, it is generated.  This is good for quickly gettings things
+running and not insecure per se, but you should be aware of this.  In
+particular, nobody else should have access to it.
+
+Of course, alternatively, you may set the ``SECRET_KEY`` in a completely
+different way.
+
+A change of the secret key has the `usual impact`_ as for every Django
+deployment, plus that links to Atom feeds change (with the old ones being
+broken).
+
+.. _usual impact: http://stackoverflow.com/a/15383766/188108
+
+
+.. index:: TEMPLATES
+
+TEMPLATES
+---------
+
+JuliaBase uses Django's template engine.
+
+Make sure that you add ``"jb_common.context_processors.default"`` to the list
+of ``"context processors"``.
+
+
+DIRS
+....
+
+So that your can override JuliaBase's templates with own templates, you should
+set in the template backend dictionary::
+
+    "DIRS": [os.path.abspath(os.path.join(os.path.dirname(__file__), "../juliabase"))]
+
+If you don't override ``BASE_DIR``, you can write simply
+
+::
+
+    "DIRS": [BASE_DIR]
+
+You may add further paths, but if your project layout is structured according
+to :ref:`Organizing your source code`, this one must be present.  Then, you can
+extend Juliabase templates by beginning your template with e.g.
+
+::
+
+    {% extends "samples/templates/samples/list_claims.html" %}
+
+
+loaders
+.......
+
+In conjunction with ``DIRS`` you must make sure that Django will look
+for templates first in the app directories, and then in the filesystem.  With
+activated template caching, this looks like
+
+::
+
+    "loaders": ["django.template.loaders.cached.Loader",
+                ("django.template.loaders.app_directories.Loader",
+                 "django.template.loaders.filesystem.Loader")]
+
+in the ``"OPTIONS"`` dictionary, and without caching, like::
+
+    "loaders": ["django.template.loaders.app_directories.Loader",
+                "django.template.loaders.filesystem.Loader"]
+
+
+.. index:: USE_TZ
+
+USE_TZ
+------
+
+You should set it to ``True`` (the default for newly created Django projects).
+You even must do so if your database backend does not support timezone-aware
+datetimes by itself.
+
+
+.. index:: TIME_ZONE
+
+TIME_ZONE
+---------
+
+If ``USE_TZ`` is set to ``True``, you should also consider setting
+``TIME_ZONE``.  See the `Django documentation
+<https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-TIME_ZONE>`__
+for details.
